@@ -24,4 +24,4 @@ Notes
     - The Drop Shadow will not be rendered for IE8 and lower version of Internet Explorer.
 	- Media queries are **not supported in IE 8 and lower** so these will not render the split version of the responsive question table
 
-![screenshot](/examples/adc2-responsiveTable.png)
+![screenshot](/example/adc2-responsiveTable.png)
