@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<control  xmlns="http://www.askia.com/ADCSchema"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.askia.com/ADCSchema http://www.askia.com/Downloads/dev/schemas/adc2.0/Config.xsd"
+          version="2.0.0"
+          askiaCompat="5.3.3">
+  <info>
+    <name>responsiveTable</name>
+    <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
+    <version>1.0.0</version>
+    <date>2016-05-02</date>
+    <description><![CDATA[Responsive Grid Table]]></description>
+    <company>Askia</company>
+    <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
+    <site>http://www.askia.com</site>
+    <helpURL></helpURL>
+    <categories>
+      <category>General</category>
+    </categories>
+    <style width="400" height="300" />
+    <constraints>
+      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" />
+      <constraint on="controls" responseblock="true" label="false" textbox="false" checkbox="false" listbox="false" radiobutton="false" />
+      <constraint on="responses" max="*" min="*" />
+    </constraints>
+  </info>
+  <outputs defaultOutput="default">
+    <output id="default">
+      <description><![CDATA[Default output]]></description>
+      <condition><![CDATA[Browser.Support("javascript")]]></condition>
+      <content fileName="responsiveTable.css" type="css" mode="static" position="head" />
+      <content fileName="styles.css" type="css" mode="dynamic" position="head" />
+      <content fileName="stylesie9.html" type="html" mode="dynamic" position="head" />
+      <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
+      <content fileName="responsiveTable.js" type="javascript" mode="static" position="foot" />
+      <content fileName="Initializer.js" type="javascript" mode="dynamic" position="foot" />
+    </output>
+    <output id="fallback">
+      <description><![CDATA[Fallback output]]></description>
+      <condition><![CDATA[Not(Browser.Support("javascript"))]]></condition>
+      <content fileName="responsiveTable.css" type="css" mode="static" position="head" />
+      <content fileName="styles.css" type="css" mode="dynamic" position="head" />
+      <content fileName="stylesie9.html" type="html" mode="dynamic" position="head" />
+      <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
+    </output>
+  </outputs>
+  <properties>
+    <category id="General" name="General">
+      <property xsi:type="standardProperty" id="controlWidth" name="Control Max Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The max width of the control]]></description>
+        <value><![CDATA[900px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="controlAlign" name="Control Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The alignment of the control]]></description>
+        <value><![CDATA[center]]></value>
+        <options>
+          <option value="left" text="Left" />
+          <option value="center" text="Center" />
+          <option value="right" text="Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="firstColumnWidth" name="First Column Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The size in percentage of the first column of the table]]></description>
+        <value><![CDATA[40]]></value>
+        <options>
+          <option value="5" text="5%" />
+          <option value="10" text="10%" />
+          <option value="15" text="15%" />
+          <option value="20" text="20%" />
+          <option value="25" text="25%" />
+          <option value="30" text="30%" />
+          <option value="35" text="35%" />
+          <option value="40" text="40%" />
+          <option value="45" text="45%" />
+          <option value="50" text="50%" />
+          <option value="55" text="55%" />
+          <option value="60" text="60%" />
+          <option value="65" text="65%" />
+          <option value="70" text="70%" />
+          <option value="75" text="75%" />
+          <option value="80" text="80%" />
+          <option value="85" text="85%" />
+          <option value="90" text="90%" />
+          <option value="95" text="95%" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="firstColumnAlign" name="First Column Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The alignment of the text of the first column]]></description>
+        <value><![CDATA[left]]></value>
+        <options>
+          <option value="left" text="Left" />
+          <option value="center" text="Center" />
+          <option value="right" text="Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="firstColumnFontSize" name="First Column Font Size" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The font size of the first column]]></description>
+        <value><![CDATA[14px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerRowAlign" name="Header Row Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The alignment of the text of the header row]]></description>
+        <value><![CDATA[center]]></value>
+        <options>
+          <option value="left" text="Left" />
+          <option value="center" text="Center" />
+          <option value="right" text="Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="headerRowVerticalAlign" name="Header Row Vertical Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The vertical alignment of the text of the header row]]></description>
+        <value><![CDATA[middle]]></value>
+        <options>
+          <option value="top" text="Top" />
+          <option value="middle" text="Middle" />
+          <option value="bottom" text="Bottom" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="headerRowFontSize" name="Header Row Font Size" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The font size of the text of the header row]]></description>
+        <value><![CDATA[14px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="dropShadow" name="Drop Shadow" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Drop Shadow]]></description>
+        <value><![CDATA[yes]]></value>
+        <options>
+          <option value="yes" text="On" />
+          <option value="no" text="Off" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="dropShadowColor" name="Drop Shadow Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The color of the drop shadow]]></description>
+        <value><![CDATA[187,187,187]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerFixed" name="Header Always visible" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Header Always visible]]></description>
+        <value><![CDATA[1]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+    </category>
+    <category id="Responsive" name="Responsive">
+      <property xsi:type="standardProperty" id="responsiveWidth" name="Responsive Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The width value for the table to be splitted (media queries)]]></description>
+        <value><![CDATA[600px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="responsiveTextAlign" name="Responsive Text Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The alignment of the text of the responses for the responsive splitted version]]></description>
+        <value><![CDATA[left]]></value>
+        <options>
+          <option value="left" text="Left" />
+          <option value="center" text="Center" />
+          <option value="right" text="Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="responsiveFontSize" name="Responsive Font Size" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The font size of the text of the responses for the responsive splitted version]]></description>
+        <value><![CDATA[14px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="responsiveHeaderAlign" name="Responsive Header Text Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The alignment of the header text for the responsive splitted version]]></description>
+        <value><![CDATA[center]]></value>
+        <options>
+          <option value="left" text="Left" />
+          <option value="center" text="Center" />
+          <option value="right" text="Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="responsiveHeaderFontSize" name="Responsive Header Font Size" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The font size of the header for the responsive splitted version]]></description>
+        <value><![CDATA[14px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="hideInputs" name="Hide Inputs" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Hide inputs]]></description>
+        <value><![CDATA[yes]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
+      </property>
+    </category>
+    <category id="Border" name="Border">
+      <property xsi:type="standardProperty" id="borderRadius" name="Border Radius" type="string" mode="static" require="false" visible="true">
+        <description><![CDATA[The amount of curve on the table corners]]></description>
+        <value><![CDATA[2px]]></value>
+        <options>
+          <option value="0px" text="0" />
+          <option value="2px" text="2" />
+          <option value="5px" text="5" />
+          <option value="10px" text="10" />
+          <option value="15px" text="15" />
+          <option value="20px" text="20" />
+          <option value="25px" text="25" />
+          <option value="30px" text="30" />
+          <option value="50px" text="50" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="borderColour" name="Border Colour" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The border colour]]></description>
+        <value><![CDATA[187,187,187]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="borderThickness" name="Border Thickness" type="string" mode="static" require="false" visible="true">
+        <description><![CDATA[The thickness of the border]]></description>
+        <value><![CDATA[1px]]></value>
+        <options>
+          <option value="none" text="None" />
+          <option value="1px" text="1px" />
+          <option value="2px" text="2px" />
+          <option value="3px" text="3px" />
+          <option value="4px" text="4px" />
+          <option value="5px" text="5px" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="borderStyle" name="Border Style" type="string" mode="static" require="false" visible="true">
+        <description><![CDATA[The style of the border]]></description>
+        <value><![CDATA[solid]]></value>
+        <options>
+          <option value="none" text="None" />
+          <option value="solid" text="Solid" />
+          <option value="dashed" text="Dashed" />
+          <option value="dotted" text="Dotted" />
+          <option value="double" text="Double" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="showBorderColumn" name="Show Border on Columns" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Show Border on Columns]]></description>
+        <value><![CDATA[yes]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
+      </property>
+    </category>
+    <category id="Styles" name="Styles">
+      <property xsi:type="standardProperty" id="headFontColor" name="Head Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The font color of the head]]></description>
+        <value><![CDATA[68,68,68]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headBgPrimaryColor" name="Head Background Primary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Head Background Primary Color]]></description>
+        <value><![CDATA[255,255,255]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headBgSecondaryColor" name="Head Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Head Background Secondary Color]]></description>
+        <value><![CDATA[255,255,255]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="oddFontColor" name="Odd Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The font color of the odd responses]]></description>
+        <value><![CDATA[68,68,68]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="oddBgPrimaryColor" name="Odd Background Primary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Odd Background Primary Color]]></description>
+        <value><![CDATA[247,247,247]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="oddBgSecondaryColor" name="Odd Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Odd Background Secondary Color]]></description>
+        <value><![CDATA[247,247,247]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="evenFontColor" name="Even Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The font color of the even responses]]></description>
+        <value><![CDATA[68,68,68]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="evenBgPrimaryColor" name="Even Background Primary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Even Background Primary Color]]></description>
+        <value><![CDATA[235,235,235]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="evenBgSecondaryColor" name="Even Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Even Background Secondary Color]]></description>
+        <value><![CDATA[235,235,235]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="hoverFontColor" name="Hover Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The font color of the hover responses]]></description>
+        <value><![CDATA[68,68,68]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="hoverBgPrimaryColor" name="Hover Background Primary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Hover Background Primary Color]]></description>
+        <value><![CDATA[228,244,255]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="hoverBgSecondaryColor" name="Hover Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Hover Background Secondary Color]]></description>
+        <value><![CDATA[209,233,244]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="selectedFontColor" name="Selected Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The font color of the selected responses]]></description>
+        <value><![CDATA[255,255,255]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="selectedBgPrimaryColor" name="Selected Background Primary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Selected Background Primary Color]]></description>
+        <value><![CDATA[0,147,234]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="selectedBgSecondaryColor" name="Selected Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Selected Background Secondary Color]]></description>
+        <value><![CDATA[0,124,196]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="hightlightRowOnHover" name="Hightlight Row on Hover" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Hightlight Row on Hover]]></description>
+        <value><![CDATA[yes]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="highlightFontColor" name="Highlight Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[The font color of the highlighted row]]></description>
+        <value><![CDATA[68,68,68]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="highlightBgPrimaryColor" name="Highlight Background Primary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Highlighted Background Primary Color]]></description>
+        <value><![CDATA[255,255,255]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="highlightBgSecondaryColor" name="Highlight Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+        <description><![CDATA[Highlighted Background Secondary Color]]></description>
+        <value><![CDATA[255,255,255]]></value>
+      </property>
+    </category>
+  </properties>
+</control>

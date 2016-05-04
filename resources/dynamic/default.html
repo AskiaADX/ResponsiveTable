@@ -1,0 +1,55 @@
+<div id="adc_{%= CurrentADC.InstanceId %}" class="adc-responsiveTable">
+    <table>
+        <thead id="adc_{%= CurrentADC.InstanceId %}_thead">
+            <tr>
+                <th class="firstColumn respLabel">&nbsp;</th>
+                {%
+				Dim arTh = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.CurrentIteration).AvailableResponses
+				Dim th = 0
+				Dim ar = CurrentQuestion.ParentLoop.AvailableResponses
+                Dim inputName = ""
+                Dim inputId = ""
+                Dim inputValue = ""
+                Dim caption = ""
+                Dim attrChecked = ""
+                Dim isExclusive = ""
+                Dim typeQuestion = ""
+                Dim j = 0
+                Dim i = 0
+				For th = 1 To arTh.Count
+                %}
+                <th  class="othersColumns">{%:= arTh[th].Caption %}</th>
+                {% Next th %}
+            </tr>
+        </thead>
+        <tbody>
+            {%
+            For i = 1 To ar.Count
+            %}
+            <tr>
+                <td class="respLabel">{%:= ar[i].Caption %}</td>
+                {%
+				For j = 1 To CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Count 
+    				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then
+        				inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
+        				inputId     = inputName + "_" + j
+        				typeQuestion = "radio"
+    				Else
+        				inputName = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputName()
+        				inputId     = inputName.Replace(" ", "_")
+        				typeQuestion = "checkbox"
+				    EndIf
+                    inputValue  = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputValue()
+                    attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsSelected, "checked=\"checked\"", "")
+                    caption     = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Caption
+    				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
+                %}
+                <td data-label="{%:= caption %}" class="response{%:= isExclusive %}">
+                    <input type="{%:= typeQuestion %}" id="{%= inputId %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
+                </td>
+                {% Next j %}
+            </tr>
+            {% Next i %}
+        </tbody>
+    </table>
+</div>

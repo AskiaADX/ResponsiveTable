@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+<head>
+   <title>responsiveTable</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+	<link rel="stylesheet" href="responsiveTable.css">
+   <style>
+   #adc_3 {
+      width:100%;
+      max-width: 900px;
+      margin: 0 auto;
+   }
+   #adc_3 .firstColumn {
+      width: 40%;
+   }
+
+   #adc_3 .othersColumns {
+      width: 15%;
+   }
+   /* Border style */
+   #adc_3 table {
+      border: 1px solid #BBBBBB;
+   }
+   #adc_3 tr {
+      border: 1px solid #BBBBBB;
+   }
+   #adc_3 td {
+      border-top: 1px solid #BBBBBB;
+   }
+   /* if yes border column*/
+   #adc_3 td, #adc_3 th {
+      border-right: 1px solid #BBBBBB;
+   }
+   /* if yes border column*/
+   #adc_3 td:last-child, #adc_3 th:last-child {
+      border-right: 0;
+   }
+   #adc_3 table {
+      box-shadow: 2px 2px 5px 0px #BBBBBB;
+      border-radius: 10px;
+   }
+   #adc_3 th:first-child {
+      border-top-left-radius: 10px;
+   }
+   #adc_3 th:last-child {
+      border-top-right-radius: 10px;
+   }
+   #adc_3 tr:last-child td:first-child {
+      border-bottom-left-radius: 10px;
+   }
+   #adc_3 tr:last-child td:last-child {
+      border-bottom-right-radius: 10px;
+   }
+
+   /* Tr odd style */
+   #adc_3 tr {
+      background-color: #f7f7f7;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(247, 247, 247)), to(rgb(247, 247, 247)));
+      background-image: -webkit-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+      background-image: -moz-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+      background-image: -o-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+      background-image: -ms-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+      background-image: linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f7f7f7', EndColorStr='#f7f7f7');
+      color: #444;
+      transition: all ease-in-out .2s;
+   }
+   /* Tr even style */
+   #adc_3 tr:nth-child(even) {
+      background-color: #ebebeb;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(235, 235, 235)), to(rgb(235, 235, 235)));
+      background-image: -webkit-linear-gradient(top, rgb(235, 235, 235), rgb(235, 235, 235));
+      background-image: -moz-linear-gradient(top, rgb(235, 235, 235), rgb(235, 235, 235));
+      background-image: -o-linear-gradient(top, rgb(235, 235, 235), rgb(235, 235, 235));
+      background-image: -ms-linear-gradient(top, rgb(235, 235, 235), rgb(235, 235, 235));
+      background-image: linear-gradient(top, rgb(235, 235, 235), rgb(235, 235, 235));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ebebeb', EndColorStr='#ebebeb');
+      color: #444;
+      transition: all ease-in-out .2s;
+   }
+   /* Hover style - if show hightlight row on hover*/
+   #adc_3 tr:hover{
+      background-color: #ffffff;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 255, 255)));
+      background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#ffffff');
+      color: #444;
+   }
+   #adc_3 .response:hover {
+      background-color: #e4f4ff;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(228, 244, 255)), to(rgb(209, 233, 244)));
+      background-image: -webkit-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+      background-image: -moz-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+      background-image: -o-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+      background-image: -ms-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+      background-image: linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e4f4ff', EndColorStr='#d1e9f4');
+      color: #444;
+   }
+   /* Selected style */
+   #adc_3 .selected, #adc_3 .selected:hover {
+      background-color: #0093ea;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 147, 234)), to(rgb(0, 124, 196)));
+      background-image: -webkit-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+      background-image: -moz-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+      background-image: -o-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+      background-image: -ms-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+      background-image: linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0093ea', EndColorStr='#007cc4');
+      color: #FFFFFF;
+      transition: all ease-in-out .2s;
+   }
+   /* Head style */
+   #adc_3 th, #adc_3 th:hover {
+      background-color: #ffffff;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 255, 255)));
+      background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      background-image: linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#ffffff');
+      color: #444;
+   }
+
+   #adc_3 th, #adc_3 td {
+      padding: 10px;
+      text-align: center;
+   }
+
+   #adc_3 th {
+      font-size: 14px;
+   }
+
+   #adc_3 .respLabel {
+	  font-size: 14px;
+      text-align: left;
+   }
+
+   @media screen and (max-width: 640px) {
+
+      #adc_3 tr:nth-child(even), #adc_3 tr, #adc_3 tr:hover {
+         background-color: #f7f7f7;
+         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(247, 247, 247)), to(rgb(247, 247, 247)));
+         background-image: -webkit-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+         background-image: -moz-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+         background-image: -o-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+         background-image: -ms-linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+         background-image: linear-gradient(top, rgb(247, 247, 247), rgb(247, 247, 247));
+         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f7f7f7', EndColorStr='#f7f7f7');
+         color: #444;
+      }
+
+      #adc_3 .response:hover{
+         background-color: #e4f4ff;
+         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(228, 244, 255)), to(rgb(209, 233, 244)));
+         background-image: -webkit-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+         background-image: -moz-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+         background-image: -o-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+         background-image: -ms-linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+         background-image: linear-gradient(top, rgb(228, 244, 255), rgb(209, 233, 244));
+         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e4f4ff', EndColorStr='#d1e9f4');
+         color: #444;
+      }
+
+      #adc_3 .selected, #adc_3 .selected:hover {
+         background-color: #0093ea;
+         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 147, 234)), to(rgb(0, 124, 196)));
+         background-image: -webkit-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+         background-image: -moz-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+         background-image: -o-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+         background-image: -ms-linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+         background-image: linear-gradient(top, rgb(0, 147, 234), rgb(0, 124, 196));
+         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0093ea', EndColorStr='#007cc4');
+         color: #FFFFFF;
+      }
+
+      #adc_3 .respLabel, #adc_3 .respLabel:hover {
+         background-color: #ffffff;
+         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 255, 255)));
+         background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+         background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+         background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+         background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+         background-image: linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#ffffff');
+         color: #444;
+         text-align: center;
+      }
+      #adc_3 .response, #adc_3 .respLabel {
+         border-bottom: 1px solid #BBBBBB;
+      }
+      #adc_3 td {
+         border-top: none;
+      }
+      #adc_3 td, #adc_3 th {
+         border-right: none;
+      }
+      #adc_3 .response:last-child {
+         border-bottom: 0;
+      }
+      #adc_3 tr {
+         box-shadow: 2px 2px 5px 0px #BBBBBB;
+      }
+
+      #adc_3 .response {
+         text-align: left;
+         font-size: 14px;
+      }
+
+      #adc_3 tr {
+         border-radius: 10px;
+      }
+
+      #adc_3 .response input {
+         display: none;
+      }
+
+      #adc_3 table {
+         border: 0;
+         box-shadow: none;
+      }
+
+      #adc_3 thead {
+         display: none;
+      }
+      #adc_3 tr {
+         margin-bottom: 10px;
+         display: block;
+         overflow: hidden;
+      }
+      #adc_3 tr:last-child td:first-child {
+         border-bottom-left-radius: 0;
+      }
+      #adc_3 td, #adc_3 td:hover {
+         cursor: pointer;
+      }
+      #adc_3 .respLabel, #adc_3 .respLabel:hover {
+         cursor: auto;
+      }
+      #adc_3 td {
+         display: block;
+      }
+      #adc_3 td:after {
+         content: attr(data-label);
+      }
+
+   }
+   </style>
+   <!--[if IE 9]>
+   <style>
+      @media screen and (max-width: 640px) {
+         #adc_3 td {
+            width: 95%;
+            float: left;
+         }
+         #adc_3 table {
+            border-collapse: collapse;
+         }
+      }
+   </style>
+   <![endif]-->
+
+
+</head>
+<body>
+   <h2>Which weapon(s) would you use to kill the following creatures?</h2>
+   <div id="adc_3" class="adc-responsiveTable">
+      <table>
+         <thead id="adc_3_thead">
+            <tr>
+               <th class="firstColumn respLabel">&nbsp;</th>
+               <th  class="othersColumns">Banana</th>
+               <th  class="othersColumns">Dagger</th>
+               <th  class="othersColumns">Axe</th>
+               <th  class="othersColumns">DK</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td class="respLabel">Goblin</td>
+               <td data-label="Banana" class="response">
+                  <input type="checkbox" id="item-1-1"/>
+               </td>
+               <td data-label="Dagger" class="response">
+                  <input type="checkbox" id="item-1-2"/>
+               </td>
+               <td data-label="Axe" class="response">
+                  <input type="checkbox" id="item-1-3"/>
+               </td>
+               <td data-label="DK" class="response exclusive">
+                  <input type="checkbox" id="item-1-4"/>
+               </td>
+            </tr>
+            <tr>
+               <td class="respLabel">Orc</td>
+               <td data-label="Banana" class="response">
+                  <input type="checkbox" id="item-2-1"/>
+               </td>
+               <td data-label="Dagger" class="response">
+                  <input type="checkbox" id="item-2-2"/>
+               </td>
+               <td data-label="Axe" class="response">
+                  <input type="checkbox" id="item-2-3"/>
+               </td>
+               <td data-label="DK" class="response exclusive">
+                  <input type="checkbox" id="item-2-4"/>
+               </td>
+            </tr>
+            <tr>
+               <td class="respLabel">Uruk-Haï</td>
+               <td data-label="Banana" class="response">
+                  <input type="checkbox" id="item-3-1"/>
+               </td>
+               <td data-label="Dagger" class="response">
+                  <input type="checkbox" id="item-3-2"/>
+               </td>
+               <td data-label="Axe" class="response">
+                  <input type="checkbox" id="item-3-3"/>
+               </td>
+               <td data-label="DK" class="response exclusive">
+                  <input type="checkbox" id="item-3-4"/>
+               </td>
+            </tr>
+            <tr>
+               <td class="respLabel">Troll</td>
+               <td data-label="Banana" class="response">
+                  <input type="checkbox" id="item-4-1"/>
+               </td>
+               <td data-label="Dagger" class="response">
+                  <input type="checkbox" id="item-4-2"/>
+               </td>
+               <td data-label="Axe" class="response">
+                  <input type="checkbox" id="item-4-3"/>
+               </td>
+               <td data-label="DK" class="response exclusive">
+                  <input type="checkbox" id="item-4-4"/>
+               </td>
+            </tr>
+            <tr>
+               <td class="respLabel">Balrog</td>
+               <td data-label="Banana" class="response">
+                  <input type="checkbox" id="item-5-1"/>
+               </td>
+               <td data-label="Dagger" class="response">
+                  <input type="checkbox" id="item-5-2"/>
+               </td>
+               <td data-label="Axe" class="response">
+                  <input type="checkbox" id="item-5-3"/>
+               </td>
+               <td data-label="DK" class="response exclusive">
+                  <input type="checkbox" id="item-5-4"/>
+               </td>
+            </tr>
+            <tr>
+               <td class="respLabel">Dragon</td>
+               <td data-label="Banana" class="response">
+                  <input type="checkbox" id="item-6-1"/>
+               </td>
+               <td data-label="Dagger" class="response">
+                  <input type="checkbox" id="item-6-2"/>
+               </td>
+               <td data-label="Axe" class="response">
+                  <input type="checkbox" id="item-6-3"/>
+               </td>
+               <td data-label="DK" class="response exclusive">
+                  <input type="checkbox" id="item-6-4"/>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   <div style="width:500px;height:1500px;">&nbsp;</div>
+   <script type="text/javascript" src="responsiveTable.js"></script>
+   <script>
+		(function () {
+			var responsivetable = new ResponsiveTable({
+				instanceId: 3,
+            	headerFixed: 1
+			});
+		} ());
+	</script>
+   </body>
+</html>

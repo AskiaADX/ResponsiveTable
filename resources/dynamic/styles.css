@@ -1,0 +1,303 @@
+{%
+Dim controlAlign
+If (CurrentADC.PropValue("controlAlign") = "center" ) Then
+    controlAlign = "0 auto"
+ElseIf (CurrentADC.PropValue("controlAlign") = "right" ) Then
+    controlAlign = "0 0 0 auto"
+Else
+    controlAlign = "0 auto 0 0"
+EndIf
+Dim firstColumnWidth = CurrentADC.PropValue("firstColumnWidth")
+Dim columnsCount = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableResponses[1].Index).AvailableResponses.Count
+Dim othersColumns = ((100 - firstColumnWidth.ToNumber()) / columnsCount).ToString().ToNumber().Round(1)
+Dim borderColour = CurrentADC.PropValue("borderColour")
+Dim borderThickness = CurrentADC.PropValue("borderThickness")
+Dim borderStyle = CurrentADC.PropValue("borderStyle")
+Dim dropShadow = CurrentADC.PropValue("dropShadow")
+Dim dropShadowColor = CurrentADC.PropValue("dropShadowColor")
+Dim headBgPrimaryColor = CurrentADC.PropValue("headBgPrimaryColor")
+Dim headBgSecondaryColor = CurrentADC.PropValue("headBgSecondaryColor")
+Dim oddBgPrimaryColor = CurrentADC.PropValue("oddBgPrimaryColor")
+Dim oddBgSecondaryColor = CurrentADC.PropValue("oddBgSecondaryColor")
+Dim evenBgPrimaryColor = CurrentADC.PropValue("evenBgPrimaryColor")
+Dim evenBgSecondaryColor = CurrentADC.PropValue("evenBgSecondaryColor")
+Dim hoverBgPrimaryColor = CurrentADC.PropValue("hoverBgPrimaryColor")
+Dim hoverBgSecondaryColor = CurrentADC.PropValue("hoverBgSecondaryColor")
+Dim selectedBgPrimaryColor = CurrentADC.PropValue("selectedBgPrimaryColor")
+Dim selectedBgSecondaryColor = CurrentADC.PropValue("selectedBgSecondaryColor")
+Dim highlightBgPrimaryColor = CurrentADC.PropValue("highlightBgPrimaryColor")
+Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor")
+%}
+#adc_{%= CurrentADC.InstanceId %} {
+    max-width: {%= CurrentADC.PropValue("controlWidth") %};
+    margin: {%= controlAlign %};
+}
+#adc_{%= CurrentADC.InstanceId %} .firstColumn {
+    width: {%= firstColumnWidth + "%" %};
+}
+
+#adc_{%= CurrentADC.InstanceId %} .othersColumns {
+    width: {%= othersColumns + "%" %};
+}
+#adc_{%= CurrentADC.InstanceId %} table {
+    {% If (borderThickness = "none") Then %}
+        border: none;
+    {% Else %}
+        border: {%= borderThickness %} {%= borderStyle %} rgb({%= borderColour %});
+    {% EndIf %}
+}
+#adc_{%= CurrentADC.InstanceId %} tr {
+    {% If (borderThickness = "none") Then %}
+        border: none;
+    {% Else %}
+        border: {%= borderThickness %} {%= borderStyle %} rgb({%= borderColour %});
+    {% EndIf %}
+}
+#adc_{%= CurrentADC.InstanceId %} td {
+    {% If (borderThickness = "none") Then %}
+        border-top: none;
+    {% Else %}
+        border-top: {%= borderThickness %} {%= borderStyle %} rgb({%= borderColour %});
+    {% EndIf %}
+}
+{% If (CurrentADC.PropValue("showBorderColumn") = "yes") Then %}
+/* if yes border column*/
+#adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} th {
+    {% If (borderThickness = "none") Then %}
+        border-right: none;
+    {% Else %}
+        border-right: {%= borderThickness %} {%= borderStyle %} rgb({%= borderColour %});
+    {% EndIf %}
+}
+#adc_{%= CurrentADC.InstanceId %} td:last-child, #adc_{%= CurrentADC.InstanceId %} th:last-child {
+    border-right: 0;
+}
+{% EndIf %}
+#adc_{%= CurrentADC.InstanceId %} table {
+    {% If (dropShadow = "yes") Then %}
+    box-shadow: 2px 2px 5px 0px {%= dropShadowColor.ToHexa() %};
+    {% EndIf %}
+    border-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+#adc_{%= CurrentADC.InstanceId %} th:first-child {
+    border-top-left-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+#adc_{%= CurrentADC.InstanceId %} th:last-child {
+    border-top-right-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+#adc_{%= CurrentADC.InstanceId %} tr:last-child td:first-child {
+    border-bottom-left-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+#adc_{%= CurrentADC.InstanceId %} tr:last-child td:last-child {
+    border-bottom-right-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+
+/* Tr odd style */
+#adc_{%= CurrentADC.InstanceId %} tr {
+    background-color: {%= oddBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= oddBgPrimaryColor %})), to(rgb({%= oddBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= oddBgPrimaryColor.ToHexa() %}', EndColorStr='{%= oddBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+    /*transition: all ease-in-out .2s;*/
+}
+/* Tr even style */
+#adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) {
+    background-color: {%= evenBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= evenBgPrimaryColor %})), to(rgb({%= evenBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= evenBgPrimaryColor.ToHexa() %}', EndColorStr='{%= evenBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("evenFontColor").ToHexa() %};
+    /*transition: all ease-in-out .2s;*/
+}
+/* Hover style - if show hightlight row on hover */
+#adc_{%= CurrentADC.InstanceId %} tr:hover{
+    {% If (CurrentADC.PropValue("hightlightRowOnHover") = "yes") Then %}
+    background-color: {%= highlightBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= highlightBgPrimaryColor %})), to(rgb({%= highlightBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= highlightBgPrimaryColor.ToHexa() %}', EndColorStr='{%= highlightBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("highlightFontColor").ToHexa() %};
+    {% EndIf %}
+}
+#adc_{%= CurrentADC.InstanceId %} .response:hover {
+    background-color: {%= hoverBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= hoverBgPrimaryColor.ToHexa() %}', EndColorStr='{%= hoverBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
+}
+/* Selected style */
+#adc_{%= CurrentADC.InstanceId %} .selected, #adc_{%= CurrentADC.InstanceId %} .selected:hover {
+    background-color: {%= selectedBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= selectedBgPrimaryColor %})), to(rgb({%= selectedBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= selectedBgPrimaryColor.ToHexa() %}', EndColorStr='{%= selectedBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %};
+    /*transition: all ease-in-out .2s;*/
+}
+/* Head style */
+#adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} th:hover {
+    background-color: {%= headBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= headBgPrimaryColor %})), to(rgb({%= headBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+}
+
+#adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} td {
+    padding: 10px;
+    text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
+}
+
+#adc_{%= CurrentADC.InstanceId %} th {
+    font-size: {%= CurrentADC.PropValue("headerRowFontSize") %};
+    vertical-align: {%= CurrentADC.PropValue("headerRowVerticalAlign") %};
+}
+
+#adc_{%= CurrentADC.InstanceId %} .respLabel {
+    font-size: {%= CurrentADC.PropValue("firstColumnFontSize") %};
+    text-align: {%= CurrentADC.PropValue("firstColumnAlign") %};
+}
+
+@media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
+
+    #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even), #adc_{%= CurrentADC.InstanceId %} tr, #adc_{%= CurrentADC.InstanceId %} tr:hover {
+        background-color: {%= oddBgPrimaryColor.ToHexa() %};
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= oddBgPrimaryColor %})), to(rgb({%= oddBgSecondaryColor %})));
+        background-image: -webkit-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+        background-image: -moz-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+        background-image: -o-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+        background-image: -ms-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+        background-image: linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= oddBgPrimaryColor.ToHexa() %}', EndColorStr='{%= oddBgSecondaryColor.ToHexa() %}');
+        color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} .response:hover{
+        background-color: {%= hoverBgPrimaryColor.ToHexa() %};
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
+        background-image: -webkit-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+        background-image: -moz-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+        background-image: -o-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+        background-image: -ms-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+        background-image: linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= hoverBgPrimaryColor.ToHexa() %}', EndColorStr='{%= hoverBgSecondaryColor.ToHexa() %}');
+        color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} .selected, #adc_{%= CurrentADC.InstanceId %} .selected:hover {
+        background-color: {%= selectedBgPrimaryColor.ToHexa() %};
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= selectedBgPrimaryColor %})), to(rgb({%= selectedBgSecondaryColor %})));
+        background-image: -webkit-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+        background-image: -moz-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+        background-image: -o-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+        background-image: -ms-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+        background-image: linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= selectedBgPrimaryColor.ToHexa() %}', EndColorStr='{%= selectedBgSecondaryColor.ToHexa() %}');
+        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %};
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} .respLabel, #adc_{%= CurrentADC.InstanceId %} .respLabel:hover {
+        background-color: {%= headBgPrimaryColor.ToHexa() %};
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= headBgPrimaryColor %})), to(rgb({%= headBgSecondaryColor %})));
+        background-image: -webkit-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+        background-image: -moz-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+        background-image: -o-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+        background-image: -ms-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+        background-image: linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
+        color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+        text-align: {%= CurrentADC.PropValue("responsiveHeaderAlign") %};
+        font-size: {%= CurrentADC.PropValue("responsiveHeaderFontSize") %};
+    }
+    #adc_{%= CurrentADC.InstanceId %} .response, #adc_{%= CurrentADC.InstanceId %} .respLabel {
+        {% If (borderThickness = "none") Then %}
+        border-bottom: none;
+    	{% Else %}
+        border-bottom: {%= borderThickness %} {%= borderStyle %} rgb({%= borderColour %});
+    	{% EndIf %}
+    }
+    #adc_{%= CurrentADC.InstanceId %} td {
+        border-top: none;
+    }
+    #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} th {
+        border-right: none;
+    }
+    #adc_{%= CurrentADC.InstanceId %} .response:last-child {
+        border-bottom: 0;
+    }
+    #adc_{%= CurrentADC.InstanceId %} tr {
+        {% If (dropShadow = "yes") Then %}
+    	box-shadow: 2px 2px 5px 0px {%= dropShadowColor.ToHexa() %};
+    	{% EndIf %}
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} .response {
+        text-align: {%= CurrentADC.PropValue("responsiveTextAlign") %};
+        font-size: {%= CurrentADC.PropValue("responsiveFontSize") %};
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} tr {
+        border-radius: {%= CurrentADC.PropValue("borderRadius") %};
+    }
+	/* if javascript */
+    #adc_{%= CurrentADC.InstanceId %} .response input {
+        {% If (Browser.Support("javascript") and (CurrentADC.PropValue("hideInputs") = "yes")) Then %}
+        display: none;
+        {% EndIf %}
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} table {
+        border: 0;
+        box-shadow: none;
+    }
+
+    #adc_{%= CurrentADC.InstanceId %} thead {
+        display: none;
+    }
+    #adc_{%= CurrentADC.InstanceId %} tr {
+        margin-bottom: 10px;
+        display: block;
+        overflow: hidden;
+    }
+    #adc_{%= CurrentADC.InstanceId %} tr:last-child td:first-child {
+        border-bottom-left-radius: 0;
+    }
+    #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} td:hover {
+        cursor: pointer;
+    }
+    #adc_{%= CurrentADC.InstanceId %} .respLabel, #adc_{%= CurrentADC.InstanceId %} .respLabel:hover {
+        cursor: auto;
+    }
+    #adc_{%= CurrentADC.InstanceId %} td {
+        display: block;
+    }
+    #adc_{%= CurrentADC.InstanceId %} td:after {
+        content: attr(data-label);
+    }
+}

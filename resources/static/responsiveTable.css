@@ -1,0 +1,19 @@
+.adc-responsiveTable {
+   width: 100%;
+}
+.adc-responsiveTable table {
+   width: 100%;
+   margin:0;
+   padding: 0;
+   border-collapse: separate;
+   border-spacing: 0;
+}
+.adc-responsiveTable th {
+   font-weight: normal;
+}
+.adc-responsiveTable td:hover, .adc-responsiveTable  input[type="checkbox"], .adc-responsiveTable  input[type="radio"] {
+   cursor: pointer;
+}
+.adc-responsiveTable .respLabel:hover {
+   cursor: auto;
+}
