@@ -13,6 +13,7 @@
                 Dim caption = ""
                 Dim attrChecked = ""
                 Dim isExclusive = ""
+				Dim isSelected = ""
                 Dim typeQuestion = ""
                 Dim j = 0
                 Dim i = 0
@@ -43,8 +44,9 @@
                     attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsSelected, "checked=\"checked\"", "")
                     caption     = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Caption
     				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
+    				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
                 %}
-                <td data-label="{%:= caption %}" class="response{%:= isExclusive %}">
+                <td data-label="{%:= caption %}" class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
                 </td>
                 {% Next j %}
