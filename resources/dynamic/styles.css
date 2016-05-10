@@ -162,11 +162,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     background-image: -ms-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
     background-image: linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= selectedBgPrimaryColor.ToHexa() %}', EndColorStr='{%= selectedBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %};
+    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
     /*transition: all ease-in-out .2s;*/
 }
 #adc_{%= CurrentADC.InstanceId %} .selected label, #adc_{%= CurrentADC.InstanceId %} .selected label:hover {
-    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %};
+    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
 }
 /* Head style */
 #adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} th:hover {
@@ -218,6 +218,9 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= oddBgPrimaryColor.ToHexa() %}', EndColorStr='{%= oddBgSecondaryColor.ToHexa() %}');
         color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
     }
+    #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) label, #adc_{%= CurrentADC.InstanceId %} tr label, #adc_{%= CurrentADC.InstanceId %} tr label:hover {
+        color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+    }
 
     #adc_{%= CurrentADC.InstanceId %} .response:hover {
         background-color: {%= hoverBgPrimaryColor.ToHexa() %};
@@ -243,10 +246,10 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         background-image: -ms-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
         background-image: linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= selectedBgPrimaryColor.ToHexa() %}', EndColorStr='{%= selectedBgSecondaryColor.ToHexa() %}');
-        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %};
+        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
     }
     #adc_{%= CurrentADC.InstanceId %} .selected label, #adc_{%= CurrentADC.InstanceId %} .selected label:hover {
-        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %};
+        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
     }
 
     #adc_{%= CurrentADC.InstanceId %} .respLabel, #adc_{%= CurrentADC.InstanceId %} .respLabel:hover {
