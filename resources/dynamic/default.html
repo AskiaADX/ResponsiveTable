@@ -65,8 +65,9 @@
     				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
     				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
                 %}
-                <td data-label="{%:= caption %}" class="response{%:= isExclusive %}{%:= isSelected %}">
+                <td class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
+                    <label for="{%= inputId %}">{%:= caption %}</label>
                 </td>
                 {% Next j %}
             </tr>
