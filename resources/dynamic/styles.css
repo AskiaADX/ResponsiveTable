@@ -204,6 +204,13 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 #adc_{%= CurrentADC.InstanceId %} .hiddens, #adc_{%= CurrentADC.InstanceId %} label {
     display: none;
 }
+#adc_{%= CurrentADC.InstanceId %} .responsesitems img {
+      {% If (CurrentADC.PropValue("forceImagesWidth") = "1" ) Then %}
+	  width: 100%;
+      max-width: {%:= CurrentADC.PropValue("maxImagesWidth") %};
+      {% EndIf %}
+      clear: both;
+   }
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
 
@@ -295,6 +302,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} .response {
         text-align: {%= CurrentADC.PropValue("responsiveTextAlign") %};
         font-size: {%= CurrentADC.PropValue("responsiveFontSize") %};
+        overflow: hidden;
     }
 
     #adc_{%= CurrentADC.InstanceId %} tr {
@@ -332,4 +340,9 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} label {
         display: block;
     }
+    {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "left") or (CurrentADC.PropValue("imagesPositionResponsive") = "right")) Then %}
+    #adc_{%= CurrentADC.InstanceId %} .responsesitems img {
+         float: {%= CurrentADC.PropValue("imagesPositionResponsive") %};
+    }
+    {% EndIf %}
 }

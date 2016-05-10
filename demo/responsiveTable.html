@@ -147,6 +147,11 @@
    #adc_3 .hiddens, #adc_3 label {
 	  display: none;
    }
+   #adc_3 .responsesitems img {
+	  width: 100%;
+      max-width: 30px;
+      clear: both;
+   }
 
    @media screen and (max-width: 640px) {
 
@@ -217,6 +222,7 @@
       #adc_3 .response {
          text-align: left;
          font-size: 14px;
+         overflow: hidden;
       }
 
       #adc_3 tr {
@@ -252,7 +258,9 @@
       #adc_3 td, #adc_3 label {
          display: block;
       }
-
+      #adc_3 .responsesitems img {
+         float: right;
+      }
    }
    </style>
    <!--[if IE 9]>
@@ -278,10 +286,26 @@
          <thead id="adc_3_thead">
             <tr>
                <th class="firstColumn respLabel">&nbsp;</th>
-               <th  class="othersColumns">Banana</th>
-               <th  class="othersColumns">Dagger</th>
-               <th  class="othersColumns">Axe</th>
-               <th  class="othersColumns">DK</th>
+               <th  class="othersColumns responsesitems">
+                  <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                  <br />
+                  Absolutely
+                </th>
+               <th class="othersColumns responsesitems">
+                  <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                  <br />
+                  Rather yes
+                </th>
+               <th class="othersColumns responsesitems">
+                  <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                  <br />
+                  Rather no
+                </th>
+               <th class="othersColumns responsesitems">
+                  <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                  <br />
+                  Not at all
+                </th>
             </tr>
          </thead>
          <tbody>
@@ -294,19 +318,35 @@
                </td>
                <td class="response">
                   <input type="checkbox" id="item-1-1"/>
-                  <label for="item-1-1">Banana</label> 
+                  <label for="item-1-1" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <div></div>
+                      Absolutely
+                  </label> 
                </td>
                <td class="response">
                   <input type="checkbox" id="item-1-2"/>
-                  <label for="item-1-2">Dagger</label>
+                  <label for="item-1-2" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <div></div>
+                      Rather yes
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-1-3"/>
-                  <label for="item-1-3">Axe</label>
+                  <label for="item-1-3" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <div></div>
+                      Rather no
+                  </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-1-4"/>
-                  <label for="item-1-4">DK</label>
+                  <label for="item-1-4" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <div></div>
+                      Not at all
+                  </label>
                </td>
             </tr>
             <tr data-id="C2">
@@ -318,19 +358,35 @@
                </td>
                <td class="response">
                   <input type="checkbox" id="item-2-1"/>
-                  <label for="item-2-1">Banana</label>
+                  <label for="item-2-1" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <div></div>
+                      Absolutely
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-2-2"/>
-                  <label for="item-2-2">Dagger</label>
+                  <label for="item-2-2" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <div></div>
+                      Rather yes
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-2-3"/>
-                  <label for="item-2-3">Axe</label>
+                  <label for="item-2-3" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <div></div>
+                      Rather no
+                  </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-2-4"/>
-                  <label for="item-2-4">DK</label>
+                  <label for="item-2-4" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <div></div>
+                      Not at all
+                  </label>
                </td>
             </tr>
             <tr data-id="C3">
@@ -342,19 +398,35 @@
                </td>
                <td class="response">
                   <input type="checkbox" id="item-3-1"/>
-                  <label for="item-3-1">Banana</label>
+                  <label for="item-3-1" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <div></div>
+                      Absolutely
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-3-2"/>
-                  <label for="item-3-2">Dagger</label>
+                  <label for="item-3-2" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <div></div>
+                      Rather yes
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-3-3"/>
-                  <label for="item-3-3">Axe</label>
+                  <label for="item-3-3" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <div></div>
+                      Rather no
+                  </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-3-4"/>
-                  <label for="item-3-4">DK</label>
+                  <label for="item-3-4" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <div></div>
+                      Not at all
+                  </label>
                </td>
             </tr>
             <tr data-id="C4">
@@ -366,19 +438,35 @@
                </td>
                <td class="response">
                   <input type="checkbox" id="item-4-1"/>
-                  <label for="item-4-1">Banana</label>
+                  <label for="item-4-1" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <div></div>
+                      Absolutely
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-4-2"/>
-                  <label for="item-4-2">Dagger</label>
+                  <label for="item-4-2" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <div></div>
+                      Rather yes
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-4-3"/>
-                  <label for="item-4-3">Axe</label>
+                  <label for="item-4-3" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <div></div>
+                      Rather no
+                  </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-4-4"/>
-                  <label for="item-4-4">DK</label>
+                  <label for="item-4-4" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <div></div>
+                      Not at all
+                  </label>
                </td>
             </tr>
             <tr data-id="C5">
@@ -390,19 +478,35 @@
                </td>
                <td class="response">
                   <input type="checkbox" id="item-5-1"/>
-                  <label for="item-5-1">Banana</label>
+                  <label for="item-5-1" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <div></div>
+                      Absolutely
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-5-2"/>
-                  <label for="item-5-2">Dagger</label>
+                  <label for="item-5-2" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <div></div>
+                      Rather yes
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-5-3"/>
-                  <label for="item-5-3">Axe</label>
+                  <label for="item-5-3" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <div></div>
+                      Rather no
+                  </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-5-4"/>
-                  <label for="item-5-4">DK</label>
+                  <label for="item-5-4" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <div></div>
+                      Not at all
+                  </label>
                </td>
             </tr>
             <tr data-id="C6">
@@ -414,19 +518,35 @@
                </td>
                <td class="response">
                   <input type="checkbox" id="item-6-1"/>
-                  <label for="item-6-1">Banana</label>
+                  <label for="item-6-1" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <div></div>
+                      Absolutely
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-6-2"/>
-                  <label for="item-6-2">Dagger</label>
+                  <label for="item-6-2" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <div></div>
+                      Rather yes
+                  </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-6-3"/>
-                  <label for="item-6-3">Axe</label>
+                  <label for="item-6-3" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <div></div>
+                      Rather no
+                  </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-6-4"/>
-                  <label for="item-6-4">DK</label>
+                  <label for="item-6-4" class="responsesitems">
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <div></div>
+                      Not at all
+                  </label>
                </td>
             </tr>
          </tbody>

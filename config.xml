@@ -7,12 +7,14 @@
   <info>
     <name>responsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
 			- Added support of the loop images
-			- Added zoom for the loop images]]></description>
+			- Added zoom for the loop images
+		v1.0.2 
+			- Added support of the responses images]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -351,6 +353,44 @@
       <property xsi:type="standardProperty" id="showLoopImagesZoom" name="Show Loop Images Zoom" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Show Loop Images Zoom]]></description>
         <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="maxImagesWidth" name="Max Responses Images Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Max Responses Images Width]]></description>
+        <value><![CDATA[40px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="forceImagesWidth" name="Force Responses Images Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Force Responses Images Width]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="imagesPosition" name="Responses Images Position" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Responses Images Position]]></description>
+        <value><![CDATA[top]]></value>
+        <options>
+          <option value="top" text="Top" />
+          <option value="bottom" text="Bottom" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="imagesPositionResponsive" name="Responses Images Position Responsive" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Responses Images Position Responsive]]></description>
+        <value><![CDATA[top]]></value>
+        <options>
+          <option value="top" text="Top" />
+          <option value="right" text="Right" />
+          <option value="bottom" text="Bottom" />
+          <option value="left" text="Left" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="showResponsesCaptions" name="Show Responses Captions" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Show Responses Captions]]></description>
+        <value><![CDATA[1]]></value>
         <options>
           <option value="1" text="Yes" />
           <option value="0" text="No" />

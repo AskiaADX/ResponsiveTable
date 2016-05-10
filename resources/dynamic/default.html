@@ -11,18 +11,33 @@
                 Dim inputId = ""
                 Dim inputValue = ""
                 Dim caption = ""
+				Dim arCaption = ""
+				Dim arPath = ""
                 Dim attrChecked = ""
                 Dim isExclusive = ""
 				Dim isSelected = ""
 				Dim isCaptionsHiddens = ""
                 Dim typeQuestion = ""
-				Dim imagePath
+				Dim imagePath = ""
+				Dim respImagePath = ""
 				Dim imageId
                 Dim j = 0
                 Dim i = 0
 				For th = 1 To arTh.Count
+    				arCaption = arTh[th].Caption
+    				arPath = arTh.ResourceURL[th]
                 %}
-                <th  class="othersColumns">{%:= arTh[th].Caption %}</th>
+                <th  class="othersColumns responsesitems">
+                    {% If ((CurrentADC.PropValue("imagesPosition") <> "bottom") and (arPath <> "")) Then %}
+                    <img src="{%= arPath %}" alt="{%:= arCaption %}"/>
+                  	<br />
+                    {% EndIf %}
+                    {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (arPath <> ""),"",arCaption) %}
+                    {% If ((CurrentADC.PropValue("imagesPosition") = "bottom") and (arPath <> "")) Then %}
+                    <br />
+                    <img src="{%= arPath %}" alt="{%:= arCaption %}"/>
+                    {% EndIf %}
+                </th>
                 {% Next th %}
             </tr>
         </thead>
@@ -62,12 +77,23 @@
                     inputValue  = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputValue()
                     attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsSelected, "checked=\"checked\"", "")
                     caption     = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Caption
+    				respImagePath = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.ResourceURL[j]
     				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
     				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
                 %}
                 <td class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
-                    <label for="{%= inputId %}">{%:= caption %}</label>
+                    <label for="{%= inputId %}" class="responsesitems">
+                        {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
+                        <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
+                      	<div></div>
+                        {% EndIf %}
+                        {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
+                        {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
+                        <div></div>
+                        <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
+                        {% EndIf %}
+                    </label>
                 </td>
                 {% Next j %}
             </tr>
