@@ -138,7 +138,14 @@
 
    #adc_3 .respLabel {
 	  font-size: 14px;
-      text-align: left;
+     text-align: left;
+   }
+   #adc_3 .respLabel img {
+      width: 100%;
+      max-width: 70px;
+   }
+   #adc_3 .hiddens {
+	  display: none;
    }
 
    @media screen and (max-width: 640px) {
@@ -281,8 +288,13 @@
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <td class="respLabel">Goblin</td>
+            <tr data-id="C1">
+               <td class="respLabel">
+                  <img src="./ResourcesResponsiveTable/CocaCola.png" alt="CocaCola"/>
+                  <br />
+                  <span class="items">Coca Cola</span>
+                  <a href="./ResourcesResponsiveTable/CocaCola.png" target="_blank" data-simplbox="C1"><div class="imgZoom"></div></a>
+               </td>
                <td data-label="Banana" class="response">
                   <input type="checkbox" id="item-1-1"/>
                </td>
@@ -296,8 +308,13 @@
                   <input type="checkbox" id="item-1-4"/>
                </td>
             </tr>
-            <tr>
-               <td class="respLabel">Orc</td>
+            <tr data-id="C2">
+               <td class="respLabel">
+                  <img src="./ResourcesResponsiveTable/Fanta.png" alt="Fanta"/>
+                  <br />
+                  <span class="items">Fanta</span>
+                  <a href="./ResourcesResponsiveTable/Fanta.png" target="_blank" data-simplbox="C2"><div class="imgZoom"></div></a>
+               </td>
                <td data-label="Banana" class="response">
                   <input type="checkbox" id="item-2-1"/>
                </td>
@@ -311,8 +328,13 @@
                   <input type="checkbox" id="item-2-4"/>
                </td>
             </tr>
-            <tr>
-               <td class="respLabel">Uruk-Haï</td>
+            <tr data-id="C3">
+               <td class="respLabel">
+                  <img src="./ResourcesResponsiveTable/Pepsi.png" alt="Pepsi"/>
+                  <br />
+                  <span class="items">Pepsi</span>
+                  <a href="./ResourcesResponsiveTable/Pepsi.png" target="_blank" data-simplbox="C3"><div class="imgZoom"></div></a>
+               </td>
                <td data-label="Banana" class="response">
                   <input type="checkbox" id="item-3-1"/>
                </td>
@@ -326,8 +348,13 @@
                   <input type="checkbox" id="item-3-4"/>
                </td>
             </tr>
-            <tr>
-               <td class="respLabel">Troll</td>
+            <tr data-id="C4">
+               <td class="respLabel">
+                  <img src="./ResourcesResponsiveTable/DietCoke.png" alt="DietCoke"/>
+                  <br />
+                  <span class="items">Diet Coke</span>
+                  <a href="./ResourcesResponsiveTable/DietCoke.png" target="_blank" data-simplbox="C4"><div class="imgZoom"></div></a>
+               </td>
                <td data-label="Banana" class="response">
                   <input type="checkbox" id="item-4-1"/>
                </td>
@@ -341,8 +368,13 @@
                   <input type="checkbox" id="item-4-4"/>
                </td>
             </tr>
-            <tr>
-               <td class="respLabel">Balrog</td>
+            <tr data-id="C5">
+               <td class="respLabel">
+                  <img src="./ResourcesResponsiveTable/Orangina.png" alt="Orangina"/>
+                  <br />
+                  <span class="items">Orangina</span>
+                  <a href="./ResourcesResponsiveTable/Orangina.png" target="_blank" data-simplbox="C5"><div class="imgZoom"></div></a>
+               </td>
                <td data-label="Banana" class="response">
                   <input type="checkbox" id="item-5-1"/>
                </td>
@@ -356,8 +388,13 @@
                   <input type="checkbox" id="item-5-4"/>
                </td>
             </tr>
-            <tr>
-               <td class="respLabel">Dragon</td>
+            <tr data-id="C6">
+               <td class="respLabel">
+                  <img src="./ResourcesResponsiveTable/7up.png" alt="7up"/>
+                  <br />
+                  <span class="items">7up</span>
+                  <a href="./ResourcesResponsiveTable/7up.png" target="_blank" data-simplbox="C6"><div class="imgZoom"></div></a>
+               </td>
                <td data-label="Banana" class="response">
                   <input type="checkbox" id="item-6-1"/>
                </td>
@@ -375,6 +412,7 @@
       </table>
    </div>
    <div style="width:500px;height:1500px;">&nbsp;</div>
+   <script type="text/javascript" src="../Resources/static/simplbox.js"></script>
    <script type="text/javascript" src="../Resources/static/responsiveTable.js"></script>
    <script>
 		(function () {

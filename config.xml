@@ -7,9 +7,12 @@
   <info>
     <name>responsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <date>2016-05-02</date>
-    <description><![CDATA[Responsive Grid Table]]></description>
+    <description><![CDATA[Responsive Grid Table
+		v1.0.1 
+			- Added support of the loop images
+			- Added zoom for the loop images]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -32,8 +35,10 @@
       <content fileName="styles.css" type="css" mode="dynamic" position="head" />
       <content fileName="stylesie9.html" type="html" mode="dynamic" position="head" />
       <content fileName="default.html" type="html" mode="dynamic" position="placeholder" />
+      <content fileName="simplbox.js" type="javascript" mode="static" position="foot" />
       <content fileName="responsiveTable.js" type="javascript" mode="static" position="foot" />
       <content fileName="Initializer.js" type="javascript" mode="dynamic" position="foot" />
+      <content fileName="magnifyingGlass.png" type="image" mode="static" position="none" />
     </output>
     <output id="fallback">
       <description><![CDATA[Fallback output]]></description>
@@ -312,6 +317,44 @@
       <property xsi:type="standardProperty" id="highlightBgSecondaryColor" name="Highlight Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
         <description><![CDATA[Highlighted Background Secondary Color]]></description>
         <value><![CDATA[255,255,255]]></value>
+      </property>
+    </category>
+    <category id="Images" name="Images">
+      <property xsi:type="standardProperty" id="maxLoopImagesWidth" name="Max Loop Images Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Max Loop Images Width]]></description>
+        <value><![CDATA[70px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="forceLoopImagesWidth" name="Force Loop Images Width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Force Loop Images Width]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="loopImagesPosition" name="Loop Images Position" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Loop Images Position]]></description>
+        <value><![CDATA[top]]></value>
+        <options>
+          <option value="top" text="Top" />
+          <option value="bottom" text="Bottom" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="showLoopCaptions" name="Show Loop Captions" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Show Loop Captions]]></description>
+        <value><![CDATA[1]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="showLoopImagesZoom" name="Show Loop Images Zoom" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Show Loop Images Zoom]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
       </property>
     </category>
   </properties>

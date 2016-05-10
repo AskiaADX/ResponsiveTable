@@ -14,7 +14,10 @@
                 Dim attrChecked = ""
                 Dim isExclusive = ""
 				Dim isSelected = ""
+				Dim isCaptionsHiddens = ""
                 Dim typeQuestion = ""
+				Dim imagePath
+				Dim imageId
                 Dim j = 0
                 Dim i = 0
 				For th = 1 To arTh.Count
@@ -26,9 +29,25 @@
         <tbody>
             {%
             For i = 1 To ar.Count
+    			imagePath = ar.ResourceURL[i]
+    			imageId = CurrentQuestion.Iteration(ar[i].Index).InputName()
+    			isCaptionsHiddens = On((imagePath <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
             %}
-            <tr>
-                <td class="respLabel">{%:= ar[i].Caption %}</td>
+            <tr data-id="{%= imageId %}">
+                <td class="respLabel">
+                    {% If ((CurrentADC.PropValue("loopImagesPosition") = "top") and (imagePath <> "")) Then %}
+                    <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
+                  	<br />
+                    {% EndIf %}
+                    <span class="items{%:= isCaptionsHiddens %}">{%:= ar[i].Caption %}</span>
+                    {% If ((CurrentADC.PropValue("loopImagesPosition") = "bottom") and (imagePath <> "")) Then %}
+                    <br />
+                    <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
+                    {% EndIf %}
+                    {% If ((CurrentADC.PropValue("showLoopImagesZoom") = "1") and (imagePath <> "")) Then %}
+                    <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= imageId %}"><div class="imgZoom"></div></a>
+                    {% EndIf %}
+                </td>
                 {%
 				For j = 1 To CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Count 
     				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then

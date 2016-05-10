@@ -183,6 +183,15 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     font-size: {%= CurrentADC.PropValue("firstColumnFontSize") %};
     text-align: {%= CurrentADC.PropValue("firstColumnAlign") %};
 }
+{% If (CurrentADC.PropValue("forceLoopImagesWidth") = "1" ) Then %}
+#adc_{%= CurrentADC.InstanceId %} .respLabel img {
+    width: 100%;
+    max-width: {%:= CurrentADC.PropValue("maxLoopImagesWidth") %};
+}
+{% EndIf %}
+#adc_{%= CurrentADC.InstanceId %} .hiddens {
+    display: none;
+}
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
 

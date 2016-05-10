@@ -83,12 +83,12 @@
          //if (el.attributes.type.value === "radio" && el.parentNode.parentNode.nextSibling.nextSibling) el.parentNode.parentNode.nextSibling.nextSibling.scrollIntoView(true);
       }
    }
-    
+
    /**
    * Calculate the offsetTop
    *
    * @param {HTMLElements} elem HTMLElement
-   */ 
+   */
    function calcOffsetTop(elem) {
        if(!elem) elem = this;
        var y = elem.offsetTop;
@@ -128,6 +128,37 @@
       document.getElementById("adc_" + opt.instanceId + "_thead").style.transition = "all 0.2s";
    }
 
+   function simplboxConstructorCall(strId) {
+      var preLoadIconOn = function () {
+           var newE = document.createElement("div"),
+               newB = document.createElement("div");
+           newE.setAttribute("id", "simplbox-loading");
+           newE.appendChild(newB);
+           document.body.appendChild(newE);
+      },
+      preLoadIconOff = function () {
+           var elE = document.getElementById("simplbox-loading");
+           elE.parentNode.removeChild(elE);
+      },
+      overlayOn = function () {
+           var newA = document.createElement("div");
+           newA.setAttribute("id", "simplbox-overlay");
+           document.body.appendChild(newA);
+      },
+      overlayOff = function () {
+           var elA = document.getElementById("simplbox-overlay");
+           elA.parentNode.removeChild(elA);
+      };
+      var img = new SimplBox(document.querySelectorAll("[data-simplbox='" + strId + "']"), {
+           quitOnImageClick: true,
+           onStart: overlayOn,
+           onEnd: overlayOff,
+           onImageLoadStart: preLoadIconOn,
+           onImageLoadEnd: preLoadIconOff
+      });
+      img.init();
+   }
+
    /**
    * Creates a new instance of the ResponsiveTable
    *
@@ -150,6 +181,11 @@
 
       for (var i = 0; j = elements.length, i < j; i++) {
          elements[i].style.msTransform = "translateY(0px)";
+      }
+
+      var zooms = document.getElementById("adc_" + this.instanceId).querySelectorAll("tbody tr");
+      for (var l = 0, k = zooms.length; l < k; l++) {
+          simplboxConstructorCall(zooms[l].getAttribute("data-id"));
       }
 
    }
