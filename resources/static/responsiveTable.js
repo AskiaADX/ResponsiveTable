@@ -184,8 +184,13 @@
       }
 
       var zooms = document.getElementById("adc_" + this.instanceId).querySelectorAll("tbody tr");
-      for (var l = 0, k = zooms.length; l < k; l++) {
-          simplboxConstructorCall(zooms[l].getAttribute("data-id"));
+      for (var l1 = 0, k1 = zooms.length; l1 < k1; l1++) {
+          simplboxConstructorCall(zooms[l1].getAttribute("data-id"));
+      }
+       
+      var responseszooms = document.getElementById("adc_" + this.instanceId).querySelectorAll(".responsesitems img");
+      for (var l2 = 0, k2 = responseszooms.length; l2 < k2; l2++) {
+          simplboxConstructorCall(responseszooms[l2].getAttribute("data-id"));
       }
 
    }

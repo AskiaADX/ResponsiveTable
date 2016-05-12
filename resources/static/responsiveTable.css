@@ -14,9 +14,15 @@ html {
 }
 .adc-responsiveTable th {
    font-weight: normal;
-   /*z-index: 3;*/
+   z-index: 3;
 }
-.adc-responsiveTable td:hover, .adc-responsiveTable  input[type="checkbox"], .adc-responsiveTable  input[type="radio"], .adc-responsiveTable .imgZoom {
+.adc-responsiveTable th:first-child {
+   z-index: 0;
+}
+.adc-responsiveTable th .head {
+   position: relative;
+}
+.adc-responsiveTable td:hover, .adc-responsiveTable  input[type="checkbox"], .adc-responsiveTable  input[type="radio"], .adc-responsiveTable .imgZoom, .adc-responsiveTable label {
    cursor: pointer;
 }
 .adc-responsiveTable .respLabel {

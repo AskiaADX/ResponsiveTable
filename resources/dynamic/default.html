@@ -17,6 +17,8 @@
                 Dim isExclusive = ""
 				Dim isSelected = ""
 				Dim isCaptionsHiddens = ""
+				Dim isHeadPaddingRight = ""
+				Dim isLoopPaddingRight = ""
                 Dim typeQuestion = ""
 				Dim imagePath = ""
 				Dim respImagePath = ""
@@ -26,17 +28,23 @@
 				For th = 1 To arTh.Count
     				arCaption = arTh[th].Caption
     				arPath = arTh.ResourceURL[th]
+    				isHeadPaddingRight = On((arPath <> "") and (CurrentADC.PropValue("showImagesZoom") = "1") , " padright", "")
                 %}
-                <th  class="othersColumns responsesitems">
+                <th class="othersColumns responsesitems">
+                    <div class="head{%= isHeadPaddingRight %}">
                     {% If ((CurrentADC.PropValue("imagesPosition") <> "bottom") and (arPath <> "")) Then %}
-                    <img src="{%= arPath %}" alt="{%:= arCaption %}"/>
+                    <img src="{%= arPath %}" data-id="head{%= CurrentADC.InstanceId.ToString() + th %}" alt="{%:= arCaption %}"/>
                   	<br />
                     {% EndIf %}
                     {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (arPath <> ""),"",arCaption) %}
                     {% If ((CurrentADC.PropValue("imagesPosition") = "bottom") and (arPath <> "")) Then %}
                     <br />
-                    <img src="{%= arPath %}" alt="{%:= arCaption %}"/>
+                    <img src="{%= arPath %}" data-id="head{%= CurrentADC.InstanceId.ToString() + th %}" alt="{%:= arCaption %}"/>
                     {% EndIf %}
+                    {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (arPath <> "")) Then %}
+                    <a href="{%= arPath %}" target="_blank" data-simplbox="head{%= CurrentADC.InstanceId.ToString() + th %}"><div class="imgZoom"></div></a>
+                    {% EndIf %}
+                    </div>
                 </th>
                 {% Next th %}
             </tr>
@@ -80,18 +88,22 @@
     				respImagePath = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.ResourceURL[j]
     				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
     				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
+    				isLoopPaddingRight = On((respImagePath <> "") and (CurrentADC.PropValue("showLoopImagesZoom") = "1") , " padright", "")
                 %}
                 <td class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
-                    <label for="{%= inputId %}" class="responsesitems">
+                    <label for="{%= inputId %}" class="responsesitems{%= isLoopPaddingRight %}">
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
-                        <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
+                        <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
                       	<div></div>
                         {% EndIf %}
                         {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
                         <div></div>
-                        <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
+                        <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
+                        {% EndIf %}
+                        {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (respImagePath <> "")) Then %}
+                        <a href="{%= respImagePath %}" target="_blank" data-simplbox="{%= inputId %}"><div class="imgZoom"></div></a>
                         {% EndIf %}
                     </label>
                 </td>

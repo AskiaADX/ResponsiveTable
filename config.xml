@@ -7,14 +7,16 @@
   <info>
     <name>responsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
 			- Added support of the loop images
 			- Added zoom for the loop images
 		v1.0.2 
-			- Added support of the responses images]]></description>
+			- Added support of the responses images
+		v1.0.3 
+			- Added zoom for the response images]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -391,6 +393,14 @@
       <property xsi:type="standardProperty" id="showResponsesCaptions" name="Show Responses Captions" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Show Responses Captions]]></description>
         <value><![CDATA[1]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="showImagesZoom" name="Show Responses Images Zoom" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Show Responses Images Zoom]]></description>
+        <value><![CDATA[0]]></value>
         <options>
           <option value="1" text="Yes" />
           <option value="0" text="No" />

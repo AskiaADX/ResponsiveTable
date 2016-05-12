@@ -181,7 +181,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
 }
 
-#adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} td {
+#adc_{%= CurrentADC.InstanceId %} th .head {
+    padding: 5px;
+    text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
+}
+#adc_{%= CurrentADC.InstanceId %} td {
     padding: 10px;
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
 }
@@ -210,7 +214,12 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
       max-width: {%:= CurrentADC.PropValue("maxImagesWidth") %};
       {% EndIf %}
       clear: both;
-   }
+}
+{% If ((CurrentADC.PropValue("showImagesZoom") = "1") or (CurrentADC.PropValue("showLoopImagesZoom") = "1")) Then %}
+#adc_{%= CurrentADC.InstanceId %} .head.padright, #adc_{%= CurrentADC.InstanceId %} label.padright {
+    padding-right: 20px;
+}
+{% EndIf %}
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
 
@@ -345,4 +354,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
          float: {%= CurrentADC.PropValue("imagesPositionResponsive") %};
     }
     {% EndIf %}
+    #adc_{%= CurrentADC.InstanceId %} td {
+         position: relative;
+    }
 }

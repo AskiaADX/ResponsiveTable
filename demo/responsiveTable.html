@@ -127,11 +127,15 @@
       color: #444;
    }
 
-   #adc_3 th, #adc_3 td {
+   #adc_3 th .head {
+      padding: 5px;
+      text-align: center;
+   }
+   #adc_3 td {
       padding: 10px;
       text-align: center;
    }
-
+       
    #adc_3 th {
       font-size: 14px;
    }
@@ -151,6 +155,10 @@
 	  width: 100%;
       max-width: 30px;
       clear: both;
+   }
+   #adc_3 th .head, #adc_3 label {
+      /* If show zoom on responses */ 
+      padding-right: 20px;
    }
 
    @media screen and (max-width: 640px) {
@@ -261,6 +269,9 @@
       #adc_3 .responsesitems img {
          float: right;
       }
+      #adc_3 td {
+          position: relative;
+      }
    }
    </style>
    <!--[if IE 9]>
@@ -286,25 +297,37 @@
          <thead id="adc_3_thead">
             <tr>
                <th class="firstColumn respLabel">&nbsp;</th>
-               <th  class="othersColumns responsesitems">
-                  <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+               <th class="othersColumns responsesitems">
+                  <div class="head">
+                  <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="head1" alt="Absolutely"/>
                   <br />
                   Absolutely
+                  <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="head1"><div class="imgZoom"></div></a>
+                  </div>
                 </th>
                <th class="othersColumns responsesitems">
-                  <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                  <div class="head">
+                  <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="head2" alt="Rather yes"/>
                   <br />
                   Rather yes
+                  <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="head2"><div class="imgZoom"></div></a>
+                  </div>
                 </th>
                <th class="othersColumns responsesitems">
-                  <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                  <div class="head">
+                  <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="head3" alt="Rather no"/>
                   <br />
                   Rather no
+                  <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="head3"><div class="imgZoom"></div></a>
+                  </div>
                 </th>
                <th class="othersColumns responsesitems">
-                  <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                  <div class="head">
+                  <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="head4" alt="Not at all"/>
                   <br />
                   Not at all
+                  <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="head4"><div class="imgZoom"></div></a>
+                  <div>
                 </th>
             </tr>
          </thead>
@@ -319,33 +342,37 @@
                <td class="response">
                   <input type="checkbox" id="item-1-1"/>
                   <label for="item-1-1" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="item-1-1" alt="Absolutely"/>
                       <div></div>
                       Absolutely
+                      <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="item-1-1"><div class="imgZoom"></div></a>
                   </label> 
                </td>
                <td class="response">
                   <input type="checkbox" id="item-1-2"/>
                   <label for="item-1-2" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="item-1-2" alt="Rather yes"/>
                       <div></div>
                       Rather yes
+                      <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="item-1-2"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-1-3"/>
                   <label for="item-1-3" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="item-1-3" alt="Rather no"/>
                       <div></div>
                       Rather no
+                      <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="item-1-3"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-1-4"/>
                   <label for="item-1-4" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="item-1-4" alt="Not at all"/>
                       <div></div>
                       Not at all
+                      <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="item-1-4"><div class="imgZoom"></div></a>
                   </label>
                </td>
             </tr>
@@ -359,33 +386,37 @@
                <td class="response">
                   <input type="checkbox" id="item-2-1"/>
                   <label for="item-2-1" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="item-2-1" alt="Absolutely"/>
                       <div></div>
                       Absolutely
+                      <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="item-2-1"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-2-2"/>
                   <label for="item-2-2" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="item-2-2" alt="Rather yes"/>
                       <div></div>
                       Rather yes
+                      <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="item-2-2"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-2-3"/>
                   <label for="item-2-3" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="item-2-3" alt="Rather no"/>
                       <div></div>
                       Rather no
+                      <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="item-2-3"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-2-4"/>
                   <label for="item-2-4" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="item-2-4" alt="Not at all"/>
                       <div></div>
                       Not at all
+                      <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="item-2-4"><div class="imgZoom"></div></a>
                   </label>
                </td>
             </tr>
@@ -399,33 +430,37 @@
                <td class="response">
                   <input type="checkbox" id="item-3-1"/>
                   <label for="item-3-1" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="item-3-1" alt="Absolutely"/>
                       <div></div>
                       Absolutely
+                      <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="item-3-1"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-3-2"/>
                   <label for="item-3-2" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="item-3-2" alt="Rather yes"/>
                       <div></div>
                       Rather yes
+                      <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="item-3-2"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-3-3"/>
                   <label for="item-3-3" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="item-3-3" alt="Rather no"/>
                       <div></div>
                       Rather no
+                      <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="item-3-3"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-3-4"/>
                   <label for="item-3-4" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="item-3-4" alt="Not at all"/>
                       <div></div>
                       Not at all
+                      <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="item-3-4"><div class="imgZoom"></div></a>
                   </label>
                </td>
             </tr>
@@ -439,33 +474,37 @@
                <td class="response">
                   <input type="checkbox" id="item-4-1"/>
                   <label for="item-4-1" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="item-4-1" alt="Absolutely"/>
                       <div></div>
                       Absolutely
+                      <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="item-4-1"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-4-2"/>
                   <label for="item-4-2" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="item-4-2" alt="Rather yes"/>
                       <div></div>
                       Rather yes
+                      <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="item-4-2"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-4-3"/>
                   <label for="item-4-3" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="item-4-3" alt="Rather no"/>
                       <div></div>
                       Rather no
+                      <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="item-4-3"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-4-4"/>
                   <label for="item-4-4" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="item-4-4" alt="Not at all"/>
                       <div></div>
                       Not at all
+                      <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="item-4-4"><div class="imgZoom"></div></a>
                   </label>
                </td>
             </tr>
@@ -479,33 +518,37 @@
                <td class="response">
                   <input type="checkbox" id="item-5-1"/>
                   <label for="item-5-1" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="item-5-1" alt="Absolutely"/>
                       <div></div>
                       Absolutely
+                      <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="item-5-1"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-5-2"/>
                   <label for="item-5-2" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="item-5-2" alt="Rather yes"/>
                       <div></div>
                       Rather yes
+                      <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="item-5-2"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-5-3"/>
                   <label for="item-5-3" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="item-5-3" alt="Rather no"/>
                       <div></div>
                       Rather no
+                      <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="item-5-3"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-5-4"/>
                   <label for="item-5-4" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="item-5-4" alt="Not at all"/>
                       <div></div>
                       Not at all
+                      <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="item-5-4"><div class="imgZoom"></div></a>
                   </label>
                </td>
             </tr>
@@ -519,33 +562,37 @@
                <td class="response">
                   <input type="checkbox" id="item-6-1"/>
                   <label for="item-6-1" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyA.png" alt="Absolutely"/>
+                      <img src="./ResourcesResponsiveTable/SmileyA.png" data-id="item-6-1" alt="Absolutely"/>
                       <div></div>
                       Absolutely
+                      <a href="./ResourcesResponsiveTable/SmileyA.png" target="_blank" data-simplbox="item-6-1"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-6-2"/>
                   <label for="item-6-2" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRY.png" alt="Rather yes"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRY.png" data-id="item-6-2" alt="Rather yes"/>
                       <div></div>
                       Rather yes
+                      <a href="./ResourcesResponsiveTable/SmileyRY.png" target="_blank" data-simplbox="item-6-2"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response">
                   <input type="checkbox" id="item-6-3"/>
                   <label for="item-6-3" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyRN.png" alt="Rather no"/>
+                      <img src="./ResourcesResponsiveTable/SmileyRN.png" data-id="item-6-3" alt="Rather no"/>
                       <div></div>
                       Rather no
+                      <a href="./ResourcesResponsiveTable/SmileyRN.png" target="_blank" data-simplbox="item-6-3"><div class="imgZoom"></div></a>
                   </label>
                </td>
                <td class="response exclusive">
                   <input type="checkbox" id="item-6-4"/>
                   <label for="item-6-4" class="responsesitems">
-                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" alt="Not at all"/>
+                      <img src="./ResourcesResponsiveTable/SmileyNAA.png" data-id="item-6-4" alt="Not at all"/>
                       <div></div>
                       Not at all
+                      <a href="./ResourcesResponsiveTable/SmileyNAA.png" target="_blank" data-simplbox="item-6-4"><div class="imgZoom"></div></a>
                   </label>
                </td>
             </tr>
