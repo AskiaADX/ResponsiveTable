@@ -138,6 +138,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     color: {%= CurrentADC.PropValue("highlightFontColor").ToHexa() %};
     {% EndIf %}
 }
+{% If (Browser.Support("touch") = False) Then %}
 #adc_{%= CurrentADC.InstanceId %} .response:hover {
     background-color: {%= hoverBgPrimaryColor.ToHexa() %};
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
@@ -152,6 +153,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 #adc_{%= CurrentADC.InstanceId %} label:hover {
     color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
 }
+{% EndIf %}
 /* Selected style */
 #adc_{%= CurrentADC.InstanceId %} .selected, #adc_{%= CurrentADC.InstanceId %} .selected:hover {
     background-color: {%= selectedBgPrimaryColor.ToHexa() %};
@@ -237,7 +239,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) label, #adc_{%= CurrentADC.InstanceId %} tr label, #adc_{%= CurrentADC.InstanceId %} tr label:hover {
         color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
     }
-
+	{% If (Browser.Support("touch") = False) Then %}
     #adc_{%= CurrentADC.InstanceId %} .response:hover {
         background-color: {%= hoverBgPrimaryColor.ToHexa() %};
         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
@@ -252,7 +254,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} label:hover {
         color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
     }
-
+    {% EndIf %}
     #adc_{%= CurrentADC.InstanceId %} .selected, #adc_{%= CurrentADC.InstanceId %} .selected:hover {
         background-color: {%= selectedBgPrimaryColor.ToHexa() %};
         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= selectedBgPrimaryColor %})), to(rgb({%= selectedBgSecondaryColor %})));

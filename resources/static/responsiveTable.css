@@ -2,6 +2,9 @@ html {
     -ms-touch-action: manipulation;
     touch-action: manipulation;
 }
+body {
+    -webkit-tap-highlight-color: transparent;
+}
 .adc-responsiveTable {
    width: 100%;
 }
