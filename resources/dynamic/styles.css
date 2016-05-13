@@ -138,7 +138,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     color: {%= CurrentADC.PropValue("highlightFontColor").ToHexa() %};
     {% EndIf %}
 }
-{% If (Browser.Support("touch") = False) Then %}
+{% If ((Browser.Support("touch") = False) and (Browser.Support("javascript"))) Then %}
 #adc_{%= CurrentADC.InstanceId %} .response:hover {
     background-color: {%= hoverBgPrimaryColor.ToHexa() %};
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
@@ -239,7 +239,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) label, #adc_{%= CurrentADC.InstanceId %} tr label, #adc_{%= CurrentADC.InstanceId %} tr label:hover {
         color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
     }
-	{% If (Browser.Support("touch") = False) Then %}
+	{% If ((Browser.Support("touch") = False) and (Browser.Support("javascript"))) Then %}
     #adc_{%= CurrentADC.InstanceId %} .response:hover {
         background-color: {%= hoverBgPrimaryColor.ToHexa() %};
         background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
