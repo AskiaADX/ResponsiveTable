@@ -124,7 +124,7 @@
       var translate = "translateY("+top+"px)";
       if ((/MSIE 10/i.test(navigator.userAgent)) || (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) || (/Edge\/\d./i.test(navigator.userAgent))) {
         for (var i = 0; j = el.length, i < j; i++) {
-            if (document.documentMode === 13) {
+            if (document.documentMode >= 12) {
                 el[i].style.transform = translate;   
             } else {
                 el[i].style.msTransform = translate;
