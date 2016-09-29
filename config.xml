@@ -7,7 +7,7 @@
   <info>
     <name>responsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -20,7 +20,9 @@
 		v1.0.4 
 			- fixed Microsoft Edge Fixed Header
 		v1.0.5 
-			- fixed Microsoft Edge Fixed Header]]></description>
+			- fixed Microsoft Edge Fixed Header
+		v1.0.6 
+			- Added Show Header, Responsive Direction and Responsive Vertical Alignment properties]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -152,8 +154,24 @@
           <option value="0" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="showHeader" name="Show Header" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Show Header]]></description>
+        <value><![CDATA[yes]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
+      </property>
     </category>
     <category id="Responsive" name="Responsive">
+      <property xsi:type="standardProperty" id="responsiveDirection" name="Responsive Direction" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Direction of the responses]]></description>
+        <value><![CDATA[vertical]]></value>
+        <options>
+          <option value="vertical" text="Vertical" />
+          <option value="horizontal" text="Horizontal" />
+        </options>
+      </property>
       <property xsi:type="standardProperty" id="responsiveWidth" name="Responsive Width" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[The width value for the table to be splitted (media queries)]]></description>
         <value><![CDATA[600px]]></value>
@@ -165,6 +183,15 @@
           <option value="left" text="Left" />
           <option value="center" text="Center" />
           <option value="right" text="Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="responsiveVerticalAlign" name="Responsive Vertical Alignment" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Responsive Vertical Alignment of the responses]]></description>
+        <value><![CDATA[middle]]></value>
+        <options>
+          <option value="top" text="Top" />
+          <option value="middle" text="Middle" />
+          <option value="bottom" text="Bottom" />
         </options>
       </property>
       <property xsi:type="standardProperty" id="responsiveFontSize" name="Responsive Font Size" type="string" mode="dynamic" require="true" visible="true">

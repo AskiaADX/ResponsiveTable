@@ -10,6 +10,7 @@ EndIf
 Dim firstColumnWidth = CurrentADC.PropValue("firstColumnWidth")
 Dim columnsCount = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableResponses[1].Index).AvailableResponses.Count
 Dim othersColumns = ((100 - firstColumnWidth.ToNumber()) / columnsCount).ToString().ToNumber().Round(1)
+Dim responsivePercent = (100 / columnsCount).ToString().ToNumber().Round(1)
 Dim borderColour = CurrentADC.PropValue("borderColour")
 Dim borderThickness = CurrentADC.PropValue("borderThickness")
 Dim borderStyle = CurrentADC.PropValue("borderStyle")
@@ -32,11 +33,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     max-width: {%= CurrentADC.PropValue("controlWidth") %};
     margin: {%= controlAlign %};
 }
-#adc_{%= CurrentADC.InstanceId %} .firstColumn {
+#adc_{%= CurrentADC.InstanceId %} .firstColumn, #adc_{%= CurrentADC.InstanceId %} .respLabel {
     width: {%= firstColumnWidth + "%" %};
 }
 
-#adc_{%= CurrentADC.InstanceId %} .othersColumns {
+#adc_{%= CurrentADC.InstanceId %} .othersColumns, #adc_{%= CurrentADC.InstanceId %} .response {
     width: {%= othersColumns + "%" %};
 }
 #adc_{%= CurrentADC.InstanceId %} table {
@@ -192,7 +193,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
 }
 
-#adc_{%= CurrentADC.InstanceId %} th {
+#adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} .response label {
     font-size: {%= CurrentADC.PropValue("headerRowFontSize") %};
     vertical-align: {%= CurrentADC.PropValue("headerRowVerticalAlign") %};
 }
@@ -207,9 +208,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     max-width: {%:= CurrentADC.PropValue("maxLoopImagesWidth") %};
 }
 {% EndIf %}
+{% If (CurrentADC.PropValue("showHeader") = "yes") Then %}
 #adc_{%= CurrentADC.InstanceId %} .hiddens, #adc_{%= CurrentADC.InstanceId %} label {
     display: none;
 }
+{% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} .responsesitems img {
       {% If (CurrentADC.PropValue("forceImagesWidth") = "1" ) Then %}
 	  width: 100%;
@@ -222,6 +225,22 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     padding-right: 20px;
 }
 {% EndIf %}
+{% If (CurrentADC.PropValue("showHeader") = "no") Then %}
+#adc_{%= CurrentADC.InstanceId %} thead tr {
+    display: none;
+}
+#adc_{%= CurrentADC.InstanceId %} table {
+    border-top: none;
+}
+#adc_{%= CurrentADC.InstanceId %} .response input {
+        {% If (Browser.Support("javascript")) Then %}
+        display: none;
+        {% EndIf %}
+    }
+{% EndIf %}
+#adc_{%= CurrentADC.InstanceId %} .imgZoom {
+    right: 2px;
+}
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
 
@@ -302,7 +321,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         border-right: none;
     }
     #adc_{%= CurrentADC.InstanceId %} .response:last-child {
-        border-bottom: 0;
+        {% If (CurrentADC.PropValue("responsiveDirection") = "vertical") Then %}
+        border-bottom: none;
+    	{% Else %}
+        border-bottom: {%= borderThickness %} {%= borderStyle %} rgb({%= borderColour %});
+    	{% EndIf %}
     }
     #adc_{%= CurrentADC.InstanceId %} tr {
         {% If (dropShadow = "yes") Then %}
@@ -314,6 +337,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         text-align: {%= CurrentADC.PropValue("responsiveTextAlign") %};
         font-size: {%= CurrentADC.PropValue("responsiveFontSize") %};
         overflow: hidden;
+        width: 100%;
+        {% If (CurrentADC.PropValue("responsiveDirection") = "horizontal") Then %}
+        display: table-cell;
+        width: 1%;
+    	{% EndIf %}
     }
 
     #adc_{%= CurrentADC.InstanceId %} tr {
@@ -346,6 +374,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         cursor: pointer;
     }
     #adc_{%= CurrentADC.InstanceId %} .respLabel, #adc_{%= CurrentADC.InstanceId %} .respLabel:hover {
+        width: 100%;
         cursor: auto;
     }
     #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} label {
@@ -359,4 +388,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} td {
          position: relative;
     }
+    #adc_{%= CurrentADC.InstanceId %} .imgZoom {
+    	right: 25px;
+	}
 }
