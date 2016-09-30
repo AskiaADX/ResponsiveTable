@@ -77,6 +77,8 @@
       var el = event.target || event.srcElement;
       if (el.nodeName === "TD" && el.className.indexOf("response") >= 0) {
          document.getElementById(el.children[0].attributes.id.value).click();
+      } else if (el.nodeName === "IMG" && el.parentNode.parentNode.className.indexOf("response") >= 0) {
+         document.getElementById(el.parentNode.parentNode.children[0].attributes.id.value).click();
       } else if (el.nodeName === "INPUT") {
          if (el.checked) {
             addClass(el.parentNode,'selected');

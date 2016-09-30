@@ -224,10 +224,13 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 }
 {% EndIf %}
 {% If (CurrentADC.PropValue("showHeader") = "yes") Then %}
-#adc_{%= CurrentADC.InstanceId %} .hiddens, #adc_{%= CurrentADC.InstanceId %} label {
+#adc_{%= CurrentADC.InstanceId %} label {
     display: none;
 }
 {% EndIf %}
+#adc_{%= CurrentADC.InstanceId %} .hiddens {
+    display: none;
+}
 #adc_{%= CurrentADC.InstanceId %} .responsesitems img {
       {% If (CurrentADC.PropValue("forceImagesWidth") = "1" ) Then %}
 	  width: 100%;
