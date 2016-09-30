@@ -201,8 +201,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
 }
 #adc_{%= CurrentADC.InstanceId %} td {
-    padding: 10px;
+    padding: 10px 20px 10px 10px;
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
+}
+#adc_{%= CurrentADC.InstanceId %} .response {
+    padding: 10px;
 }
 
 #adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} .response label {
@@ -403,6 +406,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "left") or (CurrentADC.PropValue("imagesPositionResponsive") = "right")) Then %}
     #adc_{%= CurrentADC.InstanceId %} .responsesitems img {
          float: {%= CurrentADC.PropValue("imagesPositionResponsive") %};
+    }
+    {% EndIf %}
+    {% If (CurrentADC.PropValue("imagesPositionResponsive") = "right") Then %}
+    #adc_{%= CurrentADC.InstanceId %} .responsesitems img {
+         padding-right: 20px;
     }
     {% EndIf %}
     #adc_{%= CurrentADC.InstanceId %} td {
