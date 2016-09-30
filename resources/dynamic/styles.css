@@ -183,7 +183,19 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
     color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
 }
-
+{% If (CurrentADC.PropValue("useHeaderStyleFirstColumn") = "yes") Then %}
+#adc_{%= CurrentADC.InstanceId %} tr .respLabel {
+    background-color: {%= headBgPrimaryColor.ToHexa() %};
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= headBgPrimaryColor %})), to(rgb({%= headBgSecondaryColor %})));
+    background-image: -webkit-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: -moz-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: -o-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: -ms-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    background-image: linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
+    color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+}
+{% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} th .head {
     padding: 5px;
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
@@ -220,8 +232,13 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
       {% EndIf %}
       clear: both;
 }
-{% If ((CurrentADC.PropValue("showImagesZoom") = "1") or (CurrentADC.PropValue("showLoopImagesZoom") = "1")) Then %}
-#adc_{%= CurrentADC.InstanceId %} .head.padright, #adc_{%= CurrentADC.InstanceId %} label.padright {
+{% If (CurrentADC.PropValue("showLoopImagesZoom") = "1") Then %}
+#adc_{%= CurrentADC.InstanceId %} .head.padright {
+    padding-right: 20px;
+}
+{% EndIf %}
+{% If (CurrentADC.PropValue("showImagesZoom") = "1") Then %}
+#adc_{%= CurrentADC.InstanceId %} label.padright {
     padding-right: 20px;
 }
 {% EndIf %}

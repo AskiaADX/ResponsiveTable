@@ -7,7 +7,7 @@
   <info>
     <name>responsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -22,7 +22,9 @@
 		v1.0.5 
 			- fixed Microsoft Edge Fixed Header
 		v1.0.6 
-			- Added Show Header, Responsive Direction and Responsive Vertical Alignment properties]]></description>
+			- Added Show Header, Responsive Direction and Responsive Vertical Alignment properties
+		v1.0.7 
+			- Fixed padding right responses and added property Use Header Style First Column]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -335,7 +337,7 @@
       </property>
       <property xsi:type="standardProperty" id="hightlightRowOnHover" name="Hightlight Row on Hover" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Hightlight Row on Hover]]></description>
-        <value><![CDATA[yes]]></value>
+        <value><![CDATA[no]]></value>
         <options>
           <option value="yes" text="Yes" />
           <option value="no" text="No" />
@@ -352,6 +354,14 @@
       <property xsi:type="standardProperty" id="highlightBgSecondaryColor" name="Highlight Background Secondary Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
         <description><![CDATA[Highlighted Background Secondary Color]]></description>
         <value><![CDATA[255,255,255]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="useHeaderStyleFirstColumn" name="Use Header Style First Column" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Use the header style for the first column]]></description>
+        <value><![CDATA[no]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
       </property>
     </category>
     <category id="Images" name="Images">
