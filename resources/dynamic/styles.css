@@ -205,7 +205,12 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
 }
 #adc_{%= CurrentADC.InstanceId %} .response {
+    {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (CurrentADC.PropValue("responsiveDirection") = "horizontal")) Then %}
+    padding: 10px 0 10px 10px;
+    {% Else %}
     padding: 10px;
+    {% EndIf %}
+    position: relative;
 }
 
 #adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} .response label {
@@ -226,6 +231,11 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 {% If (CurrentADC.PropValue("showHeader") = "yes") Then %}
 #adc_{%= CurrentADC.InstanceId %} label {
     display: none;
+}
+{% EndIf %}
+{% If (CurrentADC.PropValue("showHeader") = "no") Then %}
+#adc_{%= CurrentADC.InstanceId %} label {
+    display: block;
 }
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} .hiddens {
@@ -420,7 +430,16 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} td {
          position: relative;
     }
-    #adc_{%= CurrentADC.InstanceId %} .imgZoom {
+    #adc_{%= CurrentADC.InstanceId %} .respLabel .imgZoom {
     	right: 25px;
 	}
+    {% If (CurrentADC.PropValue("responsiveDirection") = "vertical") Then %}
+    #adc_{%= CurrentADC.InstanceId %} .imgZoom {
+    	right: 15px;
+	}
+    #adc_{%= CurrentADC.InstanceId %} .response .imgZoom {
+    	bottom: 5px;
+        right: 25px;
+	}
+    {% EndIf %}
 }

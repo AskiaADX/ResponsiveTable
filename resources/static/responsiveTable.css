@@ -22,7 +22,7 @@ body {
 .adc-responsiveTable th:first-child {
    z-index: 0;
 }
-.adc-responsiveTable th .head {
+.adc-responsiveTable th {
    position: relative;
 }
 .adc-responsiveTable td:hover, .adc-responsiveTable  input[type="checkbox"], .adc-responsiveTable  input[type="radio"], .adc-responsiveTable .imgZoom, .adc-responsiveTable label {

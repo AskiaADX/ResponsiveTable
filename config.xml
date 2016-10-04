@@ -7,7 +7,7 @@
   <info>
     <name>responsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -26,7 +26,9 @@
 		v1.0.7 
 			- Fixed padding right responses and added property Use Header Style First Column
 		v1.0.8 
-			- fixed Show Loop Captions]]></description>
+			- fixed Show Loop Captions
+		v1.0.9 
+			- fixed image zoom padding]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>

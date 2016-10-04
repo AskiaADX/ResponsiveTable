@@ -124,22 +124,26 @@
          top = 0;
       }
       var translate = "translateY("+top+"px)";
-      if ((/MSIE 10/i.test(navigator.userAgent)) || (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) || (/Edge\/\d./i.test(navigator.userAgent))) {
+      //if ((/MSIE 10/i.test(navigator.userAgent)) || (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) || (/Edge\/\d./i.test(navigator.userAgent))) {
         for (var i = 0; j = el.length, i < j; i++) {
-            if (document.documentMode >= 12) {
-                el[i].style.transform = translate;   
-            } else {
+            if (document.documentMode < 12) {
                 el[i].style.msTransform = translate;
-            }  
-            //el[i].style.transition = "all 0.2s";
+            } else {
+                el[i].style.WebkitTransform = translate;
+                el[i].style.WebkitTransition = "all 0.2s";
+                el[i].style.MozTransform = translate;
+                el[i].style.MozTransition = "all 0.2s";
+                el[i].style.transform = translate;
+                el[i].style.transition = "all 0.2s";
+            }
         }
-      }
-      document.getElementById("adc_" + opt.instanceId + "_thead").style.WebkitTransform = translate;
-      document.getElementById("adc_" + opt.instanceId + "_thead").style.WebkitTransition = "all 0.2s"; // Code for Safari 3.1 to 6.0
-      document.getElementById("adc_" + opt.instanceId + "_thead").style.MozTransform = translate;
-      document.getElementById("adc_" + opt.instanceId + "_thead").style.MozTransition = "all 0.2s"; // Code for Mozilla
-      document.getElementById("adc_" + opt.instanceId + "_thead").style.transform = translate;
-      document.getElementById("adc_" + opt.instanceId + "_thead").style.transition = "all 0.2s";
+      //}
+      //document.getElementById("adc_" + opt.instanceId + "_thead").style.WebkitTransform = translate;
+      //document.getElementById("adc_" + opt.instanceId + "_thead").style.WebkitTransition = "all 0.2s"; // Code for Safari 3.1 to 6.0
+      //document.getElementById("adc_" + opt.instanceId + "_thead").style.MozTransform = translate;
+      //document.getElementById("adc_" + opt.instanceId + "_thead").style.MozTransition = "all 0.2s"; // Code for Mozilla
+      //document.getElementById("adc_" + opt.instanceId + "_thead").style.transform = translate;
+      //document.getElementById("adc_" + opt.instanceId + "_thead").style.transition = "all 0.2s";
    }
 
    function simplboxConstructorCall(strId) {
@@ -196,6 +200,9 @@
 
       for (var i = 0; j = elements.length, i < j; i++) {
          elements[i].style.msTransform = "translateY(0px)";
+         elements[i].style.WebkitTransform = "translateY(0px)";
+         elements[i].style.MozTransform = "translateY(0px)";
+         elements[i].style.transform = "translateY(0px)";
       }
 
       var zooms = document.getElementById("adc_" + this.instanceId).querySelectorAll("tbody tr");
