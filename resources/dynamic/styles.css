@@ -213,9 +213,18 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     position: relative;
 }
 
-#adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} .response label {
+#adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} .response {
     font-size: {%= CurrentADC.PropValue("headerRowFontSize") %};
+}
+#adc_{%= CurrentADC.InstanceId %} th {
     vertical-align: {%= CurrentADC.PropValue("headerRowVerticalAlign") %};
+}
+#adc_{%= CurrentADC.InstanceId %} .response {
+    {% If (CurrentADC.PropValue("showHeader") = "no") Then %}
+    vertical-align: {%= CurrentADC.PropValue("headerRowVerticalAlign") %};
+    {% Else %}
+    vertical-align: middle %};
+    {% EndIf %}
 }
 
 #adc_{%= CurrentADC.InstanceId %} .respLabel {
