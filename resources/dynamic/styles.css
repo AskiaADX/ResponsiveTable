@@ -92,6 +92,14 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 #adc_{%= CurrentADC.InstanceId %} tr:last-child td:last-child {
     border-bottom-right-radius: {%= CurrentADC.PropValue("borderRadius") %};
 }
+{% If (CurrentADC.PropValue("showHeader") = "no") Then %}
+#adc_{%= CurrentADC.InstanceId %} tbody tr:first-child td:first-child {
+    border-top-left-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+#adc_{%= CurrentADC.InstanceId %} tbody tr:first-child td:last-child {
+    border-top-right-radius: {%= CurrentADC.PropValue("borderRadius") %};
+}
+{% EndIf %}
 
 /* Tr odd style */
 #adc_{%= CurrentADC.InstanceId %} tr {
