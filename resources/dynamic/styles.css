@@ -8,6 +8,7 @@ Else
     controlAlign = "0 auto 0 0"
 EndIf
 Dim firstColumnWidth = CurrentADC.PropValue("firstColumnWidth")
+Dim firstColumnAlign = CurrentADC.PropValue("firstColumnAlign")
 Dim columnsCount = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableResponses[1].Index).AvailableResponses.Count
 Dim othersColumns = ((100 - firstColumnWidth.ToNumber()) / columnsCount).ToString().ToNumber().Round(1)
 Dim responsivePercent = (100 / columnsCount).ToString().ToNumber().Round(1)
@@ -35,6 +36,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 }
 #adc_{%= CurrentADC.InstanceId %} .firstColumn, #adc_{%= CurrentADC.InstanceId %} .respLabel {
     width: {%= firstColumnWidth + "%" %};
+    text-align: {%= firstColumnAlign %};
 }
 
 #adc_{%= CurrentADC.InstanceId %} .othersColumns, #adc_{%= CurrentADC.InstanceId %} .response {
@@ -76,7 +78,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} table {
     {% If (dropShadow = "yes") Then %}
-    box-shadow: 2px 2px 5px 0px {%= dropShadowColor.ToHexa() %};
+    box-shadow: 0px 2px 4px rgba(0,0,0,.2);
     {% EndIf %}
     border-radius: {%= CurrentADC.PropValue("borderRadius") %};
 }
@@ -103,105 +105,56 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 
 /* Tr odd style */
 #adc_{%= CurrentADC.InstanceId %} tr {
-    background-color: {%= oddBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= oddBgPrimaryColor %})), to(rgb({%= oddBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= oddBgPrimaryColor.ToHexa() %}', EndColorStr='{%= oddBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+    background-color: rgba({%= oddBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
     /*transition: all ease-in-out .2s;*/
 }
 #adc_{%= CurrentADC.InstanceId %} tr label {
-    color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+    color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
 }
 /* Tr even style */
 #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) {
-    background-color: {%= evenBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= evenBgPrimaryColor %})), to(rgb({%= evenBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= evenBgPrimaryColor %}), rgb({%= evenBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= evenBgPrimaryColor.ToHexa() %}', EndColorStr='{%= evenBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("evenFontColor").ToHexa() %};
+    background-color: rgba({%= evenBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("evenFontColor") %},1.0);
     /*transition: all ease-in-out .2s;*/
 }
 #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) label {
-    color: {%= CurrentADC.PropValue("evenFontColor").ToHexa() %};
+    color: rgba({%= CurrentADC.PropValue("evenFontColor") %},1.0);
 }
 /* Hover style - if show hightlight row on hover */
 #adc_{%= CurrentADC.InstanceId %} tr:hover{
     {% If (CurrentADC.PropValue("hightlightRowOnHover") = "yes") Then %}
-    background-color: {%= highlightBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= highlightBgPrimaryColor %})), to(rgb({%= highlightBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= highlightBgPrimaryColor %}), rgb({%= highlightBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= highlightBgPrimaryColor.ToHexa() %}', EndColorStr='{%= highlightBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("highlightFontColor").ToHexa() %};
+    background-color: rgba({%= highlightBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("highlightFontColor") %},1.0);
     {% EndIf %}
 }
 {% If ((Browser.Support("touch") = False) and (Browser.Support("javascript"))) Then %}
 #adc_{%= CurrentADC.InstanceId %} .response:hover {
-    background-color: {%= hoverBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= hoverBgPrimaryColor.ToHexa() %}', EndColorStr='{%= hoverBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
+    background-color: rgba({%= hoverBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("hoverFontColor") %},1.0);
 }
 #adc_{%= CurrentADC.InstanceId %} label:hover {
-    color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
+    color: rgba({%= CurrentADC.PropValue("hoverFontColor") %},1.0);
 }
 {% EndIf %}
 /* Selected style */
 #adc_{%= CurrentADC.InstanceId %} .selected, #adc_{%= CurrentADC.InstanceId %} .selected:hover {
-    background-color: {%= selectedBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= selectedBgPrimaryColor %})), to(rgb({%= selectedBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= selectedBgPrimaryColor.ToHexa() %}', EndColorStr='{%= selectedBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
+    background-color: rgba({%= selectedBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("selectedFontColor") %},1.0) !important;
     /*transition: all ease-in-out .2s;*/
 }
 #adc_{%= CurrentADC.InstanceId %} .selected label, #adc_{%= CurrentADC.InstanceId %} .selected label:hover {
-    color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
+    color: rgba({%= CurrentADC.PropValue("selectedFontColor") %},1.0) !important;
 }
 /* Head style */
 #adc_{%= CurrentADC.InstanceId %} th, #adc_{%= CurrentADC.InstanceId %} th:hover {
-    background-color: {%= headBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= headBgPrimaryColor %})), to(rgb({%= headBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+    background-color: rgba({%= headBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
 }
 {% If (CurrentADC.PropValue("useHeaderStyleFirstColumn") = "yes") Then %}
 #adc_{%= CurrentADC.InstanceId %} tr .respLabel {
-    background-color: {%= headBgPrimaryColor.ToHexa() %};
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= headBgPrimaryColor %})), to(rgb({%= headBgSecondaryColor %})));
-    background-image: -webkit-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: -moz-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: -o-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: -ms-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    background-image: linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
-    color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+    background-color: rgba({%= headBgPrimaryColor %},1.0);
+    color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
 }
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} th .head {
@@ -231,13 +184,13 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     {% If (CurrentADC.PropValue("showHeader") = "no") Then %}
     vertical-align: {%= CurrentADC.PropValue("headerRowVerticalAlign") %};
     {% Else %}
-    vertical-align: middle %};
+    vertical-align: middle;
     {% EndIf %}
 }
 
 #adc_{%= CurrentADC.InstanceId %} .respLabel {
     font-size: {%= CurrentADC.PropValue("firstColumnFontSize") %};
-    text-align: {%= CurrentADC.PropValue("firstColumnAlign") %};
+    text-align: {%= firstColumnAlign %};
 }
 {% If (CurrentADC.PropValue("forceLoopImagesWidth") = "1" ) Then %}
 #adc_{%= CurrentADC.InstanceId %} .respLabel img {
@@ -246,13 +199,13 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 }
 {% EndIf %}
 {% If (CurrentADC.PropValue("showHeader") = "yes") Then %}
-#adc_{%= CurrentADC.InstanceId %} label {
+#adc_{%= CurrentADC.InstanceId %} label.responsesitems {
     display: none;
 }
 {% EndIf %}
 {% If (CurrentADC.PropValue("showHeader") = "no") Then %}
-#adc_{%= CurrentADC.InstanceId %} label {
-    display: block;
+#adc_{%= CurrentADC.InstanceId %} label.responsesitems {
+    display: inline-block;
 }
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} .hiddens {
@@ -282,11 +235,9 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 #adc_{%= CurrentADC.InstanceId %} table {
     border-top: none;
 }
-#adc_{%= CurrentADC.InstanceId %} .response input {
-        {% If (Browser.Support("javascript")) Then %}
+#adc_{%= CurrentADC.InstanceId %} .response input, #adc_{%= CurrentADC.InstanceId %} .response label.askia-radio, #adc_{%= CurrentADC.InstanceId %} .response label.askia-checkbox {
         display: none;
-        {% EndIf %}
-    }
+}
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} .imgZoom {
     right: 2px;
@@ -295,65 +246,37 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
 
     #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even), #adc_{%= CurrentADC.InstanceId %} tr, #adc_{%= CurrentADC.InstanceId %} tr:hover {
-        background-color: {%= oddBgPrimaryColor.ToHexa() %};
-        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= oddBgPrimaryColor %})), to(rgb({%= oddBgSecondaryColor %})));
-        background-image: -webkit-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-        background-image: -moz-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-        background-image: -o-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-        background-image: -ms-linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-        background-image: linear-gradient(top, rgb({%= oddBgPrimaryColor %}), rgb({%= oddBgSecondaryColor %}));
-        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= oddBgPrimaryColor.ToHexa() %}', EndColorStr='{%= oddBgSecondaryColor.ToHexa() %}');
-        color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+        background-color: rgba({%= oddBgPrimaryColor %},1.0);
+        color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
     }
     #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even) label, #adc_{%= CurrentADC.InstanceId %} tr label, #adc_{%= CurrentADC.InstanceId %} tr label:hover {
-        color: {%= CurrentADC.PropValue("oddFontColor").ToHexa() %};
+        color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
     }
 	{% If ((Browser.Support("touch") = False) and (Browser.Support("javascript"))) Then %}
     #adc_{%= CurrentADC.InstanceId %} .response:hover {
-        background-color: {%= hoverBgPrimaryColor.ToHexa() %};
-        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= hoverBgPrimaryColor %})), to(rgb({%= hoverBgSecondaryColor %})));
-        background-image: -webkit-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-        background-image: -moz-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-        background-image: -o-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-        background-image: -ms-linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-        background-image: linear-gradient(top, rgb({%= hoverBgPrimaryColor %}), rgb({%= hoverBgSecondaryColor %}));
-        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= hoverBgPrimaryColor.ToHexa() %}', EndColorStr='{%= hoverBgSecondaryColor.ToHexa() %}');
-        color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
+        background-color: rgba({%= hoverBgPrimaryColor %},1.0);
+        color: rgba({%= CurrentADC.PropValue("hoverFontColor") %},1.0);
     }
     #adc_{%= CurrentADC.InstanceId %} label:hover {
-        color: {%= CurrentADC.PropValue("hoverFontColor").ToHexa() %};
+        color: rgba({%= CurrentADC.PropValue("hoverFontColor") %},1.0);
     }
     {% EndIf %}
     #adc_{%= CurrentADC.InstanceId %} .selected, #adc_{%= CurrentADC.InstanceId %} .selected:hover {
-        background-color: {%= selectedBgPrimaryColor.ToHexa() %};
-        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= selectedBgPrimaryColor %})), to(rgb({%= selectedBgSecondaryColor %})));
-        background-image: -webkit-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-        background-image: -moz-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-        background-image: -o-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-        background-image: -ms-linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-        background-image: linear-gradient(top, rgb({%= selectedBgPrimaryColor %}), rgb({%= selectedBgSecondaryColor %}));
-        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= selectedBgPrimaryColor.ToHexa() %}', EndColorStr='{%= selectedBgSecondaryColor.ToHexa() %}');
-        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
+        background-color: rgba({%= selectedBgPrimaryColor %},1.0);
+        color: rgba({%= CurrentADC.PropValue("selectedFontColor") %},1.0) !important;
     }
     #adc_{%= CurrentADC.InstanceId %} .selected label, #adc_{%= CurrentADC.InstanceId %} .selected label:hover {
-        color: {%= CurrentADC.PropValue("selectedFontColor").ToHexa() %} !important;
+        color: rgba({%= CurrentADC.PropValue("selectedFontColor") %},1.0) !important;
     }
 
     #adc_{%= CurrentADC.InstanceId %} .respLabel, #adc_{%= CurrentADC.InstanceId %} .respLabel:hover {
-        background-color: {%= headBgPrimaryColor.ToHexa() %};
-        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb({%= headBgPrimaryColor %})), to(rgb({%= headBgSecondaryColor %})));
-        background-image: -webkit-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-        background-image: -moz-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-        background-image: -o-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-        background-image: -ms-linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-        background-image: linear-gradient(top, rgb({%= headBgPrimaryColor %}), rgb({%= headBgSecondaryColor %}));
-        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='{%= headBgPrimaryColor.ToHexa() %}', EndColorStr='{%= headBgSecondaryColor.ToHexa() %}');
-        color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+        background-color: rgba({%= headBgPrimaryColor %},1.0);
+        color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
         text-align: {%= CurrentADC.PropValue("responsiveHeaderAlign") %};
         font-size: {%= CurrentADC.PropValue("responsiveHeaderFontSize") %};
     }
     #adc_{%= CurrentADC.InstanceId %} .respLabel label, #adc_{%= CurrentADC.InstanceId %} .respLabel label:hover {
-        color: {%= CurrentADC.PropValue("headFontColor").ToHexa() %};
+        color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
         font-size: {%= CurrentADC.PropValue("responsiveHeaderFontSize") %};
     }
     
@@ -379,7 +302,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     }
     #adc_{%= CurrentADC.InstanceId %} tr {
         {% If (dropShadow = "yes") Then %}
-    	box-shadow: 2px 2px 5px 0px {%= dropShadowColor.ToHexa() %};
+    	box-shadow: 0px 2px 4px rgba(0,0,0,.2);
     	{% EndIf %}
     }
 
@@ -399,8 +322,8 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         border-radius: {%= CurrentADC.PropValue("borderRadius") %};
     }
 	/* if javascript */
-    #adc_{%= CurrentADC.InstanceId %} .response input {
-        {% If (Browser.Support("javascript") and (CurrentADC.PropValue("hideInputs") = "yes")) Then %}
+    #adc_{%= CurrentADC.InstanceId %} .response label.askia-radio, #adc_{%= CurrentADC.InstanceId %} .response label.askia-checkbox {
+        {% If (CurrentADC.PropValue("hideInputs") = "yes") Then %}
         display: none;
         {% EndIf %}
     }
@@ -431,7 +354,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         padding-left: 0;
         {% EndIf %}
     }
-    #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} label {
+    #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} label.responsesitems {
         display: block;
     }
     {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "left") or (CurrentADC.PropValue("imagesPositionResponsive") = "right")) Then %}

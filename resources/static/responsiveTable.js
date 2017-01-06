@@ -13,7 +13,7 @@
    */
    function addEvent(obj, type, fn) {
       if (typeof obj.addEventListener === 'function') {
-         obj.addEventListener(type, fn, false);
+         obj.addEventListener(type, fn, true);
       } else if (obj.attachEvent) {
          obj['e' + type + fn] = fn;
          obj[type + fn] = function () {
@@ -76,9 +76,9 @@
    function clickTable(event) {
       var el = event.target || event.srcElement;
       if (el.nodeName === "TD" && el.className.indexOf("response") >= 0) {
-         document.getElementById(el.children[0].attributes.id.value).click();
+         document.getElementById(el.lastElementChild.attributes.for.value).click();
       } else if (el.nodeName === "IMG" && el.parentNode.parentNode.className.indexOf("response") >= 0) {
-         document.getElementById(el.parentNode.parentNode.children[0].attributes.id.value).click();
+         document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
       } else if (el.nodeName === "INPUT") {
          if (el.checked) {
             addClass(el.parentNode,'selected');

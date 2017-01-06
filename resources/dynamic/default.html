@@ -15,6 +15,7 @@
 				Dim arPath = ""
                 Dim attrChecked = ""
                 Dim isExclusive = ""
+				Dim isAskiaExclusive = ""
 				Dim isSelected = ""
 				Dim isCaptionsHiddens = ""
 				Dim isHeadPaddingRight = ""
@@ -75,11 +76,11 @@
 				For j = 1 To CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Count 
     				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then
         				inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
-        				inputId     = inputName + "_" + j
+        				inputId     = (inputName + "_" + j).Replace("U", "askia-input")
         				typeQuestion = "radio"
     				Else
         				inputName = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputName()
-        				inputId     = inputName.Replace(" ", "_")
+        				inputId     = inputName.Replace(" ", "_").Replace("M", "askia-input")
         				typeQuestion = "checkbox"
 				    EndIf
                     inputValue  = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputValue()
@@ -87,11 +88,13 @@
                     caption     = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Caption
     				respImagePath = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.ResourceURL[j]
     				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
+    				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
     				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
     				isLoopPaddingRight = On((respImagePath <> "") and (CurrentADC.PropValue("showLoopImagesZoom") = "1") , " padright", "")
                 %}
                 <td class="response{%:= isExclusive %}{%:= isSelected %}">
-                    <input type="{%:= typeQuestion %}" id="{%= inputId %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
+                    <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
+                    <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"></label>
                     <label for="{%= inputId %}" class="responsesitems{%= isLoopPaddingRight %}">
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
                         <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>

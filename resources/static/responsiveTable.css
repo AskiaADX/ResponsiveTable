@@ -45,6 +45,7 @@ body {
 .adc-responsiveTable .imgZoom:hover {
     border: 1px solid transparent;
 }
+
 /* simplbox lightbox styling */
 #simplbox {
     position: fixed;
