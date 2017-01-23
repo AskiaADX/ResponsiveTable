@@ -322,7 +322,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         border-radius: {%= CurrentADC.PropValue("borderRadius") %};
     }
 	/* if javascript */
-    #adc_{%= CurrentADC.InstanceId %} .response label.askia-radio, #adc_{%= CurrentADC.InstanceId %} .response label.askia-checkbox {
+    #adc_{%= CurrentADC.InstanceId %} .response input, #adc_{%= CurrentADC.InstanceId %} .response label.askia-radio, #adc_{%= CurrentADC.InstanceId %} .response label.askia-checkbox {
         {% If (CurrentADC.PropValue("hideInputs") = "yes") Then %}
         display: none;
         {% EndIf %}
