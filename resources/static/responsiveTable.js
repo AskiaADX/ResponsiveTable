@@ -86,6 +86,9 @@
          } else if ((!el.checked) && (el.attributes.type.value === "checkbox")) {
             removeClass(el.parentNode,'selected');
          }
+         if (window.askia) {
+             askia.triggerAnswer();
+         }
          //if (el.attributes.type.value === "radio" && el.parentNode.parentNode.nextSibling.nextSibling) el.parentNode.parentNode.nextSibling.nextSibling.scrollIntoView(true);
       }
    }
