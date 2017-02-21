@@ -30,7 +30,13 @@
 		v1.0.9 
 			- fixed image zoom padding
 		v1.0.10 
-			- fixed border top raduis when show header equal no]]></description>
+			- fixed border top raduis when show header equal no
+		v1.0.11 
+			- fixed first column alignement
+		v1.0.12 
+			- fixed padding small screen statement
+		v2.0.0
+			- Compatibility with Theme]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -293,11 +299,11 @@
         <description><![CDATA[Hover Background Color]]></description>
         <value><![CDATA[{%= Theme.WhiteColor %}]]></value>
       </property>
-      <property xsi:type="standardProperty" id="selectedFontColor" name="Selected Font Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+      <property xsi:type="standardProperty" id="selectedFontColor" name="Selected Font Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[The font color of the selected responses]]></description>
         <value><![CDATA[{%= Theme.WhiteColor %}]]></value>
       </property>
-      <property xsi:type="standardProperty" id="selectedBgPrimaryColor" name="Selected Background Color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgb">
+      <property xsi:type="standardProperty" id="selectedBgPrimaryColor" name="Selected Background Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[Selected Background Color]]></description>
         <value><![CDATA[{%= Theme.PrimaryColor %}]]></value>
       </property>

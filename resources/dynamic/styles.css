@@ -208,7 +208,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     display: inline-block;
 }
 {% EndIf %}
-#adc_{%= CurrentADC.InstanceId %} .hiddens {
+#adc_{%= CurrentADC.InstanceId %} .hiddens, #adc_{%= CurrentADC.InstanceId %} .respLabel .items.hiddens {
     display: none;
 }
 #adc_{%= CurrentADC.InstanceId %} .responsesitems img {
@@ -240,7 +240,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 }
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} .imgZoom {
-    right: 2px;
+    right: 5px;
 }
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
@@ -288,8 +288,14 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     	{% EndIf %}
     }
     #adc_{%= CurrentADC.InstanceId %} td {
+		padding: 0;
         border-top: none;
     }
+	#adc_{%= CurrentADC.InstanceId %} .respLabel .items {
+		display: block;
+		margin: 0 5px 5px 5px;
+		padding: 5px 0 0 0;
+	}
     #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} th {
         border-right: none;
     }
@@ -370,13 +376,13 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
     #adc_{%= CurrentADC.InstanceId %} td {
          position: relative;
     }
-    #adc_{%= CurrentADC.InstanceId %} .respLabel .imgZoom {
+    /*#adc_{%= CurrentADC.InstanceId %} .respLabel .imgZoom {
     	right: 25px;
-	}
+	}*/
     {% If (CurrentADC.PropValue("responsiveDirection") = "vertical") Then %}
-    #adc_{%= CurrentADC.InstanceId %} .imgZoom {
+    /*#adc_{%= CurrentADC.InstanceId %} .imgZoom {
     	right: 15px;
-	}
+	}*/
     #adc_{%= CurrentADC.InstanceId %} .response .imgZoom {
     	bottom: 5px;
         right: 25px;
