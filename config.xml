@@ -155,10 +155,6 @@
           <option value="no" text="Off" />
         </options>
       </property>
-      <property xsi:type="standardProperty" id="dropShadowColor" name="Drop Shadow Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
-        <description><![CDATA[The color of the drop shadow]]></description>
-        <value><![CDATA[187,187,187]]></value>
-      </property>
       <property xsi:type="standardProperty" id="headerFixed" name="Header Always visible" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Header Always visible]]></description>
         <value><![CDATA[0]]></value>
