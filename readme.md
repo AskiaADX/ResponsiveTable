@@ -4,7 +4,7 @@ Responsive Table
 Demo
 -------
 
-[Demo of the Responsive Table control](http://show.askia.com/WebProd/cgi-bin/AskiaExt.dll?Action=StartSurvey&SurveyName=ADC2_ResponsiveTable)
+[Demo of the Responsive Table control](http://demo.askia.com/WebProd/cgi-bin/AskiaExt.dll?Action=StartSurvey&SurveyName=ADC2_ResponsiveTable)
 
 Tested in
 -----------
