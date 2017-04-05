@@ -234,7 +234,7 @@
         <description><![CDATA[The amount of curve on the table corners]]></description>
         <value><![CDATA[{%= Theme.BorderRadius %}]]></value>
       </property>
-      <property xsi:type="standardProperty" id="borderColour" name="Border Colour" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
+      <property xsi:type="standardProperty" id="borderColour" name="Border Colour" type="color" mode="dynamic" require="true" visible="false">
         <description><![CDATA[The border colour]]></description>
         <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
       </property>
@@ -387,7 +387,7 @@
       </property>
       <property xsi:type="standardProperty" id="imagesPositionResponsive" name="Responses Images Position Responsive" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Responses Images Position Responsive]]></description>
-        <value><![CDATA[top]]></value>
+        <value><![CDATA[right]]></value>
         <options>
           <option value="top" text="Top" />
           <option value="right" text="Right" />
