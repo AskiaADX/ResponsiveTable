@@ -315,7 +315,7 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         text-align: {%= CurrentADC.PropValue("responsiveTextAlign") %};
         font-size: {%= CurrentADC.PropValue("responsiveFontSize") %};
         overflow: hidden;
-        width: 100%;
+        width: 97%;
         vertical-align: {%= CurrentADC.PropValue("responsiveVerticalAlign") %};
         {% If (CurrentADC.PropValue("responsiveDirection") = "horizontal") Then %}
         display: table-cell;

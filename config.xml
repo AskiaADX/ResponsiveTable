@@ -35,6 +35,10 @@
 			- fixed first column alignement
 		v1.0.12 
 			- fixed padding small screen statement
+		v1.0.13 
+			- fixed multiple input name not saved
+		v1.0.14 
+			- Width 97% for response on responsive state
 		v2.0.0
 			- Compatibility with Theme]]></description>
     <company>Askia</company>
