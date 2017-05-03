@@ -73,7 +73,7 @@
    *
    * @param {Object} event Event of the click on the TD or INPUT
    */
-   function clickTable(event) {
+   function clickTable(event, that) {
       var el = event.target || event.srcElement;
       if (el.nodeName === "TD" && el.className.indexOf("response") >= 0) {
          document.getElementById(el.lastElementChild.attributes.for.value).click();
@@ -86,9 +86,12 @@
          } else if ((!el.checked) && (el.attributes.type.value === "checkbox")) {
             removeClass(el.parentNode,'selected');
          }
-         if (window.askia) {
-             askia.triggerAnswer();
-         }
+          if (window.askia 
+              && window.arrLiveRoutingShortcut 
+              && window.arrLiveRoutingShortcut.length > 0
+              && window.arrLiveRoutingShortcut.indexOf(that) >= 0) {
+              askia.triggerAnswer();
+          }
          //if (el.attributes.type.value === "radio" && el.parentNode.parentNode.nextSibling.nextSibling) el.parentNode.parentNode.nextSibling.nextSibling.scrollIntoView(true);
       }
    }
@@ -191,8 +194,12 @@
       this.options = options;
       this.instanceId = options.instanceId || 1;
       this.headerFixed = options.headerFixed || 0;
+      this.currentQuestion = options.currentQuestion || "";
 
-      addEvent(document.getElementById("adc_" + this.instanceId), "click", clickTable);
+      addEvent(document.getElementById("adc_" + this.instanceId), "click", 
+      (function(passedInElement) {
+          return function(e) {clickTable(e, passedInElement); };
+      }(this.currentQuestion)));
 
       if (!document.querySelectorAll) return;
 
