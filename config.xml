@@ -305,7 +305,7 @@
       </property>
       <property xsi:type="standardProperty" id="selectedBgPrimaryColor" name="Selected Background Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[Selected Background Color]]></description>
-        <value><![CDATA[{%= Theme.PrimaryColor %}]]></value>
+        <value><![CDATA[{%= Theme.SecondaryColor %}]]></value>
       </property>
       <property xsi:type="standardProperty" id="hightlightRowOnHover" name="Hightlight Row on Hover" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Hightlight Row on Hover]]></description>
