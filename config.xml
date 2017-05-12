@@ -39,6 +39,8 @@
 			- fixed multiple input name not saved
 		v1.0.14 
 			- Width 97% for response on responsive state
+		v1.0.15 
+			- fixed loop with preliminary selection
 		v2.0.0
 			- Compatibility with Theme]]></description>
     <company>Askia</company>
