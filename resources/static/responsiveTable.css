@@ -15,6 +15,12 @@ body {
    border-collapse: separate;
    border-spacing: 0;
 }
+.adc-responsiveTable label {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */      
+}
 .adc-responsiveTable th {
    font-weight: normal;
    z-index: 3;
