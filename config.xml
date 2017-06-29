@@ -234,6 +234,10 @@
           <option value="no" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="accordion" name="Display as accordion" type="boolean" require="true" visible="true">
+        <description><![CDATA[Display as accordion]]></description>
+        <value><![CDATA[false]]></value>
+      </property>
     </category>
     <category id="Border" name="Border">
       <property xsi:type="standardProperty" id="borderRadius" name="Border Radius" type="string" mode="dynamic" require="true" visible="false">

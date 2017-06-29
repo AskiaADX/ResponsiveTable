@@ -387,4 +387,21 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
         right: 25px;
 	}
     {% EndIf %}
+    
+    {% If (CurrentADC.PropValue("accordion") = "1") Then %}
+    .display:before {
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid #8c7456;
+        border-bottom: 2px solid #8c7456;
+        right: 17px;
+        top: 10px;
+        position: absolute;
+        content: " ";
+        transform: rotate(-45deg);
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+    {% EndIf %}
 }
