@@ -337,6 +337,10 @@
           <option value="no" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="checkmarkColor" name="Responsive checkmark color" type="color" require="false" visible="true" colorFormat="rgb">
+        <description><![CDATA[the color of the checkmark in accordion mode]]></description>
+        <value><![CDATA[ 141,198,63]]></value>
+      </property>
     </category>
     <category id="Images" name="Images">
       <property xsi:type="standardProperty" id="maxLoopImagesWidth" name="Max Loop Images Width" type="string" mode="dynamic" require="true" visible="true">

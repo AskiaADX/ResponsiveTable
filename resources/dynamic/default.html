@@ -57,7 +57,7 @@
     			imageId = CurrentQuestion.Iteration(ar[i].Index).InputName()
     			isCaptionsHiddens = On((imagePath <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
             %}
-            <tr data-id="{%= imageId %}">
+            <tr data-id="{%= imageId %}" class="row">
                 <td class="respLabel">
                     <a class="display">
                         {% If ((CurrentADC.PropValue("loopImagesPosition") = "top") and (imagePath <> "")) Then %}

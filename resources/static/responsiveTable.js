@@ -94,8 +94,11 @@
                 && window.arrLiveRoutingShortcut.indexOf(that) >= 0) {
                 askia.triggerAnswer();
             }
-            if (responsiveTab.accordion && window.outerWidth < responsiveTab.responsiveWidth ) {
-                displayNext();
+            if (responsiveTab.accordion && window.innerWidth < responsiveTab.responsiveWidth ) {
+                if (el.classList.contains('askia-exclusive')) {
+                    displayNext();
+                }
+                displayCheckmark();
             }
             //if (el.attributes.type.value === "radio" && el.parentNode.parentNode.nextSibling.nextSibling) el.parentNode.parentNode.nextSibling.nextSibling.scrollIntoView(true);
         }
@@ -236,10 +239,11 @@
 
         responsiveTab = this;
         
-        if (this.accordion && window.outerWidth < this.responsiveWidth){
+        if (this.accordion && window.innerWidth < this.responsiveWidth){
             hideResponses();
             displayRow(arrows[0].parentNode.parentNode);
             arrows[0].classList.add('active');
+            displayCheckmark();
         }
     }
     
@@ -247,10 +251,10 @@
      * When the display change
      */
     function changeDisplay(e) {
-        if (responsiveTab.accordion && window.outerWidth > responsiveTab.responsiveWidth) {
+        if (responsiveTab.accordion && window.innerWidth > responsiveTab.responsiveWidth) {
             showResponses();
         }
-        if (responsiveTab.accordion && window.outerWidth < responsiveTab.responsiveWidth){
+        if (responsiveTab.accordion && window.innerWidth < responsiveTab.responsiveWidth){
             hideResponses();
             displayRow(arrows[0].parentNode.parentNode);
             arrows[0].classList.add('active');
@@ -264,6 +268,30 @@
         var responses = document.querySelectorAll('.response');
         for (var i = 0, l = responses.length; i < l; i++) {
             responses[i].style.display = "";
+        }
+    }
+    
+    /**
+     * if an answer is selected in the question, display the checkmark
+     */
+    function displayCheckmark() {
+        var rows = document.querySelectorAll('.row');
+        var responses, hasSelected, row, display;
+        for (var i = 0, l = rows.length; i < l; i++) {
+            row = rows[i];
+            display = row.querySelector('.display');
+            responses = row.querySelectorAll('.response');
+            hasSelected = false;
+            for (var j = 0, m = responses.length; j < m; j++) {
+                if (responses[j].classList.contains('selected')) {
+                    hasSelected = true;
+                    display.classList.add('checkmark');
+                    break;
+                }
+            }
+            if (!hasSelected && display.classList.contains('checkmark')) {
+                display.classList.remove('checkmark');
+            }
         }
     }
     
@@ -309,7 +337,7 @@
      */
     for (var i = 0, l = arrows.length; i < l; i++) {
         arrows[i].addEventListener('click', function(e) {
-            if (window.outerWidth > responsiveTab.responsiveWidth) {
+            if (window.innerWidth > responsiveTab.responsiveWidth) {
                 return;
             }
             hideResponses();
