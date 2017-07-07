@@ -42,7 +42,7 @@
 		v1.0.15 
 			- fixed loop with preliminary selection
 		v2.0.0
-			- Compatibility with Theme]]></description>
+			- Compatibility with Theme and new option display as accordion]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -337,9 +337,9 @@
           <option value="no" text="No" />
         </options>
       </property>
-      <property xsi:type="standardProperty" id="checkmarkColor" name="Responsive checkmark color" type="color" require="false" visible="true" colorFormat="rgb">
+      <property xsi:type="standardProperty" id="checkmarkColor" name="Responsive checkmark color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[the color of the checkmark in accordion mode]]></description>
-        <value><![CDATA[ 141,198,63]]></value>
+        <value><![CDATA[141,198,63]]></value>
       </property>
     </category>
     <category id="Images" name="Images">

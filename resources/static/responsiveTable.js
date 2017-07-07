@@ -4,15 +4,14 @@
 })();
 (function () {
     var responsiveTab;
-    var arrows = document.querySelectorAll('.display');
 
     /**
-   * Add event listener in DOMElement
-   *
-   * @param {HTMLElement} obj HTMLElement which should be listen
-   * @param {String} type Type of the event to listen
-   * @param {Function} fn Callback function
-   */
+     * Add event listener in DOMElement
+     *
+     * @param {HTMLElement} obj HTMLElement which should be listen
+     * @param {String} type Type of the event to listen
+     * @param {Function} fn Callback function
+     */
     function addEvent(obj, type, fn) {
         if (typeof obj.addEventListener === 'function') {
             obj.addEventListener(type, fn, true);
@@ -26,11 +25,11 @@
     }
 
     /**
-   * Add class in DOMElement
-   *
-   * @param {HTMLElement} obj HTMLElement where the class should be added
-   * @param {String} clsName Name of the class to add
-   */
+     * Add class in DOMElement
+     *
+     * @param {HTMLElement} obj HTMLElement where the class should be added
+     * @param {String} clsName Name of the class to add
+     */
     function addClass(obj, clsName) {
         if (obj.classList)
             obj.classList.add(clsName);
@@ -39,11 +38,11 @@
     }
 
     /**
-   * Remove class in DOMElement
-   *
-   * @param {HTMLElement} obj HTMLElement where the class should be removed
-   * @param {String} clsName Name of the class to remove
-   */
+     * Remove class in DOMElement
+     *
+     * @param {HTMLElement} obj HTMLElement where the class should be removed
+     * @param {String} clsName Name of the class to remove
+     */
     function removeClass(obj, clsName) {
         if (obj.classList)
             obj.classList.remove(clsName);
@@ -52,10 +51,10 @@
     }
 
     /**
-   * Manage the exclusive responses or single
-   *
-   * @param {HTMLElement} obj HTMLElement (input) clicked
-   */
+     * Manage the exclusive responses or single
+     *
+     * @param {HTMLElement} obj HTMLElement (input) clicked
+     */
     function manageExclusive(obj) {
         var tr = obj.parentNode.parentNode;
         for (var i = 1; j = tr.children.length, i < j; i++) {
@@ -71,10 +70,10 @@
     }
 
     /**
-   * Manage the click on the TD or INPUT
-   *
-   * @param {Object} event Event of the click on the TD or INPUT
-   */
+     * Manage the click on the TD or INPUT
+     *
+     * @param {Object} event Event of the click on the TD or INPUT
+     */
     function clickTable(event, that) {
         var el = event.target || event.srcElement;
         if (el.nodeName === "TD" && el.className.indexOf("response") >= 0) {
@@ -88,27 +87,29 @@
             } else if ((!el.checked) && (el.attributes.type.value === "checkbox")) {
                 removeClass(el.parentNode,'selected');
             }
+            if (that.accordion && window.innerWidth < that.responsiveWidth ) {
+                setTimeout(function(){
+                    if (el.classList.contains('askia-exclusive')) {
+                        displayNext(that.instanceId);
+                    }
+                    displayCheckmark(that.instanceId);
+                }, 150);
+            }
             if (window.askia 
                 && window.arrLiveRoutingShortcut 
                 && window.arrLiveRoutingShortcut.length > 0
-                && window.arrLiveRoutingShortcut.indexOf(that) >= 0) {
+                && window.arrLiveRoutingShortcut.indexOf(that.currentQuestion) >= 0) {
                 askia.triggerAnswer();
-            }
-            if (responsiveTab.accordion && window.innerWidth < responsiveTab.responsiveWidth ) {
-                if (el.classList.contains('askia-exclusive')) {
-                    displayNext();
-                }
-                displayCheckmark();
             }
             //if (el.attributes.type.value === "radio" && el.parentNode.parentNode.nextSibling.nextSibling) el.parentNode.parentNode.nextSibling.nextSibling.scrollIntoView(true);
         }
     }
 
     /**
-   * Calculate the offsetTop
-   *
-   * @param {HTMLElements} elem HTMLElement
-   */
+     * Calculate the offsetTop
+     *
+     * @param {HTMLElements} elem HTMLElement
+     */
     function calcOffsetTop(elem) {
         if(!elem) elem = this;
         var y = elem.offsetTop;
@@ -119,11 +120,11 @@
     }
 
     /**
-   * Make the header always visible and fixed when scrolling
-   *
-   * @param {HTMLElements} el HTMLElement which should be always visible - the header
-   * @param {Object} options Options of the ResponsiveTable
-   */
+     * Make the header always visible and fixed when scrolling
+     *
+     * @param {HTMLElements} el HTMLElement which should be always visible - the header
+     * @param {Object} options Options of the ResponsiveTable
+     */
     function headerFix(el,opt) {
         if ( !opt.headerFixed || !Array.prototype.forEach) return;
 
@@ -191,81 +192,32 @@
         });
         img.init();
     }
-
-    /**
-   * Creates a new instance of the ResponsiveTable
-   *
-   * @param {Object} options Options of the ResponsiveTable
-   * @param {String} options.instanceId=1 Id of the ADC instance
-   */
-    function ResponsiveTable(options) {
-        this.options = options;
-        this.instanceId = options.instanceId || 1;
-        this.headerFixed = options.headerFixed || 0;
-        this.currentQuestion = options.currentQuestion || "";
-        this.accordion = options.accordion;
-        this.responsiveWidth = parseInt(options.responsiveWidth);
-
-        addEvent(document.getElementById("adc_" + this.instanceId), "click", 
-                 (function(passedInElement) {
-            return function(e) {clickTable(e, passedInElement); };
-        }(this.currentQuestion)));
-
-        if (!document.querySelectorAll) return;
-
-        var elements = document.querySelectorAll("#adc_" + options.instanceId + "_thead th");
-        addEvent(window,"scroll",function(){
-            headerFix(elements,options);
-        });
-
-        addEvent(window, "resize", changeDisplay)
-        
-        for (var i = 0; j = elements.length, i < j; i++) {
-            elements[i].style.msTransform = "translateY(0px)";
-            elements[i].style.WebkitTransform = "translateY(0px)";
-            elements[i].style.MozTransform = "translateY(0px)";
-            elements[i].style.transform = "translateY(0px)";
-        }
-
-        var zooms = document.getElementById("adc_" + this.instanceId).querySelectorAll("tbody tr");
-        for (var l1 = 0, k1 = zooms.length; l1 < k1; l1++) {
-            simplboxConstructorCall(zooms[l1].getAttribute("data-id"));
-        }
-
-        var responseszooms = document.getElementById("adc_" + this.instanceId).querySelectorAll(".responsesitems img");
-        for (var l2 = 0, k2 = responseszooms.length; l2 < k2; l2++) {
-            simplboxConstructorCall(responseszooms[l2].getAttribute("data-id"));
-        }
-
-        responsiveTab = this;
-        
-        if (this.accordion && window.innerWidth < this.responsiveWidth){
-            hideResponses();
-            displayRow(arrows[0].parentNode.parentNode);
-            arrows[0].classList.add('active');
-            displayCheckmark();
-        }
-    }
     
     /**
      * When the display change
      */
-    function changeDisplay(e) {
-        if (responsiveTab.accordion && window.innerWidth > responsiveTab.responsiveWidth) {
-            showResponses();
+    function changeDisplay(that) {
+        if (that.currentWidth === window.innerWidth) return;
+        if (that.accordion && window.innerWidth > that.responsiveWidth) {
+            showResponses(that.instanceId);
+            var current = document.querySelector('#adc_' + that.instanceId + ' .active');
+            if (current) {
+                current.classList.remove('active');
+            }
         }
-        if (responsiveTab.accordion && window.innerWidth < responsiveTab.responsiveWidth){
-            hideResponses();
-            displayRow(arrows[0].parentNode.parentNode);
-            arrows[0].classList.add('active');
+        if (that.accordion && window.innerWidth <= that.responsiveWidth){
+            hideResponses(that.instanceId);
+            displayRow(that.arrows[0].parentNode.parentNode);
+            that.arrows[0].classList.add('active');
         }
+        that.currentWidth = window.innerWidth;
     }
     
     /**
      * Show all responses of the page
      */
-    function showResponses() {
-        var responses = document.querySelectorAll('.response');
+    function showResponses(instanceId) {
+        var responses = document.querySelectorAll('#adc_' + instanceId + ' .response');
         for (var i = 0, l = responses.length; i < l; i++) {
             responses[i].style.display = "";
         }
@@ -274,8 +226,8 @@
     /**
      * if an answer is selected in the question, display the checkmark
      */
-    function displayCheckmark() {
-        var rows = document.querySelectorAll('.row');
+    function displayCheckmark(instanceId) {
+        var rows = document.querySelectorAll('#adc_' + instanceId + ' .row');
         var responses, hasSelected, row, display;
         for (var i = 0, l = rows.length; i < l; i++) {
             row = rows[i];
@@ -298,8 +250,8 @@
     /**
      * Hide all responses of the page
      */
-    function hideResponses() {
-        var responses = document.querySelectorAll('.response');
+    function hideResponses(instanceId) {
+        var responses = document.querySelectorAll('#adc_' + instanceId + ' .response');
         for (var i = 0, l = responses.length; i < l; i++) {
             responses[i].style.display = "none";
         }
@@ -319,9 +271,9 @@
     /**
      * Display the next row
      */
-    function displayNext() {
-        hideResponses();
-        var current = document.querySelector('.active');
+    function displayNext(instanceId) {
+        hideResponses(instanceId);
+        var current = document.querySelector('#adc_' + instanceId + ' .active');
         var nextElem = current.parentNode.parentNode.nextElementSibling;
         if (nextElem) {
             displayRow(nextElem);
@@ -333,32 +285,103 @@
     }
     
     /**
-     * Add event on all rows
+     * Manage the accordion click on the headers on responsive mode
+     *
+     * @param {Object} event Event of the click on the A or IMG
      */
-    for (var i = 0, l = arrows.length; i < l; i++) {
-        arrows[i].addEventListener('click', function(e) {
-            if (window.innerWidth > responsiveTab.responsiveWidth) {
-                return;
-            }
-            hideResponses();
-            var self = this;
-            var tr    = self.parentNode.parentNode;
-            var current = document.querySelector('.active');
+    function accordion(event, that) {
+        var el = event.target || event.srcElement;
+        var self;
+        if (el.nodeName === "A" && el.className.indexOf("display") >= 0) {
+            self = el;
+        } else if ((el.nodeName === "IMG" || el.nodeName === "SPAN") && el.parentNode.className.indexOf("display") >= 0) {
+            self = el.parentNode;
+        } else {
+            return;
+        }
+        if (window.innerWidth > that.responsiveWidth) {
+            return;
+        }
+        hideResponses(that.instanceId);
+        var tr    = self.parentNode.parentNode;
+        var current = document.querySelector('#adc_' + that.instanceId + ' .active');
 
-            if (self.classList.contains('active')) {
-                self.classList.remove('active');
-            } else {
-                if (current) {
-                    current.classList.remove('active');
-                }
-                displayRow(tr);
+        if (self.classList.contains('active')) {
+            self.classList.remove('active');
+        } else {
+            if (current) {
+                current.classList.remove('active');
             }
-        });
+            displayRow(tr);
+        }
     }
 
+
     /**
-   * Attach the ResponsiveTable to the window object
-   */
+     * Creates a new instance of the ResponsiveTable
+     *
+     * @param {Object} options Options of the ResponsiveTable
+     * @param {String} options.instanceId=1 Id of the ADC instance
+     */
+    function ResponsiveTable(options) {
+        this.options = options;
+        this.instanceId = options.instanceId || 1;
+        this.headerFixed = options.headerFixed || 0;
+        this.currentQuestion = options.currentQuestion || "";
+        this.accordion = options.accordion;
+        this.responsiveWidth = parseInt(options.responsiveWidth);
+        this.arrows = document.querySelectorAll('#adc_' + this.instanceId + ' .display');
+        this.currentWidth = window.innerWidth;
+
+        addEvent(document.getElementById("adc_" + this.instanceId), "click", 
+                 (function(passedInElement) {
+            return function(e) {clickTable(e, passedInElement); };
+        }(this)));
+        
+        addEvent(document.getElementById("adc_" + this.instanceId), "click", 
+                 (function(passedInElement) {
+            return function(e) {accordion(e, passedInElement); };
+        }(this)));
+        
+        addEvent(window, "resize",
+                 (function(passedInElement) {
+            return function(e) {changeDisplay(passedInElement); };
+        }(this)));
+
+        if (!document.querySelectorAll) return;
+
+        var elements = document.querySelectorAll("#adc_" + options.instanceId + "_thead th");
+        addEvent(window,"scroll",function(){
+            headerFix(elements,options);
+        });
+        
+        for (var i = 0; j = elements.length, i < j; i++) {
+            elements[i].style.msTransform = "translateY(0px)";
+            elements[i].style.WebkitTransform = "translateY(0px)";
+            elements[i].style.MozTransform = "translateY(0px)";
+            elements[i].style.transform = "translateY(0px)";
+        }
+
+        var zooms = document.getElementById("adc_" + this.instanceId).querySelectorAll("tbody tr");
+        for (var l1 = 0, k1 = zooms.length; l1 < k1; l1++) {
+            simplboxConstructorCall(zooms[l1].getAttribute("data-id"));
+        }
+
+        var responseszooms = document.getElementById("adc_" + this.instanceId).querySelectorAll(".responsesitems img");
+        for (var l2 = 0, k2 = responseszooms.length; l2 < k2; l2++) {
+            simplboxConstructorCall(responseszooms[l2].getAttribute("data-id"));
+        }
+        if (this.accordion && window.innerWidth < this.responsiveWidth){
+            hideResponses(this.instanceId);
+            displayRow(this.arrows[0].parentNode.parentNode);
+            this.arrows[0].classList.add('active');
+            displayCheckmark(this.instanceId);
+        }
+    }
+    
+    /**
+     * Attach the ResponsiveTable to the window object
+     */
     window.ResponsiveTable = ResponsiveTable;
 
 }());

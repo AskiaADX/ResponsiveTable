@@ -295,7 +295,7 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
 		display: block;
 		margin: 0 5px 5px 5px;
         {% If (CurrentADC.PropValue("accordion") = "1") Then %}
-		padding: 5px 15px 0 0;
+		padding: 5px 17px 0 0;
     	{% Else %}
 		padding: 5px 0 0 0;
     	{% EndIf %}
@@ -326,6 +326,9 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
         display: table-cell;
         width: 1%;
     	{% EndIf %}
+        -webkit-transition: display .2s ease-in-out;
+        -moz-transition: display .2s ease-in-out;
+        transition: display .2s ease-in-out;
     }
 
     #adc_{%= CurrentADC.InstanceId %} tr {
