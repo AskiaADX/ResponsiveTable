@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -234,9 +234,13 @@
           <option value="no" text="No" />
         </options>
       </property>
-      <property xsi:type="standardProperty" id="accordion" name="Display as accordion" type="boolean" require="true" visible="true">
+      <property xsi:type="standardProperty" id="accordion" name="Display as accordion" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Display as accordion]]></description>
-        <value><![CDATA[false]]></value>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
       </property>
     </category>
     <category id="Border" name="Border">
