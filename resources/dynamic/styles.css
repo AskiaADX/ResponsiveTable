@@ -397,14 +397,14 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
     {% EndIf %}
     
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
-    .display {
+   #adc_{%= CurrentADC.InstanceId %} .askiadisplay {
         width: 100%;
         display: block;
         cursor: pointer;
         user-select: none;
     }
     
-    .display:before {
+    #adc_{%= CurrentADC.InstanceId %} .askiadisplay:before {
         width: 6px;
         height: 6px;
         border-right: 2px solid #8c7456;
@@ -419,14 +419,14 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
         transition: all .2s ease-in-out;
     }
     
-    .display.active:before {
+    #adc_{%= CurrentADC.InstanceId %} .askiadisplay.active:before {
         transform: rotate(45deg);
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;   
     }
     
-    .checkmark:before{
+    #adc_{%= CurrentADC.InstanceId %} .checkmark:before{
         border-right: 2px solid rgb({%= checkmarkColor %});
         border-bottom: 2px solid rgb({%= checkmarkColor %});
         right: 10px;
