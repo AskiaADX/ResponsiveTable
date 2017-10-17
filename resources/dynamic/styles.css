@@ -109,6 +109,10 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
     color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
     /*transition: all ease-in-out .2s;*/
 }
+#adc_{%= CurrentADC.InstanceId %} tr .items {
+    color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
+    /*transition: all ease-in-out .2s;*/
+}
 #adc_{%= CurrentADC.InstanceId %} tr label {
     color: rgba({%= CurrentADC.PropValue("oddFontColor") %},1.0);
 }
@@ -152,7 +156,7 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
     color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
 }
 {% If (CurrentADC.PropValue("useHeaderStyleFirstColumn") = "yes") Then %}
-#adc_{%= CurrentADC.InstanceId %} tr .respLabel {
+#adc_{%= CurrentADC.InstanceId %} tr .respLabel, #adc_{%= CurrentADC.InstanceId %} tr .respLabel .items {
     background-color: rgba({%= headBgPrimaryColor %},1.0);
     color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
 }
