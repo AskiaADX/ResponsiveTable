@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>2.0.3</version>
+    <version>2.0.4</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -295,7 +295,7 @@
       </property>
       <property xsi:type="standardProperty" id="oddBgPrimaryColor" name="Odd Background Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[Odd Background Color]]></description>
-        <value><![CDATA[{%= Theme.NeutralLightColor %}]]></value>
+        <value><![CDATA[{%= Theme.WhiteColor %}]]></value>
       </property>
       <property xsi:type="standardProperty" id="evenFontColor" name="Even Font Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[The font color of the even responses]]></description>
@@ -303,7 +303,7 @@
       </property>
       <property xsi:type="standardProperty" id="evenBgPrimaryColor" name="Even Background Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[Even Background Color]]></description>
-        <value><![CDATA[{%= Theme.NeutralLightColor %}]]></value>
+        <value><![CDATA[{%= Theme.WhiteColor %}]]></value>
       </property>
       <property xsi:type="standardProperty" id="hoverFontColor" name="Hover Font Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[The font color of the hover responses]]></description>
@@ -311,7 +311,7 @@
       </property>
       <property xsi:type="standardProperty" id="hoverBgPrimaryColor" name="Hover Background Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[Hover Background Color]]></description>
-        <value><![CDATA[{%= Theme.WhiteColor %}]]></value>
+        <value><![CDATA[{%= Theme.BlackColor %}]]></value>
       </property>
       <property xsi:type="standardProperty" id="selectedFontColor" name="Selected Font Color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[The font color of the selected responses]]></description>

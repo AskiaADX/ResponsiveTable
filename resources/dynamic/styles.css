@@ -134,7 +134,7 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
 }
 {% If ((Browser.Support("touch") = False) and (Browser.Support("javascript"))) Then %}
 #adc_{%= CurrentADC.InstanceId %} .response:hover {
-    background-color: rgba({%= hoverBgPrimaryColor %},1.0);
+    background-color: rgba({%= hoverBgPrimaryColor.ToRGB() %},.1);
     color: rgba({%= CurrentADC.PropValue("hoverFontColor") %},1.0);
 }
 #adc_{%= CurrentADC.InstanceId %} label:hover {
@@ -258,7 +258,7 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
     }
 	{% If ((Browser.Support("touch") = False) and (Browser.Support("javascript"))) Then %}
     #adc_{%= CurrentADC.InstanceId %} .response:hover {
-        background-color: rgba({%= hoverBgPrimaryColor %},1.0);
+        background-color: rgba({%= hoverBgPrimaryColor.ToRGB() %},.1);
         color: rgba({%= CurrentADC.PropValue("hoverFontColor") %},1.0);
     }
     #adc_{%= CurrentADC.InstanceId %} label:hover {
