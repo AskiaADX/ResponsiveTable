@@ -92,12 +92,11 @@
     				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
     				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
     				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
-    				isLoopPaddingRight = On((respImagePath <> "") and (CurrentADC.PropValue("showLoopImagesZoom") = "1") , " padright", "")
                 %}
                 <td class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
                     <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"></label>
-                    <label for="{%= inputId %}" class="responsesitems{%= isLoopPaddingRight %}">
+                    <label for="{%= inputId %}" class="responsesitems">
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
                         <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
                       	<div></div>
@@ -105,10 +104,7 @@
                         {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
                         <div></div>
-                        <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
-                        {% EndIf %}
-                        {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (respImagePath <> "")) Then %}
-                        <a href="{%= respImagePath %}" target="_blank" data-simplbox="{%= inputId %}"><div class="imgZoom"></div></a>
+                        <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
                         {% EndIf %}
                     </label>
                 </td>
