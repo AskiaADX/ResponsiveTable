@@ -29,6 +29,7 @@ Dim selectedBgSecondaryColor = CurrentADC.PropValue("selectedBgSecondaryColor")
 Dim highlightBgPrimaryColor = CurrentADC.PropValue("highlightBgPrimaryColor") 
 Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor")
 Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
+Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
 %}
 #adc_{%= CurrentADC.InstanceId %} {
     max-width: {%= CurrentADC.PropValue("controlWidth") %};
@@ -165,6 +166,13 @@ Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
     padding: 5px;
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
 }
+{% If (CurrentADC.PropValue("headTextOrientation") = "vertical") Then %} 
+	#adc_{%= CurrentADC.InstanceId %} th .head:last-child {
+    writing-mode:tb-rl;   
+    height: max-content;
+    max-height: 200px;
+}
+{% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} td {
     padding: 10px 20px 10px 10px;
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};

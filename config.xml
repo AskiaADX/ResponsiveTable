@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -46,7 +46,9 @@
 		v2.0.2
 			- Changed class display and row to askiadisplay and askiarow
 		v2.0.3
-			- Fixed respLabel styling issue]]></description>
+			- Fixed respLabel styling issue
+                v2.0.6
+                        - Added header orientation property]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -348,6 +350,14 @@
       <property xsi:type="standardProperty" id="checkmarkColor" name="Responsive checkmark color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[the color of the checkmark in accordion mode]]></description>
         <value><![CDATA[141,198,63]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headTextOrientation" name="Reader text orientation" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[horizontal]]></value>
+        <options>
+          <option value="horizontal" text="Horizontal" />
+          <option value="vertical" text="Vertical" />
+        </options>
       </property>
     </category>
     <category id="Images" name="Images">
