@@ -411,6 +411,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
    #adc_{%= CurrentADC.InstanceId %} .askiadisplay {
         width: 100%;
+        height: 100%;
         display: block;
         cursor: pointer;
         user-select: none;
@@ -436,6 +437,12 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;   
+    }
+    #adc_{%= CurrentADC.InstanceId %} tr .respLabel .items {
+        background-color: transparent;
+    }
+    #adc_{%= CurrentADC.InstanceId %} .checkmark {
+        background-color: rgba({%= checkmarkColor.ToRGB() %},.2);
     }
     
     #adc_{%= CurrentADC.InstanceId %} .checkmark:before{
