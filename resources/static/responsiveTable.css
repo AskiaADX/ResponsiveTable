@@ -8,6 +8,10 @@ body {
 .adc-responsiveTable {
    width: 100%;
 }
+ 
+.adc-responsiveTable a:hover{
+	text-decoration:none;
+}
 .adc-responsiveTable table {
    width: 100%;
    margin:0;
