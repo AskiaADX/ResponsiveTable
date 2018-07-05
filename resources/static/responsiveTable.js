@@ -278,9 +278,17 @@
   function displayNext (instanceId) {
     hideResponses(instanceId);
     var current = document.querySelector('#adc_' + instanceId + ' .active');
-    var nextElem = current.parentNode.parentNode.nextElementSibling;
-    if (nextElem) {
-      displayRow(nextElem);
+    if (!current) return;
+    var nextElems = current.parentElement.parentElement.parentElement.children;
+    var index = -1
+    for (var i = 0, j = nextElems.length; i < j; i++) {
+          if (!nextElems[i].children[0].children[0].classList.contains('checkmark') && !nextElems[i].children[0].children[0].classList.contains('active')) {
+              index = i;
+              break;
+          }
+    }
+    if (nextElems[index] && index !== -1) {
+      displayRow(nextElems[index]);
     }
 
     if (current) {
