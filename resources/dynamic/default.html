@@ -82,7 +82,7 @@
         				typeQuestion = "radio"
     				Else
         				inputName = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputName()
-        				inputId     = inputName.Replace(" ", "_").Replace("M", "askia-input")
+        				inputId     = (inputName + "").Replace(" ", "_").Replace("M", "askia-input")
         				typeQuestion = "checkbox"
 				    EndIf
                     inputValue  = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputValue()

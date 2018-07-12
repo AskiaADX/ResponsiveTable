@@ -32,6 +32,7 @@
                             <LongCaption>single</LongCaption>
                             <Modalities>
                                 <Modality ID="1" ResourceID="4">
+                                    <ShortCaption>Absolutely</ShortCaption>
                                 </Modality>
                                 <Modality ID="2" ResourceID="5">
                                     <ShortCaption>Rather yes</ShortCaption>
