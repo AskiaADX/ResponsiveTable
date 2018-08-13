@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>2.0.10</version>
+    <version>2.0.8</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -53,10 +53,8 @@
             - Added backgroundcolor for accordion
 		v2.0.8
             - removed underline for row header hover
-		v2.0.9
-            - improved accordian behaviour
-		v2.0.9
-            - Fixed replace Face bug]]></description>
+		v2.0.11
+			- Added span to labels, links and table headers]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -357,7 +355,7 @@
       </property>
       <property xsi:type="standardProperty" id="checkmarkColor" name="Responsive checkmark color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
         <description><![CDATA[the color of the checkmark in accordion mode]]></description>
-        <value><![CDATA[{%= Theme.SuccessColor %}]]></value>
+        <value><![CDATA[141,198,63]]></value>
       </property>
       <property xsi:type="standardProperty" id="headTextOrientation" name="Reader text orientation" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[]]></description>

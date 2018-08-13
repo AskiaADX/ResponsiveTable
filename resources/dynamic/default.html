@@ -2,7 +2,7 @@
     <table>
         <thead id="adc_{%= CurrentADC.InstanceId %}_thead">
             <tr>
-                <th class="firstColumn respLabel">&nbsp;</th>
+                <th class="firstColumn respLabel"><span hidden>Table header</span>&nbsp;</th>
                 {%
 				Dim arTh = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.CurrentIteration).AvailableResponses
 				Dim th = 0
@@ -43,7 +43,7 @@
                     <img src="{%= arPath %}" data-id="head{%= CurrentADC.InstanceId.ToString() + th %}" alt="{%:= arCaption %}"/>
                     {% EndIf %}
                     {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (arPath <> "")) Then %}
-                    <a href="{%= arPath %}" target="_blank" data-simplbox="head{%= CurrentADC.InstanceId.ToString() + th %}"><div class="imgZoom"></div></a>
+                    <a href="{%= arPath %}" target="_blank" data-simplbox="head{%= CurrentADC.InstanceId.ToString() + th %}"><div class="imgZoom"><span hidden>Zoom link</span></div></a>
                     {% EndIf %}
                     </div>
                 </th>
@@ -69,10 +69,11 @@
                         <br />
                         <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
                         {% EndIf %}
+                    </a> <!-- New position of end tag </a> -->
                         {% If ((CurrentADC.PropValue("showLoopImagesZoom") = "1") and (imagePath <> "")) Then %}
-                        <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= imageId %}"><div class="imgZoom"></div></a>
+                        <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= imageId %}"><div class="imgZoom"><span hidden>Zoom link</span></div></a>
                         {% EndIf %}
-                    </a>
+                   <!-- </a> -->
                 </td>
                 {%
 				For j = 1 To CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Count 
@@ -82,7 +83,7 @@
         				typeQuestion = "radio"
     				Else
         				inputName = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputName()
-        				inputId     = (inputName + "").Replace(" ", "_").Replace("M", "askia-input")
+        				inputId     = inputName.Replace(" ", "_").Replace("M", "askia-input")
         				typeQuestion = "checkbox"
 				    EndIf
                     inputValue  = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputValue()
@@ -95,15 +96,15 @@
                 %}
                 <td class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
-                    <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"></label>
+                    <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"><span hidden>Label</span></label>
                     <label for="{%= inputId %}" class="responsesitems">
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
                         <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
-                      	<div></div>
+                      	<!-- <div></div> -->
                         {% EndIf %}
                         {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
                         {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
-                        <div></div>
+                        <!-- <div></div> -->
                         <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
                         {% EndIf %}
                     </label>
