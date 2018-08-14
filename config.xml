@@ -54,7 +54,8 @@
 		v2.0.8
             - removed underline for row header hover
 		v2.0.11
-			- Added span to labels, links and table headers]]></description>
+			- Added span to labels, links and table headers
+			- Modifications for HTML5 compatibility]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
