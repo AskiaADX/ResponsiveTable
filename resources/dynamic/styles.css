@@ -254,6 +254,13 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
 #adc_{%= CurrentADC.InstanceId %} .imgZoom {
     right: 5px;
 }
+{% If (CurrentADC.PropValue("accordion") = "1") Then %}
+#adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion { 
+    display: none;
+    font-size: {%= Theme.SmallFS %};
+    font-style: italic;
+}
+{% EndIf %}
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
 
@@ -307,11 +314,18 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
 		display: block;
 		margin: 0 5px 5px 5px;
         {% If (CurrentADC.PropValue("accordion") = "1") Then %}
-		padding: 5px 17px 0 0;
+		padding: 5px 20px 0 0;
     	{% Else %}
 		padding: 5px 0 0 0;
     	{% EndIf %}
 	}
+    {% If (CurrentADC.PropValue("accordion") = "1") Then %}
+    #adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion { 
+        display: block;
+        margin: 0 5px 5px 5px;
+        padding: 5px 20px 5px 0;
+    }
+    {% EndIf %}
     #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} th {
         border-right: none;
     }

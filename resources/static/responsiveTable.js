@@ -58,6 +58,7 @@
    */
   function manageExclusive (obj) {
     var tr = obj.parentNode.parentNode;
+    var result = [];
     for (var i = 1; j = tr.children.length, i < j; i++) {
       if (obj.parentNode.className.indexOf('exclusive') >= 0 && tr.children[i].children[0] !== obj && tr.children[i].className.indexOf('selected') >= 0) {
         document.getElementById(tr.children[i].children[0].attributes.id.value).checked = false;
@@ -66,8 +67,11 @@
         document.getElementById(tr.children[i].children[0].attributes.id.value).checked = false;
         removeClass(tr.children[i], 'selected');
       }
+      if (tr.children[i].className.indexOf('selected') >= 0) {
+          result.push(tr.children[i].children[2].outerText);
+      }      
     }
-
+	tr.children[0].querySelector('.respaccordion').innerHTML =  result.join("; ");
   }
 
   /**
@@ -87,6 +91,7 @@
         manageExclusive(el);
       } else if ((!el.checked) && (el.attributes.type.value === 'checkbox')) {
         removeClass(el.parentNode, 'selected');
+        manageExclusive(el);
       }
       if (that.accordion && window.innerWidth < that.responsiveWidth ) {
         setTimeout(function (){
@@ -306,7 +311,7 @@
     var self;
     if (el.nodeName === 'A' && el.className.indexOf('display') >= 0) {
       self = el;
-    } else if ((el.nodeName === 'IMG' || el.nodeName === 'SPAN') && el.parentNode.className.indexOf('display') >= 0) {
+    } else if (((el.nodeName === 'IMG' || el.nodeName === 'SPAN') && el.parentNode.className.indexOf('display') >= 0) || (el.nodeName === 'DIV' &&  el.className.indexOf('respaccordion') >= 0 )) {
       self = el.parentNode;
     } else {
       return;
@@ -342,6 +347,7 @@
     this.currentQuestion = options.currentQuestion || '';
     this.accordion = options.accordion;
     this.responsiveWidth = parseInt(options.responsiveWidth);
+    this.type = options.type || 'single';
     this.arrows = document.querySelectorAll('#adc_' + this.instanceId + ' .askiadisplay');
     this.currentWidth = window.innerWidth;
 

@@ -4,6 +4,7 @@
         headerFixed: {%= CurrentADC.PropValue("headerFixed") %},
         currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
         responsiveWidth : '{%= CurrentADC.PropValue("responsiveWidth") %}',
-        accordion : {%= CurrentADC.PropValue("accordion") %}
+        accordion : {%= CurrentADC.PropValue("accordion") %},
+        type: '{%:= CurrentQuestion.Type %}'
     });
 } ());

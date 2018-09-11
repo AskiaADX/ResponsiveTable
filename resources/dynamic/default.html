@@ -65,6 +65,7 @@
                         <br />
                         {% EndIf %}
                         <span class="items{%:= isCaptionsHiddens %}">{%:= ar[i].Caption %}</span>
+                        {% If (CurrentADC.PropValue("accordion") = "1") Then %}<div class="respaccordion">{% If (CurrentQuestion.Iteration(ar[i].Index).HasValidData) Then %}{%:=CurrentQuestion.Iteration(ar[i].Index).Answers.Caption.ToString() %}{% EndIf %}</div>{% EndIf %}
                         {% If ((CurrentADC.PropValue("loopImagesPosition") = "bottom") and (imagePath <> "")) Then %}
                         <br />
                         <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
