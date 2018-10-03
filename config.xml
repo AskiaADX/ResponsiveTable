@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>2.0.10</version>
+    <version>2.0.11</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -57,7 +57,9 @@
 			- Added span to labels, links and table headers
 			- Modifications for HTML5 compatibility
 		v2.0.10
-			- Added the selected responses for the accordion in the item]]></description>
+			- Added the selected responses for the accordion in the item
+		v2.0.11
+			- Only show first empty row when loading the page and accordion activated ]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>

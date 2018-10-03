@@ -213,8 +213,10 @@
     }
     if (that.accordion && window.innerWidth <= that.responsiveWidth){
       hideResponses(that.instanceId);
-      displayRow(that.arrows[0].parentNode.parentNode);
-      that.arrows[0].classList.add('active');
+      if (findFirstEmptyRow(that.instanceId) !== null) {
+        displayRow(findFirstEmptyRow(that.instanceId));
+      	findFirstEmptyRow(that.instanceId).querySelector('.askiadisplay').classList.add('active');
+      }
     }
     that.currentWidth = window.innerWidth;
   }
@@ -264,6 +266,29 @@
     for (var i = 0, l = responses.length; i < l; i++) {
       responses[i].style.display = 'none';
     }
+  }
+    
+    /**
+     * Find the first empty row
+     */
+  function findFirstEmptyRow (instanceId) {
+      var trs = document.querySelectorAll('#adc_' + instanceId + ' .askiarow');
+      var tds
+      var containSelected = false;
+      for (var i = 0, j = trs.length; i < j; i++) {
+          tds = trs[i].children;
+          containSelected = false;
+          for (var k = 0, l = tds.length; k < l; k++) {
+          	if (tds[k].classList.contains('selected')) {
+                containSelected = true;
+                break;
+            }
+          }
+          if (containSelected === false) {
+              return trs[i];
+          }
+      }
+      return null;
   }
     
     /**
@@ -397,9 +422,11 @@
     }
     if (this.accordion && window.innerWidth < this.responsiveWidth){
       hideResponses(this.instanceId);
-      displayRow(this.arrows[0].parentNode.parentNode);
-      this.arrows[0].classList.add('active');
       displayCheckmark(this.instanceId);
+      if (findFirstEmptyRow(this.instanceId) !== null) {
+        displayRow(findFirstEmptyRow(this.instanceId));
+      	findFirstEmptyRow(this.instanceId).querySelector('.askiadisplay').classList.add('active');
+      }
     }
   }
     
