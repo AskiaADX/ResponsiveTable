@@ -68,7 +68,8 @@
         removeClass(tr.children[i], 'selected');
       }
       if (tr.children[i].className.indexOf('selected') >= 0) {
-          result.push(tr.children[i].children[2].outerText);
+          result.push(tr.children[i].children[2].textContent);
+          //result.push(tr.children[i].children[2].outerText);
       }      
     }
 	tr.children[0].querySelector('.respaccordion').innerHTML =  result.join("; ");
