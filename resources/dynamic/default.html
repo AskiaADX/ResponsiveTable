@@ -7,14 +7,14 @@
 				Dim counterHeader = 1
 				Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.Answers[1].Index
 				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[1].Index).AvailableResponses.Count
+				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[1].Index).AvailableResponses.Index
 				If (CurrentQuestion.ParentLoop.Answers.Count > 1) Then
                     For counterHeader = 2 To CurrentQuestion.ParentLoop.Answers.Count
-                        If (countResponsesOnIteration < CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[counterHeader].Index).AvailableResponses.Count) Then
-                                        maxResponsesOnIteration =CurrentQuestion.ParentLoop.Answers[counterHeader].Index 
-                        EndIf
+        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[counterHeader].Index).AvailableResponses.Index
                     Next counterHeader
 				EndIf
-				Dim arTh = CurrentQuestion.Iteration(maxResponsesOnIteration).AvailableResponses
+				arrResponsesOnIteration = OrderOf(CurrentQuestion.Shortcut) Intersection arrResponsesOnIteration
+				Dim arTh = CurrentQuestion.Iteration(maxResponsesOnIteration).Responses
 				Dim th = 0
 				Dim ar = CurrentQuestion.ParentLoop.Answers
                 Dim inputName = ""
@@ -36,9 +36,9 @@
 				Dim imageId
                 Dim j = 0
                 Dim i = 0
-				For th = 1 To arTh.Count
-    				arCaption = arTh[th].Caption
-    				arPath = arTh.ResourceURL[th]
+				For th = 1 To arrResponsesOnIteration.Count
+    				arCaption = arTh[arrResponsesOnIteration[th]].Caption
+    				arPath = arTh.ResourceURL[arrResponsesOnIteration[th]]
     				isHeadPaddingRight = On((arPath <> "") and (CurrentADC.PropValue("showImagesZoom") = "1") , " padright", "")
                 %}
                 <th class="othersColumns responsesitems">
@@ -87,23 +87,24 @@
                    <!-- </a> -->
                 </td>
                 {%
-				For j = 1 To CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Count 
+				For j = 1 To arrResponsesOnIteration.Count
+    			If (arrResponsesOnIteration[j] Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Index) Then
     				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then
         				inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
         				inputId     = (inputName + "_" + j).Replace("U", "askia-input")
         				typeQuestion = "radio"
     				Else
-        				inputName = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputName()
+        				inputName = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].InputName()
         				inputId     = inputName.Replace(" ", "_").Replace("M", "askia-input")
         				typeQuestion = "checkbox"
 				    EndIf
-                    inputValue  = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].InputValue()
-                    attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsSelected, "checked=\"checked\"", "")
-                    caption     = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Caption
-    				respImagePath = CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.ResourceURL[j]
-    				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
-    				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
-    				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses[j].Index, " selected", "")
+                    inputValue  = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].InputValue()
+                    attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsSelected, "checked=\"checked\"", "")
+                    caption     = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Caption
+    				respImagePath = CurrentQuestion.Iteration(ar[i].Index).Responses.ResourceURL[arrResponsesOnIteration[j]]
+    				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
+    				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
+    				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Index, " selected", "")
                 %}
                 <td class="response{%:= isExclusive %}{%:= isSelected %}">
                     <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
@@ -120,7 +121,10 @@
                         {% EndIf %}
                     </label>
                 </td>
-                {% Next j %}
+                {% Else %}
+                <td class="emptyCell">&nbsp;</td>
+                {% EndIf 
+				Next j %}
             </tr>
             {% Next i %}
         </tbody>
