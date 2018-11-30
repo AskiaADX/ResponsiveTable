@@ -4,7 +4,17 @@
             <tr>
                 <th class="firstColumn respLabel"><span hidden>Table header</span>&nbsp;</th>
                 {%
-				Dim arTh = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.CurrentIteration).AvailableResponses
+				Dim counterHeader = 1
+				Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.Answers[1].Index
+				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[1].Index).AvailableResponses.Count
+				If (CurrentQuestion.ParentLoop.Answers.Count > 1) Then
+                    For counterHeader = 2 To CurrentQuestion.ParentLoop.Answers.Count
+                        If (countResponsesOnIteration < CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[counterHeader].Index).AvailableResponses.Count) Then
+                                        maxResponsesOnIteration =CurrentQuestion.ParentLoop.Answers[counterHeader].Index 
+                        EndIf
+                    Next counterHeader
+				EndIf
+				Dim arTh = CurrentQuestion.Iteration(maxResponsesOnIteration).AvailableResponses
 				Dim th = 0
 				Dim ar = CurrentQuestion.ParentLoop.Answers
                 Dim inputName = ""

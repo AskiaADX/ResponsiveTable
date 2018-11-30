@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>2.0.13</version>
+    <version>2.0.14</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -63,7 +63,9 @@
 		v2.0.12
 			- Fixed accordion responses not shown for Multiple and exclusive responses
 		v2.0.13
-			- Fixed selected responses not shown on firefox on accordion mode ]]></description>
+			- Fixed selected responses not shown on firefox on accordion mode
+		v2.0.14
+			- Improved header generation]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
