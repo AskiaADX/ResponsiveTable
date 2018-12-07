@@ -472,6 +472,8 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     }
     #adc_{%= CurrentADC.InstanceId %} tr .respLabel .items {
         background-color: transparent;
+    	color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
+}
     }
     #adc_{%= CurrentADC.InstanceId %} .checkmark {
         background-color: rgba({%= checkmarkColor.ToRGB() %},.2);
