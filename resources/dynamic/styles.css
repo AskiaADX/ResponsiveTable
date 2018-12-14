@@ -8,12 +8,12 @@ Else
     controlAlign = "0 auto 0 0"
 EndIf
 Dim counterHeader = 1
-Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.Answers[1].Index
-Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[1].Index).AvailableResponses.Count
-Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[1].Index).AvailableResponses.Index
-If (CurrentQuestion.ParentLoop.Answers.Count > 1) Then
-    For counterHeader = 2 To CurrentQuestion.ParentLoop.Answers.Count
-        arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.Answers[counterHeader].Index).AvailableResponses.Index
+Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.AvailableAnswers[1].Index
+Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Count
+Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Index
+If (CurrentQuestion.ParentLoop.AvailableAnswers.Count > 1) Then
+    For counterHeader = 2 To CurrentQuestion.ParentLoop.AvailableAnswers.Count
+        arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[counterHeader].Index).AvailableResponses.Index
     Next counterHeader
 EndIf
 arrResponsesOnIteration = OrderOf(CurrentQuestion.Shortcut) Intersection arrResponsesOnIteration
