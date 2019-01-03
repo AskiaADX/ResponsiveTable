@@ -80,13 +80,13 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" RequireLoopDepth="1" />
+      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" requireLoopDepth="1" />
       <constraint on="controls" responseblock="true" label="false" textbox="false" checkbox="false" listbox="false" radiobutton="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
   </info>
   <outputs defaultOutput="default">
-    <output id="default" ManageLoopDepth="1">
+    <output id="default" manageLoopDepth="1">
       <description><![CDATA[Default output]]></description>
       <condition><![CDATA[Browser.Support("javascript")]]></condition>
       <content fileName="responsiveTable.css" type="css" mode="static" position="head" />
@@ -98,7 +98,7 @@
       <content fileName="Initializer.js" type="javascript" mode="dynamic" position="foot" />
       <content fileName="magnifyingGlass.png" type="image" mode="static" position="none" />
     </output>
-    <output id="fallback" ManageLoopDepth="1">
+    <output id="fallback" manageLoopDepth="1">
       <description><![CDATA[Fallback output]]></description>
       <condition><![CDATA[Not(Browser.Support("javascript"))]]></condition>
       <content fileName="responsiveTable.css" type="css" mode="static" position="head" />
