@@ -85,7 +85,9 @@
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
       document.getElementById(el.lastElementChild.attributes.for.value).click();
     } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
-      document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
+		event.preventDefault();
+		event.stopPropagation();
+		document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
     } else if (el.nodeName === 'INPUT') {
       if (el.checked) {
         addClass(el.parentNode, 'selected');
