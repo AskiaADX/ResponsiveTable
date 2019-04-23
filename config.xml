@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <date>2016-05-02</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1 
@@ -71,7 +71,9 @@
 		v2.0.16
 			- Fixed font color of items on mobile view when not using header style for the first column
 		v3.0.0
-			- AvailableAnswers]]></description>
+			- AvailableAnswers
+		v3.0.1
+			- Fixed event]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
