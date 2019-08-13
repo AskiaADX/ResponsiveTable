@@ -2,7 +2,7 @@
     <table>
         <thead id="adc_{%= CurrentADC.InstanceId %}_thead">
             <tr>
-                <th class="firstColumn respLabel"><span hidden>Table header</span>&nbsp;</th>
+                <th class="firstColumn respLabel"><span hidden>Table header</span>{%= CurrentADC.PropValue("firstColumnLabel") %}</th>
                 {%
 				Dim counterHeader = 1
 				Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.Answers[1].Index

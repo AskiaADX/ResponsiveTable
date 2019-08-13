@@ -71,7 +71,9 @@
 		v2.0.16
 			- Fixed font color of items on mobile view when not using header style for the first column 
 		v2.0.17
-			- Fixed event ]]></description>
+			- Fixed event
+		v2.0.18
+			- Added new firstColumnLabel property]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -205,6 +207,10 @@
           <option value="yes" text="Yes" />
           <option value="no" text="No" />
         </options>
+      </property>
+      <property xsi:type="standardProperty" id="firstColumnLabel" name="First Column Label" type="string" mode="dynamic" require="false" visible="true">
+        <description><![CDATA[Add custom text to the top-left cell of the table]]></description>
+        <value><![CDATA[&nbsp;]]></value>
       </property>
     </category>
     <category id="Responsive" name="Responsive">
