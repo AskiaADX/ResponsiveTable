@@ -36,7 +36,7 @@ Dim hoverBgPrimaryColor = CurrentADC.PropValue("hoverBgPrimaryColor")
 Dim hoverBgSecondaryColor = CurrentADC.PropValue("hoverBgSecondaryColor")
 Dim selectedBgPrimaryColor = CurrentADC.PropValue("selectedBgPrimaryColor")
 Dim selectedBgSecondaryColor = CurrentADC.PropValue("selectedBgSecondaryColor")
-Dim highlightBgPrimaryColor = CurrentADC.PropValue("highlightBgPrimaryColor") 
+Dim highlightBgPrimaryColor = CurrentADC.PropValue("highlightBgPrimaryColor")
 Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor")
 Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
 Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
@@ -48,6 +48,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
 #adc_{%= CurrentADC.InstanceId %} .firstColumn, #adc_{%= CurrentADC.InstanceId %} .respLabel {
     width: {%= firstColumnWidth + "%" %};
     text-align: {%= firstColumnAlign %};
+    padding: 10px 20px 10px 10px;    
 }
 
 #adc_{%= CurrentADC.InstanceId %} .othersColumns, #adc_{%= CurrentADC.InstanceId %} .response, #adc_{%= CurrentADC.InstanceId %} .emptyCell {
@@ -176,9 +177,9 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     padding: 5px;
     text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
 }
-{% If (CurrentADC.PropValue("headTextOrientation") = "vertical") Then %} 
+{% If (CurrentADC.PropValue("headTextOrientation") = "vertical") Then %}
 	#adc_{%= CurrentADC.InstanceId %} th .head:last-child {
-    writing-mode:tb-rl;   
+    writing-mode:tb-rl;
     height: max-content;
     max-height: 200px;
 }
@@ -265,20 +266,20 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     right: 5px;
 }
 {% If (CurrentADC.PropValue("accordion") = "1") Then %}
-#adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion { 
+#adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion {
     display: none;
     font-size: {%= Theme.SmallFS %};
     font-style: italic;
 }
 {% EndIf %}
 
-#adc_{%= CurrentADC.InstanceId %} .emptyCell { 
+#adc_{%= CurrentADC.InstanceId %} .emptyCell {
     display: table-cell;
     cursor: auto;
 }
 
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
-    #adc_{%= CurrentADC.InstanceId %} .emptyCell { 
+    #adc_{%= CurrentADC.InstanceId %} .emptyCell {
     	display: none;
 	}
 
@@ -316,7 +317,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
         font-size: {%= CurrentADC.PropValue("responsiveHeaderFontSize") %};
     }
-    
+
     #adc_{%= CurrentADC.InstanceId %} .response, #adc_{%= CurrentADC.InstanceId %} .respLabel {
         {% If (borderThickness = "none") Then %}
         border-bottom: none;
@@ -338,7 +339,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     	{% EndIf %}
 	}
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
-    #adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion { 
+    #adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion {
         display: block;
         margin: 0 5px 5px 5px;
         padding: 5px 20px 5px 0;
@@ -439,7 +440,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         right: 25px;
 	}
     {% EndIf %}
-    
+
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
    #adc_{%= CurrentADC.InstanceId %} .askiadisplay {
         width: 100%;
@@ -448,7 +449,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         cursor: pointer;
         user-select: none;
     }
-    
+
     #adc_{%= CurrentADC.InstanceId %} .askiadisplay:before {
         width: 6px;
         height: 6px;
@@ -463,12 +464,12 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         -moz-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
     }
-    
+
     #adc_{%= CurrentADC.InstanceId %} .askiadisplay.active:before {
         transform: rotate(45deg);
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out;   
+        transition: all .2s ease-in-out;
     }
     #adc_{%= CurrentADC.InstanceId %} tr .respLabel .items {
         background-color: transparent;
@@ -478,7 +479,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     #adc_{%= CurrentADC.InstanceId %} .checkmark {
         background-color: rgba({%= checkmarkColor.ToRGB() %},.2);
     }
-    
+
     #adc_{%= CurrentADC.InstanceId %} .checkmark:before{
         border-right: 2px solid rgb({%= checkmarkColor %});
         border-bottom: 2px solid rgb({%= checkmarkColor %});

@@ -7,39 +7,39 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>3.0.3</version>
-    <date>2016-05-02</date>
+    <version>3.0.4</version>
+    <date>2019-08-23</date>
     <description><![CDATA[Responsive Grid Table
-		v1.0.1 
+		v1.0.1
 			- Added support of the loop images
 			- Added zoom for the loop images
-		v1.0.2 
+		v1.0.2
 			- Added support of the responses images
-		v1.0.3 
+		v1.0.3
 			- Added zoom for the response images
-		v1.0.4 
+		v1.0.4
 			- fixed Microsoft Edge Fixed Header
-		v1.0.5 
+		v1.0.5
 			- fixed Microsoft Edge Fixed Header
-		v1.0.6 
+		v1.0.6
 			- Added Show Header, Responsive Direction and Responsive Vertical Alignment properties
-		v1.0.7 
+		v1.0.7
 			- Fixed padding right responses and added property Use Header Style First Column
-		v1.0.8 
+		v1.0.8
 			- fixed Show Loop Captions
-		v1.0.9 
+		v1.0.9
 			- fixed image zoom padding
-		v1.0.10 
+		v1.0.10
 			- fixed border top raduis when show header equal no
-		v1.0.11 
+		v1.0.11
 			- fixed first column alignement
-		v1.0.12 
+		v1.0.12
 			- fixed padding small screen statement
-		v1.0.13 
+		v1.0.13
 			- fixed multiple input name not saved
-		v1.0.14 
+		v1.0.14
 			- Width 97% for response on responsive state
-		v1.0.15 
+		v1.0.15
 			- fixed loop with preliminary selection
 		v2.0.0
 			- Compatibility with Theme and new option display as accordion
@@ -73,7 +73,10 @@
 		v3.0.0
 			- AvailableAnswers
 		v3.0.1
-			- Fixed event]]></description>
+			- Fixed event
+    v3.0.2
+    v3.0.3
+    v3.0.4 - Added new firstColumnLabel property]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -208,6 +211,10 @@
           <option value="no" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="firstColumnLabel" name="First Column Label" type="string" mode="dynamic" require="false" visible="true">
+              <description><![CDATA[Add custom text to the top-left cell of the table]]></description>
+              <value><![CDATA[&nbsp;]]></value>
+      </property>      
     </category>
     <category id="Responsive" name="Responsive">
       <property xsi:type="standardProperty" id="responsiveDirection" name="Responsive Direction" type="string" mode="dynamic" require="true" visible="true">
