@@ -341,8 +341,14 @@
       self = el;
     } else if (((el.nodeName === 'IMG' || el.nodeName === 'SPAN') && el.parentNode.className.indexOf('display') >= 0) || (el.nodeName === 'DIV' &&  el.className.indexOf('respaccordion') >= 0 )) {
       self = el.parentNode;
+    } else if (( el.parentNode.parentNode.className.indexOf('display') >= 0)) {
+      self = el.parentNode.parentNode;
+    } else if ((el.parentNode.parentNode.parentNode.className.indexOf('display') >= 0)) {
+      self = el.parentNode.parentNode.parentNode;
     } else {
       return;
+      console.log(el);
+      console.log(that);
     }
     if (window.innerWidth > that.responsiveWidth) {
       return;
