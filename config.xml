@@ -210,7 +210,7 @@
       </property>
       <property xsi:type="standardProperty" id="firstColumnLabel" name="First Column Label" type="string" mode="dynamic" require="false" visible="true">
         <description><![CDATA[Add custom text to the top-left cell of the table]]></description>
-        <value><![CDATA[&nbsp;]]></value>
+        <value></value>
       </property>
     </category>
     <category id="Responsive" name="Responsive">
