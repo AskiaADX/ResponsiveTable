@@ -76,7 +76,9 @@
 			- Fixed event
     v3.0.2
     v3.0.3
-    v3.0.4 - Added new firstColumnLabel property]]></description>
+    v3.0.4 - Added new firstColumnLabel property
+	v3.0.5 - First column label - remove nbsp
+	]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -212,9 +214,9 @@
         </options>
       </property>
       <property xsi:type="standardProperty" id="firstColumnLabel" name="First Column Label" type="string" mode="dynamic" require="false" visible="true">
-              <description><![CDATA[Add custom text to the top-left cell of the table]]></description>
-              <value><![CDATA[&nbsp;]]></value>
-      </property>      
+        <description><![CDATA[Add custom text to the top-left cell of the table]]></description>
+        <value></value>
+      </property>
     </category>
     <category id="Responsive" name="Responsive">
       <property xsi:type="standardProperty" id="responsiveDirection" name="Responsive Direction" type="string" mode="dynamic" require="true" visible="true">
