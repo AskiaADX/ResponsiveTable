@@ -40,15 +40,20 @@ Dim highlightBgPrimaryColor = CurrentADC.PropValue("highlightBgPrimaryColor")
 Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor")
 Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
 Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
+
+Dim headerColourPrimary =CurrentADC.PropValue("headerColourPrimary")
+Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
+
 %}
 #adc_{%= CurrentADC.InstanceId %} {
     max-width: {%= CurrentADC.PropValue("controlWidth") %};
     margin: {%= controlAlign %};
 }
+
 #adc_{%= CurrentADC.InstanceId %} .firstColumn, #adc_{%= CurrentADC.InstanceId %} .respLabel {
     width: {%= firstColumnWidth + "%" %};
     text-align: {%= firstColumnAlign %};
-    padding: 10px 20px 10px 10px;    
+    padding: 10px 20px 10px 10px;
 }
 
 #adc_{%= CurrentADC.InstanceId %} .othersColumns, #adc_{%= CurrentADC.InstanceId %} .response, #adc_{%= CurrentADC.InstanceId %} .emptyCell {
@@ -439,6 +444,16 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     	bottom: 5px;
         right: 25px;
 	}
+
+  /* Headers */
+  #adc_{%= CurrentADC.InstanceId%} .headerRow
+  {
+  	background-color: rgb({%= headerColourPrimary %}) !important;
+    color: rgb({%= headerFontColour %}) !important;
+  	z-index: 0;
+    box-sizing: border-box;
+  }
+
     {% EndIf %}
 
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
@@ -494,5 +509,15 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         height: 12px;
         transform: rotate(45deg);
     }
+
+    /* Headers */
+    #adc_{%= CurrentADC.InstanceId%} .headerRow
+    {
+    	background-color: rgb({%= headerColourPrimary %}) !important;
+      color: rgb({%= headerFontColour %}) !important;
+    	z-index: 0;
+      box-sizing: border-box;
+    }
+
     {% EndIf %}
 }
