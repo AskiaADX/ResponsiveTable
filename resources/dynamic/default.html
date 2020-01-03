@@ -6,17 +6,17 @@
                  {%
 				Dim counterHeader = 1
 				Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.AvailableAnswers[1].Index
-				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).Responses.Count
-				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).Responses.Index
+				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Count
+				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Index
 				If (CurrentQuestion.ParentLoop.AvailableAnswers.Count > 1) Then
                     For counterHeader = 2 To CurrentQuestion.ParentLoop.AvailableAnswers.Count
-        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[counterHeader].Index).Responses.Index
+        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[counterHeader].Index).AvailableResponses.Index
                     Next counterHeader
 				EndIf
 				arrResponsesOnIteration = OrderOf(CurrentQuestion.Shortcut) Intersection arrResponsesOnIteration
 				Dim arTh = CurrentQuestion.Iteration(maxResponsesOnIteration).Responses
 				Dim th = 0
-				Dim ar = CurrentQuestion.ParentLoop.Responses
+				Dim ar = CurrentQuestion.ParentLoop.AvailableAnswers
                 Dim inputName = ""
                 Dim inputId = ""
                 Dim inputValue = ""
@@ -36,10 +36,6 @@
 				Dim imageId
                 Dim j = 0
                 Dim i = 0
-
-        Dim isHeader
-        Dim showHeader = CurrentADC.PropValue("showHeaders") ="1"
-
 				For th = 1 To arrResponsesOnIteration.Count
     				arCaption = arTh[arrResponsesOnIteration[th]].Caption
     				arPath = arTh.ResourceURL[arrResponsesOnIteration[th]]
@@ -65,89 +61,72 @@
             </tr>
         </thead>
         <tbody>
-        {%
-        For i = 1 To ar.Count
-  			imagePath = ar.ResourceURL[i]
-  			imageId = CurrentQuestion.Iteration(ar[i].Index).InputName()
-  			isCaptionsHiddens = On((imagePath <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
-
-        isHeader  = ar[i].isHeader
-        If isHeader = False or showHeader = True Then
-           If isHeader = true Then
-        %}
-
-              <tr class="askiarow headerRow" onmousedown="return false;">
-                <td>{%:= ar[i].Caption %}</td>
-                {% For j = 1 To arrResponsesOnIteration.Count %}
-                  <td></td>
-                {% Next j %}
-              </tr>
-
-            {% Else %}
-
-              <tr data-id="{%= imageId %}" class="askiarow">
-                  <td class="respLabel">
-                      <a class="askiadisplay">
-                          {% If ((CurrentADC.PropValue("loopImagesPosition") = "top") and (imagePath <> "")) Then %}
-                          <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
-                          <br />
-                          {% EndIf %}
-                          <span class="items{%:= isCaptionsHiddens %}">{%:= ar[i].Caption %}</span>
-                          {% If (CurrentADC.PropValue("accordion") = "1") Then %}<div class="respaccordion">{% If (CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has Range(1,CurrentQuestion.Iteration(ar[i].Index).Responses.Count)) Then %}{%:=CurrentQuestion.Iteration(ar[i].Index).Answers.Caption.ToString() %}{% EndIf %}</div>{% EndIf %}
-                          {% If ((CurrentADC.PropValue("loopImagesPosition") = "bottom") and (imagePath <> "")) Then %}
-                          <br />
-                          <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
-                          {% EndIf %}
-                      </a> <!-- New position of end tag </a> -->
-                          {% If ((CurrentADC.PropValue("showLoopImagesZoom") = "1") and (imagePath <> "")) Then %}
-                          <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= imageId %}"><div class="imgZoom"><span hidden>Zoom link</span></div></a>
-                          {% EndIf %}
-                     <!-- </a> -->
-                  </td>
-                  {%
-  				For j = 1 To arrResponsesOnIteration.Count
-      			If (arrResponsesOnIteration[j] Has CurrentQuestion.Iteration(ar[i].Index).Responses.Index) Then
-      				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then
-          				inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
-          				inputId     = (inputName + "_" + j).Replace("U", "askia-input")
-          				typeQuestion = "radio"
-      				Else
-          				inputName = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].InputName()
-          				inputId     = inputName.Replace(" ", "_").Replace("M", "askia-input")
-          				typeQuestion = "checkbox"
-  				    EndIf
-                      inputValue  = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].InputValue()
-                      attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsSelected, "checked=\"checked\"", "")
-                      caption     = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Caption
-      				respImagePath = CurrentQuestion.Iteration(ar[i].Index).Responses.ResourceURL[arrResponsesOnIteration[j]]
-      				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
-      				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
-      				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Index, " selected", "")
-                  %}
-                  <td class="response{%:= isExclusive %}{%:= isSelected %}">
-                      <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
-                      <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"><span hidden>Label</span></label>
-                      <label for="{%= inputId %}" class="responsesitems">
-                          {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
-                          <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
+            {%
+            For i = 1 To ar.Count
+    			imagePath = ar.ResourceURL[i]
+    			imageId = CurrentQuestion.Iteration(ar[i].Index).InputName()
+    			isCaptionsHiddens = On((imagePath <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
+            %}
+            <tr data-id="{%= imageId %}" class="askiarow">
+                <td class="respLabel">
+                    <a class="askiadisplay">
+                        {% If ((CurrentADC.PropValue("loopImagesPosition") = "top") and (imagePath <> "")) Then %}
+                        <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
+                        <br />
+                        {% EndIf %}
+                        <span class="items{%:= isCaptionsHiddens %}">{%:= ar[i].Caption %}</span>
+                        {% If (CurrentADC.PropValue("accordion") = "1") Then %}<div class="respaccordion">{% If (CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has Range(1,CurrentQuestion.Iteration(ar[i].Index).Responses.Count)) Then %}{%:=CurrentQuestion.Iteration(ar[i].Index).Answers.Caption.ToString() %}{% EndIf %}</div>{% EndIf %}
+                        {% If ((CurrentADC.PropValue("loopImagesPosition") = "bottom") and (imagePath <> "")) Then %}
+                        <br />
+                        <img src="{%= imagePath %}" alt="{%:= ar[i].Caption %}"/>
+                        {% EndIf %}
+                    </a> <!-- New position of end tag </a> -->
+                        {% If ((CurrentADC.PropValue("showLoopImagesZoom") = "1") and (imagePath <> "")) Then %}
+                        <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= imageId %}"><div class="imgZoom"><span hidden>Zoom link</span></div></a>
+                        {% EndIf %}
+                   <!-- </a> -->
+                </td>
+                {%
+				For j = 1 To arrResponsesOnIteration.Count
+    			If (arrResponsesOnIteration[j] Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Index) Then
+    				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then
+        				inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
+        				inputId     = (inputName + "_" + j).Replace("U", "askia-input")
+        				typeQuestion = "radio"
+    				Else
+        				inputName = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].InputName()
+        				inputId     = inputName.Replace(" ", "_").Replace("M", "askia-input")
+        				typeQuestion = "checkbox"
+				    EndIf
+                    inputValue  = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].InputValue()
+                    attrChecked = On(CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsSelected, "checked=\"checked\"", "")
+                    caption     = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Caption
+    				respImagePath = CurrentQuestion.Iteration(ar[i].Index).Responses.ResourceURL[arrResponsesOnIteration[j]]
+    				isExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), " exclusive", "")
+    				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
+    				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Index, " selected", "")
+                %}
+                <td class="response{%:= isExclusive %}{%:= isSelected %}">
+                    <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
+                    <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"><span hidden>Label</span></label>
+                    <label for="{%= inputId %}" class="responsesitems">
+                        {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
+                        <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
                       	<!-- <div></div> -->
-                          {% EndIf %}
-                          {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
-                          {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
-                          <!-- <div></div> -->
-                          <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
-                          {% EndIf %}
-                      </label>
-
-                  </td>
-                  {% Else %}
-                  <td class="emptyCell">&nbsp;</td>
-                  {% EndIf
-  				Next j %}
-              </tr>
-              {% EndIf %}
-              {% EndIf %}
-              {% Next i %}
+                        {% EndIf %}
+                        {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
+                        {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
+                        <!-- <div></div> -->
+                        <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
+                        {% EndIf %}
+                    </label>
+                </td>
+                {% Else %}
+                <td class="emptyCell">&nbsp;</td>
+                {% EndIf
+				Next j %}
+            </tr>
+            {% Next i %}
         </tbody>
     </table>
 </div>

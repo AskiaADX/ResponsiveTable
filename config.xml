@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.0.0</version>
+    <version>3.0.4</version>
     <date>2019-08-23</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1
@@ -78,7 +78,6 @@
     v3.0.3
     v3.0.4 - Added new firstColumnLabel property
 	v3.0.5 - First column label - remove nbsp
-	v4.0.0 - Header rows
 	]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -477,24 +476,6 @@
           <option value="1" text="Yes" />
           <option value="0" text="No" />
         </options>
-      </property>
-    </category>
-    <category id="headers" name="Headers (non clickable responses)">
-      <property xsi:type="standardProperty" id="showHeaders" name="Show Headers" type="string" require="false" visible="true">
-        <description><![CDATA[]]></description>
-        <value><![CDATA[1]]></value>
-        <options>
-          <option value="1" text="Yes" />
-          <option value="0" text="No" />
-        </options>
-      </property>
-      <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
-        <description><![CDATA[Background colour of the header item]]></description>
-        <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
-      </property>
-      <property xsi:type="standardProperty" id="headerFontColour" name="Header Font Colour" type="color" mode="dynamic" visible="true">
-        <description><![CDATA[Header colour]]></description>
-        <value><![CDATA[{%= Theme.BlackColor %}]]></value>
       </property>
     </category>
   </properties>
