@@ -77,10 +77,7 @@
         %}
 
               <tr class="askiarow headerRow" onmousedown="return false;">
-                <td>{%:= ar[i].Caption %}</td>
-                {% For j = 1 To arrResponsesOnIteration.Count %}
-                  <td></td>
-                {% Next j %}
+                <td colspan="{%= arrResponsesOnIteration.Count + 1 %}">{%:= ar[i].Caption %}</td>
               </tr>
 
             {% Else %}

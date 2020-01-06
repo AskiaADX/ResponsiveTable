@@ -449,6 +449,7 @@ Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
   #adc_{%= CurrentADC.InstanceId%} .headerRow
   {
   	background-color: rgb({%= headerColourPrimary %}) !important;
+    font-weight: bold;
     color: rgb({%= headerFontColour %}) !important;
   	z-index: 0;
     box-sizing: border-box;
@@ -514,6 +515,7 @@ Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
     #adc_{%= CurrentADC.InstanceId%} .headerRow
     {
     	background-color: rgb({%= headerColourPrimary %}) !important;
+      font-weight: bold;
       color: rgb({%= headerFontColour %}) !important;
     	z-index: 0;
       box-sizing: border-box;

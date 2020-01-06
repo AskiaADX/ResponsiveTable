@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <date>2019-08-23</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1
@@ -79,6 +79,7 @@
     v3.0.4 - Added new firstColumnLabel property
 	v3.0.5 - First column label - remove nbsp
 	v4.0.0 - Header rows
+  v4.0.1 - Header text align
 	]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -495,6 +496,15 @@
       <property xsi:type="standardProperty" id="headerFontColour" name="Header Font Colour" type="color" mode="dynamic" visible="true">
         <description><![CDATA[Header colour]]></description>
         <value><![CDATA[{%= Theme.BlackColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerTextAlign" name="Header text align" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[position of the header row text]]></description>
+        <value><![CDATA[center]]></value>
+        <options>
+          <option value="center" text="Center" />
+          <option value="right" text="Right" />
+          <option value="left" text="Left" />
+        </options>
       </property>
     </category>
   </properties>
