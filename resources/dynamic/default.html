@@ -6,17 +6,17 @@
                  {%
 				Dim counterHeader = 1
 				Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.AvailableAnswers[1].Index
-				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).Responses.Count
-				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).Responses.Index
+				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Count
+				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Index
 				If (CurrentQuestion.ParentLoop.AvailableAnswers.Count > 1) Then
                     For counterHeader = 2 To CurrentQuestion.ParentLoop.AvailableAnswers.Count
-        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[counterHeader].Index).Responses.Index
+        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[counterHeader].Index).AvailableResponses.Index
                     Next counterHeader
 				EndIf
 				arrResponsesOnIteration = OrderOf(CurrentQuestion.Shortcut) Intersection arrResponsesOnIteration
 				Dim arTh = CurrentQuestion.Iteration(maxResponsesOnIteration).Responses
 				Dim th = 0
-				Dim ar = CurrentQuestion.ParentLoop.Responses
+				Dim ar = CurrentQuestion.ParentLoop.AvailableResponses
                 Dim inputName = ""
                 Dim inputId = ""
                 Dim inputValue = ""

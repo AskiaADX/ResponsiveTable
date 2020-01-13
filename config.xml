@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.0.1</version>
+    <version>4.0.2</version>
     <date>2019-08-23</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1
@@ -80,6 +80,7 @@
 	v3.0.5 - First column label - remove nbsp
 	v4.0.0 - Header rows
   v4.0.1 - Header text align
+  v4.0.2 - AvailableResponses & manageHeader = true
 	]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -89,7 +90,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" requireLoopDepth="1" />
+      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" requireLoopDepth="1" manageHeader="true" />
       <constraint on="controls" responseblock="true" label="false" textbox="false" checkbox="true" listbox="false" radiobutton="true" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
