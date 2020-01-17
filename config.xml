@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.0.2</version>
+    <version>4.0.3</version>
     <date>2019-08-23</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1
@@ -81,6 +81,7 @@
 	v4.0.0 - Header rows
   v4.0.1 - Header text align
   v4.0.2 - AvailableResponses & manageHeader = true
+  v4.0.3 - Header row text align issue fix
 	]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>

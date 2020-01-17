@@ -191,7 +191,12 @@ Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} td {
     padding: 10px 20px 10px 10px;
-    text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
+    text-align: center;
+}
+
+#adc_{%= CurrentADC.InstanceId %} .headerRow td {
+    padding: 10px 20px 10px 10px;
+    text-align: {%= CurrentADC.PropValue("headerTextAlign") %} !important;
 }
 #adc_{%= CurrentADC.InstanceId %} .response {
     {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (CurrentADC.PropValue("responsiveDirection") = "horizontal")) Then %}
