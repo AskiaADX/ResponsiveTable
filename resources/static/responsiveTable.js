@@ -31,9 +31,9 @@
    */
   function addClass (obj, clsName) {
     if (obj.classList)      {
-      obj.classList.add(clsName); 
+      obj.classList.add(clsName);
     }    else            {
-      obj.className += ' ' + clsName; 
+      obj.className += ' ' + clsName;
     }
   }
 
@@ -70,7 +70,7 @@
       if (tr.children[i].className.indexOf('selected') >= 0) {
           result.push(tr.children[i].children[2].textContent);
           //result.push(tr.children[i].children[2].outerText);
-      }      
+      }
     }
 	tr.children[0].querySelector('.respaccordion').innerHTML =  result.join("; ");
   }
@@ -82,6 +82,10 @@
    */
   function clickTable (event, that) {
     var el = event.target || event.srcElement;
+    if (el.className.indexOf('headerRow') >= 0) {
+      console.log(that);
+      $(that).next().toggle();
+    }
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
       document.getElementById(el.lastElementChild.attributes.for.value).click();
     } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
@@ -104,8 +108,8 @@
           displayCheckmark(that.instanceId);
         }, 150);
       }
-      if (window.askia && 
-                window.arrLiveRoutingShortcut && 
+      if (window.askia &&
+                window.arrLiveRoutingShortcut &&
                 window.arrLiveRoutingShortcut.length > 0 &&
                 window.arrLiveRoutingShortcut.indexOf(that.currentQuestion) >= 0) {
         askia.triggerAnswer();
@@ -201,7 +205,7 @@
     });
     img.init();
   }
-    
+
     /**
      * When the display change
      */
@@ -223,7 +227,7 @@
     }
     that.currentWidth = window.innerWidth;
   }
-    
+
     /**
      * Show all responses of the page
      */
@@ -233,7 +237,7 @@
       responses[i].style.display = '';
     }
   }
-    
+
     /**
      * if an answer is selected in the question, display the checkmark
      */
@@ -260,7 +264,7 @@
       }
     }
   }
-    
+
     /**
      * Hide all responses of the page
      */
@@ -270,7 +274,7 @@
       responses[i].style.display = 'none';
     }
   }
-    
+
     /**
      * Find the first empty row
      */
@@ -293,7 +297,7 @@
       }
       return null;
   }
-    
+
     /**
      * Show all responses of a row
      */
@@ -304,7 +308,7 @@
       responses[i].style.display = '';
     }
   }
-    
+
     /**
      * Display the next row
      */
@@ -328,7 +332,7 @@
       current.classList.remove('active');
     }
   }
-    
+
     /**
      * Manage the accordion click on the headers on responsive mode
      *
@@ -379,24 +383,47 @@
     this.arrows = document.querySelectorAll('#adc_' + this.instanceId + ' .askiadisplay');
     this.currentWidth = window.innerWidth;
 
-    addEvent(document.getElementById('adc_' + this.instanceId), 'click', 
+    var expandableHeaders = options.expandableHeaders
+    var accordionInitialState = options.accordionInitialState
+    if(expandableHeaders){
+      var headerRows = document.querySelectorAll(".headerRow");
+      for (var i = 0; i < headerRows.length; i++) {
+        if (accordionInitialState == 'collapsed') {
+          var index = $(headerRows[i]).attr("data-id");
+          var headerChildren = document.querySelectorAll(".headerchild"+index);
+          for (var j = 0; j < headerChildren.length; j++) {
+            $(headerChildren[j]).toggle();
+          }
+        }
+        headerRows[i].onclick = function(){
+          var index = $(this).attr("data-id");
+          var headerChildren = document.querySelectorAll(".headerchild"+index);
+          for (var j = 0; j < headerChildren.length; j++) {
+            $(headerChildren[j]).toggle();
+            $("i", this).toggleClass("plus minus");
+          }
+        }
+      }
+    }
+
+    addEvent(document.getElementById('adc_' + this.instanceId), 'click',
                  (function (passedInElement) {
                    return function (e) {
-                     clickTable(e, passedInElement); 
+                     clickTable(e, passedInElement);
                    };
                  }(this)));
-        
-    addEvent(document.getElementById('adc_' + this.instanceId), 'click', 
+
+    addEvent(document.getElementById('adc_' + this.instanceId), 'click',
                  (function (passedInElement) {
                    return function (e) {
-                     accordion(e, passedInElement); 
+                     accordion(e, passedInElement);
                    };
                  }(this)));
-        
+
     addEvent(window, 'resize',
                  (function (passedInElement) {
                    return function () {
-                     changeDisplay(passedInElement); 
+                     changeDisplay(passedInElement);
                    };
                  }(this)));
 
@@ -406,7 +433,7 @@
     addEvent(window, 'scroll', function (){
       headerFix(elements, options);
     });
-        
+
     for (var i = 0; j = elements.length, i < j; i++) {
       elements[i].style.msTransform = 'translateY(0px)';
       elements[i].style.WebkitTransform = 'translateY(0px)';
@@ -432,7 +459,7 @@
       }
     }
   }
-    
+
     /**
      * Attach the ResponsiveTable to the window object
      */

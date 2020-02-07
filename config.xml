@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.0.3</version>
+    <version>4.0.4</version>
     <date>2019-08-23</date>
     <description><![CDATA[Responsive Grid Table
 		v1.0.1
@@ -82,6 +82,7 @@
   v4.0.1 - Header text align
   v4.0.2 - AvailableResponses & manageHeader = true
   v4.0.3 - Header row text align issue fix
+  v4.0.4 - Response groups with expandable headers
 	]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -491,9 +492,25 @@
           <option value="0" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="expandableHeaders" name="Expandable Headers" type="string" require="false" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="accordionInitialState" name="Accordion Initial State" type="string" require="false" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[expanded]]></value>
+        <options>
+          <option value="expanded" text="Expanded" />
+          <option value="collapsed" text="Collapsed" />
+        </options>
+      </property>
       <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
         <description><![CDATA[Background colour of the header item]]></description>
-        <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
+        <value><![CDATA[{%= Theme.NeutralColor %}]]></value>
       </property>
       <property xsi:type="standardProperty" id="headerFontColour" name="Header Font Colour" type="color" mode="dynamic" visible="true">
         <description><![CDATA[Header colour]]></description>
@@ -507,6 +524,10 @@
           <option value="right" text="Right" />
           <option value="left" text="Left" />
         </options>
+      </property>
+      <property xsi:type="standardProperty" id="headerBorderColour" name="Header Row Border Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Border colour of the header row]]></description>
+        <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
       </property>
     </category>
   </properties>

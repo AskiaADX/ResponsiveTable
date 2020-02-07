@@ -41,10 +41,32 @@ Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor"
 Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
 Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
 
-Dim headerColourPrimary =CurrentADC.PropValue("headerColourPrimary")
-Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
+Dim headerColourPrimary = CurrentADC.PropValue("headerColourPrimary")
+Dim headerFontColour = CurrentADC.PropValue("headerFontColour")
+Dim headerBorderColour = CurrentADC.PropValue("headerBorderColour")
+Dim headerTextAlign = CurrentADC.PropValue("headerTextAlign")
+Dim symbolPosition = "right"
+IF headerTextAlign = "right" Then
+		symbolPosition = "left"
+EndIF
 
 %}
+.plus::after {
+	content: '\002B';
+  color: rgb({%= headerFontColour %});
+  font-weight: bold;
+  float: {%= symbolPosition %};
+	line-height: 1.02em;
+}
+
+.minus::after {
+	content: "\2212";
+	color: rgb({%= headerFontColour %});
+  font-weight: bold;
+	float: {%= symbolPosition %};
+  line-height: 1.02em;
+}
+
 #adc_{%= CurrentADC.InstanceId %} {
     max-width: {%= CurrentADC.PropValue("controlWidth") %};
     margin: {%= controlAlign %};
@@ -197,6 +219,7 @@ Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
 #adc_{%= CurrentADC.InstanceId %} .headerRow td {
     padding: 10px 20px 10px 10px;
     text-align: {%= CurrentADC.PropValue("headerTextAlign") %} !important;
+    border: 1px solid rgb({%= headerBorderColour %});
 }
 #adc_{%= CurrentADC.InstanceId %} .response {
     {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (CurrentADC.PropValue("responsiveDirection") = "horizontal")) Then %}
@@ -458,6 +481,7 @@ Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
     color: rgb({%= headerFontColour %}) !important;
   	z-index: 0;
     box-sizing: border-box;
+    line-height: 1.02em;
   }
 
     {% EndIf %}
@@ -524,6 +548,7 @@ Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
       color: rgb({%= headerFontColour %}) !important;
     	z-index: 0;
       box-sizing: border-box;
+      line-height: 1.02em;
     }
 
     {% EndIf %}

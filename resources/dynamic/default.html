@@ -39,6 +39,8 @@
 
         Dim isHeader
         Dim showHeader = CurrentADC.PropValue("showHeaders") ="1"
+        Dim expandableHeaders = CurrentADC.PropValue("expandableHeaders") ="1"
+        Dim accordionInitialState = CurrentADC.PropValue("accordionInitialState")
 
 				For th = 1 To arrResponsesOnIteration.Count
     				arCaption = arTh[arrResponsesOnIteration[th]].Caption
@@ -76,13 +78,26 @@
            If isHeader = true Then
         %}
 
-              <tr class="askiarow headerRow" onmousedown="return false;">
-                <td colspan="{%= arrResponsesOnIteration.Count + 1 %}">{%:= ar[i].Caption %}</td>
+              <tr data-id="{%= ar[i].index %}" class="askiarow headerRow">
+                <td colspan="{%= arrResponsesOnIteration.Count + 1 %}">
+                  {%
+                  If expandableHeaders = True Then
+                      If accordionInitialState = "expanded" Then %}
+                      <i class="minus"></i>
+                      {% Else %}
+                      <i class="plus"></i>
+                      {% EndIf %}
+                  {% EndIf %}                  
+                  {%:= ar[i].Caption %}</td>
               </tr>
 
             {% Else %}
 
-              <tr data-id="{%= imageId %}" class="askiarow">
+              {% If ar[i].Parent.isHeader = true Then %}
+                <tr data-id="{%= imageId %}" class="askiarow headerchild{%= ar[i].Parent.index %}">
+              {% Else %}
+                <tr data-id="{%= imageId %}" class="askiarow">
+              {% EndIf %}
                   <td class="respLabel">
                       <a class="askiadisplay">
                           {% If ((CurrentADC.PropValue("loopImagesPosition") = "top") and (imagePath <> "")) Then %}
@@ -126,13 +141,11 @@
                       <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"><span hidden>Label</span></label>
                       <label for="{%= inputId %}" class="responsesitems">
                           {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
-                          <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
-                      	<!-- <div></div> -->
+                            <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
                           {% EndIf %}
                           {%:= On((CurrentADC.PropValue("showResponsesCaptions") = "0") and (respImagePath <> ""),"",caption) %}
                           {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
-                          <!-- <div></div> -->
-                          <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
+                            <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
                           {% EndIf %}
                       </label>
 
@@ -140,7 +153,7 @@
                   {% Else %}
                   <td class="emptyCell">&nbsp;</td>
                   {% EndIf
-  				Next j %}
+  				           Next j %}
               </tr>
               {% EndIf %}
               {% EndIf %}
