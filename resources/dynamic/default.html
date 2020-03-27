@@ -146,7 +146,7 @@
 
                                 %}
                                   <div style="overflow:hidden">
-                                    <input type="text" aria-label="Other" class="inputOpen askia-question-{%= ar[i].OpenQuestion.InputCode %}"
+                                    <input type="text" aria-label="Other" class="otherText askia-question-{%= ar[i].OpenQuestion.InputCode %}"
                                     id="askia-input_{%= ar[i].OpenQuestion.InputName() %}" name="{%= ar[i].OpenQuestion.InputName() %}"
                                     data-id="{%= k %}" value="{%= ar[i].OpenQuestion.inputValue() %}" {%:= attrPlaceholder %} autocomplete="off">
                                   </div>
@@ -206,14 +206,28 @@
                                                 <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
                                               {% EndIf %}
                                           </label>
-                                          {% IF childQuestionHasOpen = True Then %}
+                                          {% IF childQuestionHasOpen = True Then
+                                            Dim semiOpen = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].OpenQuestion
+                                            Dim minVal
+                                            Dim maxVal
+                                            Dim type
+
+                                            IF semiOpen.Type = "open" Then
+                                              minVal = "\""
+                                              maxVal = "\""
+                                              type = "text"
+                                            ElseIf semiOpen.Type = "numeric" Then
+                                              minVal = On(semiOpen.MinValue <> DK, " min=\"" + semiOpen.MinValue + "\"", "")
+                                      				maxVal = On(semiOpen.MaxValue <> DK, " max=\"" + semiOpen.MaxValue + "\"", "")
+                                              type = "number"
+                                            EndIF
+
+                                          %}
+
                                           <div style="overflow:hidden">
-                                            <input type="text" aria-label="Other"
-                                            class="otherText {%:= isAskiaExclusive %}"
-                                            id="askia-input_{%= otherInputCode %}" name="{%= otherInputName %}"
-                                            value="{%= otherInputValue %}"
-                                            data-class="shortcut_{%= j %}"
-                                            autocomplete="off" />
+                                            <input type="{%= type %}" aria-label="Other" class="otherText {%:= isAskiaExclusive %}"
+                                            id="askia-input{%= otherInputCode %}" name="{%= otherInputName %}" value="{%= otherInputValue %}"
+                                            data-class="shortcut_{%= j %}" autocomplete="off" {%:= minVal %} {%:= maxVal %}/>
                                           </div>
                                           {% EndIf  %}
                                       </td>
