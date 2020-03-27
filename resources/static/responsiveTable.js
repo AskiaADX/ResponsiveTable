@@ -24,6 +24,20 @@
   }
 
   /**
+ * Trigger the ajax request for live routings
+ *
+ * @param {String} shortcut Shortcut of the question
+ */
+  function triggerRouting(shortcut) {
+      if (window.askia
+          && window.arrLiveRoutingShortcut
+          && window.arrLiveRoutingShortcut.length > 0
+          && window.arrLiveRoutingShortcut.indexOf(shortcut) >= 0) {
+          askia.triggerAnswer();
+      }
+  }
+
+  /**
    * Add class in DOMElement
    *
    * @param {HTMLElement} obj HTMLElement where the class should be added
@@ -63,9 +77,15 @@
       if (obj.parentNode.className.indexOf('exclusive') >= 0 && tr.children[i].children[0] !== obj && tr.children[i].className.indexOf('selected') >= 0) {
         document.getElementById(tr.children[i].children[0].attributes.id.value).checked = false;
         removeClass(tr.children[i], 'selected');
+        if(tr.children[i].lastElementChild.tagName == "DIV"){
+          tr.children[i].lastElementChild.children[0].style.display = "none";
+        }
       } else if (!(obj.parentNode.className.indexOf('exclusive') >= 0) && (tr.children[i].children[0] !== obj) && (tr.children[i].className.indexOf('selected') >= 0) && (tr.children[i].className.indexOf('exclusive') >= 0)) {
         document.getElementById(tr.children[i].children[0].attributes.id.value).checked = false;
         removeClass(tr.children[i], 'selected');
+        if(tr.children[i].lastElementChild.tagName == "DIV"){
+          tr.children[i].lastElementChild.children[0].style.display = "none";
+        }
       }
       if (tr.children[i].className.indexOf('selected') >= 0) {
           result.push(tr.children[i].children[2].textContent);
@@ -73,6 +93,41 @@
       }
     }
 	tr.children[0].querySelector('.respaccordion').innerHTML =  result.join("; ");
+  }
+
+
+  /**
+ * Check if the open question has an answer
+ *
+ * @param {Object} td Open td
+ */
+  function checkAnswersOpen (td) {
+      var inputOpen = td.querySelector('.inputopen');
+      var inputDk = td.querySelector('.DK input[type=checkbox]');
+      var result = true;
+      if (inputDk) {
+        if (inputDk.checked === false && inputOpen.value.trim().length < 2) result = false;
+      } else {
+          if (inputOpen.value.trim().length < 2) result = false;
+      }
+      return result;
+  }
+
+  /**
+ * Manage the input event on open ended (input text, email, url and textarea)
+ *
+ * @param {Object} event Input event of the open ended
+ * @param {Object} that VerticalTable object, same as options
+ */
+  function onInputOpens (event, that) {
+      var el = event.target || event.srcElement;
+      var split = el.className.split('_')
+      var shortcut = that.questions[parseInt(el.getAttribute('data-class').split('_')[1], 10) - 1] || '';
+      triggerRouting(shortcut);
+      // var debounceStepByStep = debounce(stepByStepRows, 300);
+      // debounceStepByStep(that);
+      // var debounceAutoSubmitForm = debounce(autoSubmitForm, 300);
+      // if (that.autoSubmit) debounceAutoSubmitForm(that);
   }
 
   /**
@@ -87,7 +142,12 @@
       $(that).next().toggle();
     }
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
-      document.getElementById(el.lastElementChild.attributes.for.value).click();
+      if (el.lastElementChild.tagName == 'LABEL') {
+        document.getElementById(el.lastElementChild.attributes.for.value).click();
+      } else {
+        // el.lastElementChild.children[0].style.display = "";
+        document.getElementById(el.children[2].attributes.for.value).click();
+      }
     } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
 		event.preventDefault();
 		event.stopPropagation();
@@ -96,9 +156,11 @@
       if (el.checked) {
         addClass(el.parentNode, 'selected');
         manageExclusive(el);
+        el.parentElement.lastElementChild.children[0].style.display = "";
       } else if ((!el.checked) && (el.attributes.type.value === 'checkbox')) {
         removeClass(el.parentNode, 'selected');
         manageExclusive(el);
+        el.parentElement.lastElementChild.children[0].style.display = "none";
       }
       if (that.accordion && window.innerWidth < that.responsiveWidth ) {
         setTimeout(function (){
@@ -114,6 +176,7 @@
                 window.arrLiveRoutingShortcut.indexOf(that.currentQuestion) >= 0) {
         askia.triggerAnswer();
       }
+      triggerRouting('shortcut_6');
             //if (el.attributes.type.value === "radio" && el.parentNode.parentNode.nextSibling.nextSibling) el.parentNode.parentNode.nextSibling.nextSibling.scrollIntoView(true);
     }
   }
@@ -165,13 +228,6 @@
         el[i].style.transition = 'all 0.2s';
       }
     }
-        //}
-        //document.getElementById("adc_" + opt.instanceId + "_thead").style.WebkitTransform = translate;
-        //document.getElementById("adc_" + opt.instanceId + "_thead").style.WebkitTransition = "all 0.2s"; // Code for Safari 3.1 to 6.0
-        //document.getElementById("adc_" + opt.instanceId + "_thead").style.MozTransform = translate;
-        //document.getElementById("adc_" + opt.instanceId + "_thead").style.MozTransition = "all 0.2s"; // Code for Mozilla
-        //document.getElementById("adc_" + opt.instanceId + "_thead").style.transform = translate;
-        //document.getElementById("adc_" + opt.instanceId + "_thead").style.transition = "all 0.2s";
   }
 
   function simplboxConstructorCall (strId) {
@@ -256,6 +312,9 @@
         if (responses[j].classList.contains('selected')) {
           hasSelected = true;
           display.classList.add('checkmark');
+          if (responses[j].children.length > 3) {
+            console.log(responses[j]);
+          }
           break;
         }
       }
@@ -383,6 +442,8 @@
     this.arrows = document.querySelectorAll('#adc_' + this.instanceId + ' .askiadisplay');
     this.currentWidth = window.innerWidth;
 
+    // otherTextItems =  [].slice.call(container.getElementsByClassName('otherText'));
+
     var expandableHeaders = options.expandableHeaders
     var accordionInitialState = options.accordionInitialState
     if(expandableHeaders){
@@ -404,6 +465,18 @@
           }
         }
       }
+    }
+
+    var otherElems = document.querySelectorAll('.otherText');
+    for ( i = 0; i < otherElems.length; i++ ) {
+      // otherElems[i].style.width = (responseItems[0].offsetWidth - 35) + 'px';
+      otherElems[i].style.display = "none";
+    }
+
+    var inputElems = document.querySelectorAll('.inputOpen');
+    for ( i = 0; i < inputElems.length; i++ ) {
+      // otherElems[i].style.width = (responseItems[0].offsetWidth - 35) + 'px';
+      inputElems[i].parentNode.parentNode.parentNode.parentNode.style.display = "none";
     }
 
     addEvent(document.getElementById('adc_' + this.instanceId), 'click',

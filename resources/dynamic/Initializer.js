@@ -6,7 +6,7 @@
         responsiveWidth : '{%= CurrentADC.PropValue("responsiveWidth") %}',
         accordion : {%= CurrentADC.PropValue("accordion") %},
         expandableHeaders : {%= (CurrentADC.PropValue("expandableHeaders") = "1") %},
-        accordionInitialState : '{%= CurrentADC.PropValue("accordionInitialState") %}',        
+        accordionInitialState : '{%= CurrentADC.PropValue("accordionInitialState") %}',
         type: '{%:= CurrentQuestion.Type %}'
     });
 } ());
