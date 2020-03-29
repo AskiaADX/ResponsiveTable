@@ -119,12 +119,17 @@
         }
       }
       if (that.accordion && window.innerWidth < that.responsiveWidth ) {
-        setTimeout(function (){
-          if (el.classList.contains('askia-exclusive')) {
-            displayNext(that.instanceId);
-          }
-          displayCheckmark(that.instanceId);
-        }, 150);
+        if (el.nodeName === 'INPUT' & !(el.classList.contains('otherText'))) {
+          setTimeout(function (){
+            if (el.classList.contains('askia-exclusive')) {
+              displayNext(that.instanceId);
+            }
+            displayCheckmark(that.instanceId);
+          }, 150);
+          el.parentNode.querySelectorAll('.otherText')[0].style.display = "block";
+        } else if(el.classList.contains('otherText')){
+          addClass(el.parentNode.parentNode, 'selected');
+        }
       }
       if (window.askia &&
                 window.arrLiveRoutingShortcut &&
@@ -478,6 +483,12 @@
       simplboxConstructorCall(responseszooms[l2].getAttribute('data-id'));
     }
     if (this.accordion && window.innerWidth < this.responsiveWidth){
+
+      var otherElems = document.querySelectorAll('.otherText');
+      for ( i = 0; i < otherElems.length; i++ ) {
+          otherElems[i].style.display = "block";
+      }
+
       hideResponses(this.instanceId);
       displayCheckmark(this.instanceId);
       if (findFirstEmptyRow(this.instanceId) !== null) {
