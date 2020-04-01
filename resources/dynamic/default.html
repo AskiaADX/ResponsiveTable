@@ -106,8 +106,7 @@
         If isHeader = False or showHeader = True Then
            If isHeader = true Then
            %}
-
-              <tr data-id="{%= ar[i].index %}" class="askiarow headerRow">
+              <tr data-id="{%= CurrentADC.InstanceId %}_{%= ar[i].index %}" class="askiarow headerRow">
                 <td colspan="{%= arrResponsesOnIteration.Count + 1 %}">
                   {%
                   If expandableHeaders = True Then
@@ -123,7 +122,7 @@
           {% Else %}
 
               {% If ar[i].Parent.isHeader = true Then %}
-                <tr data-id="{%= imageId %}" class="askiarow headerchild{%= ar[i].Parent.index %}">
+                <tr data-id="{%= imageId %}" class="askiarow headerchild{%= CurrentADC.InstanceId %}_{%= ar[i].Parent.index %}">
               {% Else %}
                 <tr data-id="{%= imageId %}" class="askiarow">
               {% EndIf %}
@@ -135,16 +134,13 @@
                           {% EndIf %}
 
                           {% IF parentLoopHasOpen = True Then
-
                               Dim k
                               For k = 1 To otherIDarray.Count
                               otherID = otherIDarray[k].ToNumber()
                               Dim index = ar[i].Index
                                 IF index = otherID Then
                                 Dim placeholder = CurrentADC.PropValue("placeholder")
-                        				Dim attrPlaceholder = On(placeholder <> "", " placeholder=\"" + placeholder + "\"", "")
-
-                                %}
+                        				Dim attrPlaceholder = On(placeholder <> "", " placeholder=\"" + placeholder + "\"", "") %}
                                   <div style="overflow:hidden">
                                     <input type="text" aria-label="Other" class="otherText askia-question-{%= ar[i].OpenQuestion.InputCode %}"
                                     id="askia-input_{%= ar[i].OpenQuestion.InputName() %}" name="{%= ar[i].OpenQuestion.InputName() %}"
@@ -154,8 +150,9 @@
                                 {% Else %}
                                 {% EndIF %}
                               {% Next k %}
-
                           {% EndIf %}
+
+                          <span class="items{%:= isCaptionsHiddens %}">{%:= ar[i].Caption %}</span>
                           {% If (CurrentADC.PropValue("accordion") = "1") Then %}<div class="respaccordion">{% If (CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has Range(1,CurrentQuestion.Iteration(ar[i].Index).Responses.Count)) Then %}{%:=CurrentQuestion.Iteration(ar[i].Index).Answers.Caption.ToString() %}{% EndIf %}</div>{% EndIf %}
                           {% If ((CurrentADC.PropValue("loopImagesPosition") = "bottom") and (imagePath <> "")) Then %}
                           <br />

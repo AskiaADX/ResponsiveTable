@@ -406,7 +406,7 @@
     var expandableHeaders = options.expandableHeaders
     var accordionInitialState = options.accordionInitialState
     if(expandableHeaders){
-      var headerRows = document.querySelectorAll(".headerRow");
+      var headerRows = document.querySelectorAll('#adc_' + this.instanceId + ' .headerRow');
       for (var i = 0; i < headerRows.length; i++) {
         if (accordionInitialState == 'collapsed') {
           var index = $(headerRows[i]).attr("data-id");
@@ -420,8 +420,8 @@
           var headerChildren = document.querySelectorAll(".headerchild"+index);
           for (var j = 0; j < headerChildren.length; j++) {
             $(headerChildren[j]).toggle();
-            $("i", this).toggleClass("plus minus");
           }
+          $("i", this).toggleClass("plus minus");          
         }
       }
     }
