@@ -203,28 +203,11 @@
                                                 <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
                                               {% EndIf %}
                                           </label>
-                                          {% IF childQuestionHasOpen = True Then
-                                            Dim semiOpen = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].OpenQuestion
-                                            Dim minVal
-                                            Dim maxVal
-                                            Dim type
-
-                                            IF semiOpen.Type = "open" Then
-                                              minVal = "\""
-                                              maxVal = "\""
-                                              type = "text"
-                                            ElseIf semiOpen.Type = "numeric" Then
-                                              minVal = On(semiOpen.MinValue <> DK, " min=\"" + semiOpen.MinValue + "\"", "")
-                                      				maxVal = On(semiOpen.MaxValue <> DK, " max=\"" + semiOpen.MaxValue + "\"", "")
-                                              type = "number"
-                                            EndIF
-
-                                          %}
-
+                                          {% IF childQuestionHasOpen = True Then %}
                                           <div style="overflow:hidden">
-                                            <input type="{%= type %}" aria-label="Other" class="otherText {%:= isAskiaExclusive %}"
+                                            <input type="text" aria-label="Other" class="otherText {%:= isAskiaExclusive %}"
                                             id="askia-input{%= otherInputCode %}" name="{%= otherInputName %}" value="{%= otherInputValue %}"
-                                            data-class="shortcut_{%= j %}" autocomplete="off" {%:= minVal %} {%:= maxVal %}/>
+                                            data-class="shortcut_{%= j %}" autocomplete="off"/>
                                           </div>
                                           {% EndIf  %}
                                       </td>

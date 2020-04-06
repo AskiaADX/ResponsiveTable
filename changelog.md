@@ -77,3 +77,4 @@ v4.0.5 - Semi-opens
 v4.0.6 - jquery.min.js as a resource file
 v4.0.7 - Use CurrentADC - bug fix
 v4.0.8 - Semi-open on multi-coded questions - bug fixed
+v4.0.9 - fix - otherText input type
