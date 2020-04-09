@@ -126,7 +126,10 @@
             }
             displayCheckmark(that.instanceId);
           }, 150);
-          el.parentNode.querySelectorAll('.otherText')[0].style.display = "block";
+          if (typeof(el.parentNode.querySelectorAll('.otherText')[0]) !== "undefined") {
+            el.parentNode.querySelectorAll('.otherText')[0].style.display = "block";
+          }
+
         } else if(el.classList.contains('otherText')){
           addClass(el.parentNode.parentNode, 'selected');
         }
@@ -237,7 +240,9 @@
       hideResponses(that.instanceId);
       if (findFirstEmptyRow(that.instanceId) !== null) {
         displayRow(findFirstEmptyRow(that.instanceId));
-      	findFirstEmptyRow(that.instanceId).querySelector('.askiadisplay').classList.add('active');
+        if (findFirstEmptyRow(that.instanceId).querySelector('.askiadisplay') !== null) {
+          findFirstEmptyRow(that.instanceId).querySelector('.askiadisplay').classList.add('active');
+        }
       }
     }
     that.currentWidth = window.innerWidth;
@@ -271,14 +276,15 @@
         if (responses[j].classList.contains('selected')) {
           hasSelected = true;
           display.classList.add('checkmark');
-          if (responses[j].children.length > 3) {
-            console.log(responses[j]);
-          }
           break;
         }
       }
-      if (!hasSelected && display.classList.contains('checkmark')) {
-        display.classList.remove('checkmark');
+      if (typeof(display) === "undefined" | display === null) {
+        //
+      }else{
+        if (!hasSelected && display.classList.contains('checkmark')) {
+          display.classList.remove('checkmark');
+        }
       }
     }
   }
@@ -320,10 +326,12 @@
      * Show all responses of a row
      */
   function displayRow (tr) {
-    tr.querySelector('.askiadisplay').classList.add('active');
-    var responses = tr.querySelectorAll('.response');
-    for (var i = 0, l = responses.length; i < l; i++) {
-      responses[i].style.display = '';
+    if (!tr.classList.contains('headerRow')) {
+      tr.querySelector('.askiadisplay').classList.add('active');
+      var responses = tr.querySelectorAll('.response');
+      for (var i = 0, l = responses.length; i < l; i++) {
+        responses[i].style.display = '';
+      }
     }
   }
 
@@ -337,10 +345,12 @@
     var nextElems = current.parentElement.parentElement.parentElement.children;
     var index = -1
     for (var i = 0, j = nextElems.length; i < j; i++) {
-          if (!nextElems[i].children[0].children[0].classList.contains('checkmark') && !nextElems[i].children[0].children[0].classList.contains('active')) {
-              index = i;
-              break;
-          }
+      if (typeof(nextElems[i].children[0].children[0]) !== "undefined") {
+        if (!nextElems[i].children[0].children[0].classList.contains('checkmark') && !nextElems[i].children[0].children[0].classList.contains('active')) {
+            index = i;
+            break;
+        }
+      }
     }
     if (nextElems[index] && index !== -1) {
       displayRow(nextElems[index]);
@@ -431,7 +441,7 @@
       if (!otherElems[i].parentNode.parentNode.classList.contains('selected')) {
         otherElems[i].style.display = "none";
       } else {
-        otherElems[i].style.display = "block";        
+        otherElems[i].style.display = "block";
       }
     }
 
@@ -495,7 +505,9 @@
       displayCheckmark(this.instanceId);
       if (findFirstEmptyRow(this.instanceId) !== null) {
         displayRow(findFirstEmptyRow(this.instanceId));
-      	findFirstEmptyRow(this.instanceId).querySelector('.askiadisplay').classList.add('active');
+        if (findFirstEmptyRow(this.instanceId).querySelector('.askiadisplay') !== null) {
+          findFirstEmptyRow(this.instanceId).querySelector('.askiadisplay').classList.add('active');
+        }
       }
     }
   }
