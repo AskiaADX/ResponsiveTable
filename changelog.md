@@ -37,12 +37,12 @@ v2.0.2
   - Changed class display and row to askiadisplay and askiarow
 v2.0.3
   - Fixed respLabel styling issue
-    v2.0.6
-        - Added header orientation property
+v2.0.6
+  - Added header orientation property
 v2.0.7
-        - Added backgroundcolor for accordion
+  - Added backgroundcolor for accordion
 v2.0.8
-        - removed underline for row header hover
+  - removed underline for row header hover
 v2.0.9
   - Added span to labels, links and table headers
   - Modifications for HTML5 compatibility
@@ -66,16 +66,32 @@ v3.0.1
   - Fixed event
 v3.0.2
 v3.0.3
-v3.0.4 - Added new firstColumnLabel property
-v3.0.5 - First column label - remove nbsp
-v4.0.0 - Header rows
-v4.0.1 - Header text align
-v4.0.2 - AvailableResponses & manageHeader = true
-v4.0.3 - Header row text align issue fix
-v4.0.4 - Response groups with expandable headers
-v4.0.5 - Semi-opens
-v4.0.6 - jquery.min.js as a resource file
-v4.0.7 - Use CurrentADC - bug fix
-v4.0.8 - Semi-open on multi-coded questions - bug fixed
-v4.0.9 - fix - otherText input type
-v4.0.10 - a bug fix
+v3.0.4
+  - Added new firstColumnLabel property
+v3.0.5
+  - First column label - remove nbsp
+v4.0.0
+  - Header rows
+v4.0.1
+  - Header text align
+v4.0.2
+  - AvailableResponses & manageHeader = true
+v4.0.3
+  - Header row text align issue fix
+v4.0.4
+  - Response groups with expandable headers
+v4.0.5
+  - Semi-opens
+v4.0.6
+  - jquery.min.js as a resource file
+v4.0.7
+  - Use CurrentADC - bug fix
+v4.0.8
+  - Semi-open on multi-coded questions - bug fixed
+v4.0.9
+  - fix - otherText input type
+v4.0.10
+  - a bug fix
+
+v4.1.0
+  - Changes to Askia 5.6.0, ADXSchema 2.3.0

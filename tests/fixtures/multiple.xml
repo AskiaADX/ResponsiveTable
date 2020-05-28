@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<fixture xmlns="http://www.askia.com/2.2.0/ADXUnitTestSchema"
+<?xml version="1.0" encoding="utf-8"?>
+<fixture xmlns="http://www.askia.com/2.3.0/ADXUnitTestSchema"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.askia.com/2.2.0/ADXUnitTestSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.2.0/ADXUnitTests.xsd">
+         xsi:schemaLocation="http://www.askia.com/2.3.0/ADXUnitTestSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.3.0/ADXUnitTests.xsd">
     <arrange>
         <Survey Name="MultipleSurvey" CurrentQuestion="multiple"
                 ADPName="default" Version="1.0" Full="1" MaxQuestionID="2"
@@ -15,13 +15,16 @@
                           QuestionType="table" Translated="0">
                     <LongCaption>loop</LongCaption>
                     <Modalities>
-                        <Modality ID="50">
+                        <Modality ID="54" Behaviour="1" Selectable="0">
+                            <ShortCaption>Header1</ShortCaption>
+                        </Modality>                        
+                        <Modality ID="50" Indent="2">
                             <ShortCaption>Iteration 1</ShortCaption>
                         </Modality>
-                        <Modality ID="51">
+                        <Modality ID="51" Indent="2">
                             <ShortCaption>Iteration 2</ShortCaption>
                         </Modality>
-                        <Modality ID="52">
+                        <Modality ID="52" Indent="2">
                             <ShortCaption>Iteration 3</ShortCaption>
                         </Modality>
                     </Modalities>
@@ -44,10 +47,18 @@
                                 <Modality ID="4" ResourceID="9">
                                     <ShortCaption>Product D</ShortCaption>
                                 </Modality>
+                                <Modality ID="6" SemiOpenQuestionID="16">
+                                    <ShortCaption>Other</ShortCaption>
+                                </Modality>                                
                                 <Modality ID="5" ResourceID="10" Exclusive="1">
                                     <ShortCaption>None of them</ShortCaption>
                                 </Modality>
                             </Modalities>
+                            <Questions>
+                                <Question ID="16" Shortcut="Multiple_Other" Order="1" ElementType="question" AllowDK="0" Anonymity="0" QuestionType="open" Visible="0" Translated="0">
+    	                            <LongCaption>Other</LongCaption>
+	                            </Question>
+                            </Questions>
                         </Question>
                     </Questions>
                 </Question>
