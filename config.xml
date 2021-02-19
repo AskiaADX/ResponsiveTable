@@ -8,7 +8,7 @@
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
     <version>4.1.0</version>
-    <date>2020-09-25</date>
+    <date>2021-02-19</date>
     <description><![CDATA[Responsive Grid Table]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -459,6 +459,15 @@
     </category>
     <category id="open" name="Open">
     <property xsi:type="standardProperty" id="placeholder" name="Placeholder" type="string" mode="dynamic" require="false" visible="true">
+      <description><![CDATA[
+
+        Using HTML 5, in modern browser.
+        Helper text shows in the input when it's empty.
+
+      ]]></description>
+      <value></value>
+    </property>
+    <property xsi:type="standardProperty" id="loopSemiPlaceholder" name="Loop Level Placeholder" type="string" mode="dynamic" require="false" visible="true">
       <description><![CDATA[
 
         Using HTML 5, in modern browser.

@@ -100,7 +100,7 @@
         For i = 1 To ar.Count
   			imagePath = ar.ResourceURL[i]
   			imageId = CurrentQuestion.Iteration(ar[i].Index).InputName()
-  			isCaptionsHiddens = On((imagePath <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
+  			isCaptionsHiddens = On((imageId <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
 
         isHeader  = ar[i].isHeader
         If isHeader = False or showHeader = True Then
@@ -136,7 +136,8 @@
                           {% parentLoopHasOpen = ar[i].isOpen
 
                           IF parentLoopHasOpen = True Then
-                                Dim placeholder = CurrentADC.PropValue("placeholder")
+                                isCaptionsHiddens = " hiddens"
+                                Dim placeholder = CurrentADC.PropValue("loopSemiPlaceholder")
                         				Dim attrPlaceholder = On(placeholder <> "", " placeholder=\"" + placeholder + "\"", "") %}
                                 <div style="overflow:hidden">
                                   <input type="text" aria-label="Other" class="otherLoopText"
