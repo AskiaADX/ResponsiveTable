@@ -40,7 +40,33 @@ Dim highlightBgPrimaryColor = CurrentADC.PropValue("highlightBgPrimaryColor")
 Dim highlightBgSecondaryColor = CurrentADC.PropValue("highlightBgSecondaryColor")
 Dim checkmarkColor = CurrentADC.PropValue("checkmarkColor")
 Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
+
+Dim headerColourPrimary = CurrentADC.PropValue("headerColourPrimary")
+Dim headerFontColour = CurrentADC.PropValue("headerFontColour")
+Dim headerBorderColour = CurrentADC.PropValue("headerBorderColour")
+Dim headerTextAlign = CurrentADC.PropValue("headerTextAlign")
+Dim symbolPosition = "right"
+IF headerTextAlign = "right" Then
+		symbolPosition = "left"
+EndIF
+
 %}
+.plus::after {
+	content: '\002B';
+  color: rgb({%= headerFontColour %});
+  font-weight: bold;
+  float: {%= symbolPosition %};
+	line-height: 1.02em;
+}
+
+.minus::after {
+	content: "\2212";
+	color: rgb({%= headerFontColour %});
+  font-weight: bold;
+	float: {%= symbolPosition %};
+  line-height: 1.02em;
+}
+
 #adc_{%= CurrentADC.InstanceId %} {
     max-width: {%= CurrentADC.PropValue("controlWidth") %};
     margin: {%= controlAlign %};
@@ -186,7 +212,13 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
 {% EndIf %}
 #adc_{%= CurrentADC.InstanceId %} td {
     padding: 10px 20px 10px 10px;
-    text-align: {%= CurrentADC.PropValue("headerRowAlign") %};
+    text-align: center;
+}
+
+#adc_{%= CurrentADC.InstanceId %} .headerRow td {
+    padding: 10px 20px 10px 10px;
+    text-align: {%= CurrentADC.PropValue("headerTextAlign") %} !important;
+    border: 1px solid rgb({%= headerBorderColour %});
 }
 #adc_{%= CurrentADC.InstanceId %} .response {
     {% If ((CurrentADC.PropValue("showImagesZoom") = "1") and (CurrentADC.PropValue("responsiveDirection") = "horizontal")) Then %}
@@ -411,6 +443,7 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         {% If ((CurrentADC.PropValue("responsiveHeaderAlign") = "center") or (CurrentADC.PropValue("responsiveHeaderAlign") = "right")) Then %}
         padding-left: 0;
         {% EndIf %}
+        padding-right: 0;
     }
     #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} label.responsesitems {
         display: block;
@@ -439,6 +472,18 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
     	bottom: 5px;
         right: 25px;
 	}
+
+  /* Headers */
+  #adc_{%= CurrentADC.InstanceId%} .headerRow
+  {
+  	background-color: rgb({%= headerColourPrimary %}) !important;
+    font-weight: bold;
+    color: rgb({%= headerFontColour %}) !important;
+  	z-index: 0;
+    box-sizing: border-box;
+    line-height: 1.02em;
+  }
+
     {% EndIf %}
 
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
@@ -494,5 +539,17 @@ Dim headTextOrientation = CurrentADC.PropValue("headTextOrientation")
         height: 12px;
         transform: rotate(45deg);
     }
+
+    /* Headers */
+    #adc_{%= CurrentADC.InstanceId%} .headerRow
+    {
+    	background-color: rgb({%= headerColourPrimary %}) !important;
+      font-weight: bold;
+      color: rgb({%= headerFontColour %}) !important;
+    	z-index: 0;
+      box-sizing: border-box;
+      line-height: 1.02em;
+    }
+
     {% EndIf %}
 }
