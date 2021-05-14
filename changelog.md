@@ -82,3 +82,4 @@ v4.0.10 - a bug fix
 v4.0.11 - Fixed Max iterations
 v4.1.0 - Semi-open ParentLoop
 v4.1.1 - Issues fixed - semiopens in responsive-accordion
+v4.1.2 - JD - Fixed Max iterations
