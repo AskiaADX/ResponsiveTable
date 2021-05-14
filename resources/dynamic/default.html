@@ -161,7 +161,7 @@
                   </td>
 
                   {% 	For j = 1 To arrResponsesOnIteration.Count
-                      			If (arrResponsesOnIteration[j] Has CurrentQuestion.Iteration(ar[i].Index).Responses.Index) Then
+                      			If (arrResponsesOnIteration[j] Has CurrentQuestion.Iteration(ar[i].Index).AvailableResponses.Index) Then
                       				If (CurrentQuestion.Iteration(ar[i].Index).Type = "single") Then
                           				inputName = CurrentQuestion.Iteration(ar[i].Index).InputName()
                           				inputId     = (inputName + "_" + j).Replace("U", "askia-input")
