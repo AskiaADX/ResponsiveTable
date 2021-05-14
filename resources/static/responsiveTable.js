@@ -90,7 +90,6 @@
   function clickTable (event, that) {
     var el = event.target || event.srcElement;
     if (el.className.indexOf('headerRow') >= 0) {
-      console.log(that);
       $(that).next().toggle();
     }
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
@@ -101,9 +100,9 @@
         document.getElementById(el.children[2].attributes.for.value).click();
       }
     } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
-		event.preventDefault();
-		event.stopPropagation();
-		document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
+  		event.preventDefault();
+  		event.stopPropagation();
+  		document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
     } else if (el.nodeName === 'INPUT') {
       if (el.checked) {
         addClass(el.parentNode, 'selected');
@@ -119,20 +118,21 @@
         }
       }
       if (that.accordion && window.innerWidth < that.responsiveWidth ) {
-        if (el.nodeName === 'INPUT' & !(el.classList.contains('otherText'))) {
-          setTimeout(function (){
-            if (el.classList.contains('askia-exclusive')) {
-              displayNext(that.instanceId);
+          if(el.classList.contains('otherText')) {
+              addClass(el.parentNode.parentNode, 'selected');
+              el.addEventListener("keydown", function() {
+                displayCheckmark(that.instanceId);
+              });
+          } else {
+            if (el.parentNode.lastElementChild.nodeName != 'DIV') {
+              setTimeout(function (){
+                if (el.classList.contains('askia-exclusive')) {
+                  displayNext(that.instanceId);
+                }
+                displayCheckmark(that.instanceId);
+              }, 150);
             }
-            displayCheckmark(that.instanceId);
-          }, 150);
-          if (typeof(el.parentNode.querySelectorAll('.otherText')[0]) !== "undefined") {
-            el.parentNode.querySelectorAll('.otherText')[0].style.display = "block";
           }
-
-        } else if(el.classList.contains('otherText')){
-          addClass(el.parentNode.parentNode, 'selected');
-        }
       }
       if (window.askia &&
                 window.arrLiveRoutingShortcut &&
@@ -331,6 +331,11 @@
       var responses = tr.querySelectorAll('.response');
       for (var i = 0, l = responses.length; i < l; i++) {
         responses[i].style.display = '';
+        if(responses[i].querySelector('.otherText')) {
+          if (!responses[i].classList.contains('selected')) {
+            responses[i].querySelector('.otherText').style.display = 'none'
+          }
+        }
       }
     }
   }
@@ -360,6 +365,32 @@
       current.classList.remove('active');
     }
   }
+
+  /**
+   * Display the next row without hiding responses
+   */
+function displayNext2 (instanceId) {
+  // hideResponses(instanceId);
+  var current = document.querySelector('#adc_' + instanceId + ' .active');
+  if (!current) return;
+  var nextElems = current.parentElement.parentElement.parentElement.children;
+  var index = -1
+  for (var i = 0, j = nextElems.length; i < j; i++) {
+    if (typeof(nextElems[i].children[0].children[0]) !== "undefined") {
+      if (!nextElems[i].children[0].children[0].classList.contains('checkmark') && !nextElems[i].children[0].children[0].classList.contains('active')) {
+          index = i;
+          break;
+      }
+    }
+  }
+  if (nextElems[index] && index !== -1) {
+    displayRow(nextElems[index]);
+  }
+
+  if (current) {
+    current.classList.remove('active');
+  }
+}
 
     /**
      * Manage the accordion click on the headers on responsive mode
@@ -445,11 +476,6 @@
       }
     }
 
-    // var inputElems = document.querySelectorAll('.inputOpen');
-    // for ( i = 0; i < inputElems.length; i++ ) {
-    //   inputElems[i].parentNode.parentNode.parentNode.parentNode.style.display = "none";
-    // }
-
     addEvent(document.getElementById('adc_' + this.instanceId), 'click',
                  (function (passedInElement) {
                    return function (e) {
@@ -496,9 +522,9 @@
     }
     if (this.accordion && window.innerWidth < this.responsiveWidth){
 
-      var otherElems = document.querySelectorAll('#adc_' + this.instanceId + ' .otherText');
-      for ( i = 0; i < otherElems.length; i++ ) {
-          otherElems[i].style.display = "block";
+      var otherloopElems = document.querySelectorAll('#adc_' + this.instanceId + ' .otherLoopText');
+      for ( i = 0; i < otherloopElems.length; i++ ) {
+          otherloopElems[i].parentElement.style.padding = "10px";
       }
 
       hideResponses(this.instanceId);
