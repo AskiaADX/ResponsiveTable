@@ -184,6 +184,9 @@
                       				isAskiaExclusive = On((CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].IsExclusive) or (CurrentQuestion.Iteration(ar[i].Index).Type = "single"), "askia-exclusive", "")
                       				isSelected = On(CurrentQuestion.Iteration(ar[i].Index).Answers.Index Has CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].Index, " selected", "")
 
+                              Dim placeholder = CurrentADC.PropValue("placeholder")
+                              Dim attrPlaceholder = On(placeholder <> "", " placeholder=\"" + placeholder + "\"", "")
+
                               childQuestionHasOpen = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].isOpen
                                %}
                                       <td class="response{%:= isExclusive %}{%:= isSelected %}">
@@ -202,7 +205,7 @@
                                           <div style="overflow:hidden">
                                             <input type="text" aria-label="Other" class="otherText {%:= isAskiaExclusive %}"
                                             id="askia-input{%= otherInputCode %}" name="{%= otherInputName %}" value="{%= otherInputValue %}"
-                                            data-class="shortcut_{%= j %}" autocomplete="off"/>
+                                            data-class="shortcut_{%= j %}" {%:= attrPlaceholder %} autocomplete="off"/>
                                           </div>
                                           {% EndIf  %}
                                       </td>
