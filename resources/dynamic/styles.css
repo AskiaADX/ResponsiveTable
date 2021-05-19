@@ -32,7 +32,7 @@ Dim oddBgPrimaryColor = CurrentADC.PropValue("oddBgPrimaryColor")
 Dim oddBgSecondaryColor = CurrentADC.PropValue("oddBgSecondaryColor")
 Dim evenBgPrimaryColor = CurrentADC.PropValue("evenBgPrimaryColor")
 Dim evenBgSecondaryColor = CurrentADC.PropValue("evenBgSecondaryColor")
-Dim hoverBgPrimaryColor = CurrentADC.PropValue("hoverBgPrimaryColor")
+Dim hoverBgPrimaryColor = "228,214,0"
 Dim hoverBgSecondaryColor = CurrentADC.PropValue("hoverBgSecondaryColor")
 Dim selectedBgPrimaryColor = CurrentADC.PropValue("selectedBgPrimaryColor")
 Dim selectedBgSecondaryColor = CurrentADC.PropValue("selectedBgSecondaryColor")
@@ -71,10 +71,11 @@ EndIF
     max-width: {%= CurrentADC.PropValue("controlWidth") %};
     margin: {%= controlAlign %};
 }
+
 #adc_{%= CurrentADC.InstanceId %} .firstColumn, #adc_{%= CurrentADC.InstanceId %} .respLabel {
     width: {%= firstColumnWidth + "%" %};
     text-align: {%= firstColumnAlign %};
-    padding: 10px 20px 10px 10px;    
+    padding: 10px 20px 10px 10px;
 }
 
 #adc_{%= CurrentADC.InstanceId %} .othersColumns, #adc_{%= CurrentADC.InstanceId %} .response, #adc_{%= CurrentADC.InstanceId %} .emptyCell {
