@@ -5,18 +5,25 @@
               <th class="firstColumn respLabel"><span hidden>Table header</span>{%= CurrentADC.PropValue("firstColumnLabel") %}</th>
                  {%
 				Dim counterHeader = 1
-				Dim maxResponsesOnIteration = CurrentQuestion.ParentLoop.AvailableAnswers[1].Index
-				Dim countResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Count
-				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[1].Index).AvailableResponses.Index
-				If (CurrentQuestion.ParentLoop.AvailableAnswers.Count > 1) Then
-                    For counterHeader = 2 To CurrentQuestion.ParentLoop.AvailableAnswers.Count
-        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(CurrentQuestion.ParentLoop.AvailableAnswers[counterHeader].Index).AvailableResponses.Index
+				Dim searchNonHeader = 0
+				Dim maxResponsesOnIteration = 0
+				Dim ar = CurrentQuestion.ParentLoop.AvailableAnswers
+				For searchNonHeader = 1 To ar.Count
+					If (ar[searchNonHeader].IsHeader = False) Then
+        				maxResponsesOnIteration =  ar[searchNonHeader].Index
+						Break
+					EndIf
+				Next searchNonHeader
+				Dim countResponsesOnIteration = CurrentQuestion.Iteration(maxResponsesOnIteration).AvailableResponses.Count
+				Dim arrResponsesOnIteration = CurrentQuestion.Iteration(maxResponsesOnIteration).AvailableResponses.Index
+				If (ar.Count > 1) Then
+                    For counterHeader = 2 To ar.Count
+        				arrResponsesOnIteration = arrResponsesOnIteration union CurrentQuestion.Iteration(ar[counterHeader].Index).AvailableResponses.Index
                     Next counterHeader
 				EndIf
 				arrResponsesOnIteration = OrderOf(CurrentQuestion.Shortcut) Intersection arrResponsesOnIteration
 				Dim arTh = CurrentQuestion.Iteration(maxResponsesOnIteration).Responses
 				Dim th = 0
-				Dim ar = CurrentQuestion.ParentLoop.AvailableAnswers
                 Dim inputName = ""
                 Dim inputId = ""
                 Dim inputValue = ""
