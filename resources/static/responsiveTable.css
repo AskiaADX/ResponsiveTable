@@ -8,7 +8,7 @@ body {
 .adc-responsiveTable {
    width: 100%;
 }
- 
+
 .adc-responsiveTable a:hover{
 	text-decoration:none;
 }
@@ -23,7 +23,7 @@ body {
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */      
+  user-select: none;          /* Likely future */
 }
 .adc-responsiveTable th {
    font-weight: normal;
@@ -117,4 +117,9 @@ body {
         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
         -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
+}
+
+.response:focus {
+  background-color: rgba(228,214,0,.1);
+  color: rgba(34,34,34,1.0);
 }

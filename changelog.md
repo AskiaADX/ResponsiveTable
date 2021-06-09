@@ -86,3 +86,4 @@ v4.1.2 - JD - Fixed Max iterations
 v4.1.3 - JD - Fixed IgnoreResponses
 v4.1.4 - Fixed - semi-open placeholders
 v4.1.5 - Fixed responses headers
+v4.1.6 - tabindex/focus management on responses

@@ -4,6 +4,13 @@
 })();
 (function () {
 
+  // prevent scrolling down the page when spacebar hits
+  window.addEventListener('keydown', function(e) {
+    if(e.keyCode == 32 && e.target.tagName.toUpperCase() != 'INPUT') {
+      e.preventDefault();
+    }
+  });
+
   /**
    * Add event listener in DOMElement
    *
@@ -482,6 +489,15 @@ function displayNext2 (instanceId) {
                      clickTable(e, passedInElement);
                    };
                  }(this)));
+
+     addEvent(document.getElementById('adc_' + this.instanceId), 'keyup',
+                  (function (passedInElement) {
+                    return function (e) {
+                      if (e.keyCode == 32) {
+                        clickTable(e, passedInElement);
+                      }
+                    };
+                  }(this)));
 
     addEvent(document.getElementById('adc_' + this.instanceId), 'click',
                  (function (passedInElement) {
