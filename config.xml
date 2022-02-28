@@ -7,8 +7,8 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.1.7</version>
-    <date>2021-06-09</date>
+    <version>4.1.8</version>
+    <date>2022-02-28</date>
     <description><![CDATA[Responsive Grid Table]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -18,7 +18,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" requireLoopDepth="1" manageHeader="true" manageSemiOpen="true"/>
+      <constraint on="questions" chapter="false" single="true" multiple="true" numeric="false" date="false" open="false" requireParentLoop="true" requireLoopDepth="1" manageHeader="true" manageSemiOpen="true" />
       <constraint on="controls" responseblock="true" label="false" textbox="false" checkbox="true" listbox="false" radiobutton="true" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
@@ -458,34 +458,34 @@
       </property>
     </category>
     <category id="open" name="Open">
-    <property xsi:type="standardProperty" id="placeholder" name="Placeholder" type="string" mode="dynamic" require="false" visible="true">
-      <description><![CDATA[
+      <property xsi:type="standardProperty" id="placeholder" name="Placeholder" type="string" mode="dynamic" require="false" visible="true">
+        <description><![CDATA[
 
         Using HTML 5, in modern browser.
         Helper text shows in the input when it's empty.
 
       ]]></description>
-      <value></value>
-    </property>
-    <property xsi:type="standardProperty" id="loopSemiPlaceholder" name="Loop Level Placeholder" type="string" mode="dynamic" require="false" visible="true">
-      <description><![CDATA[
+        <value></value>
+      </property>
+      <property xsi:type="standardProperty" id="loopSemiPlaceholder" name="Loop Level Placeholder" type="string" mode="dynamic" require="false" visible="true">
+        <description><![CDATA[
 
         Using HTML 5, in modern browser.
         Helper text shows in the input when it's empty.
 
       ]]></description>
-      <value></value>
-    </property>
-  </category>
-  <category id="styles" name="Styles">
-    <property xsi:type="standardProperty" id="buttonsBgColor" name="Buttons background color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
-      <description><![CDATA[Buttons Background Color]]></description>
-      <value><![CDATA[{%= Theme.PrimaryLightColor %}]]></value>
-    </property>
-    <property xsi:type="standardProperty" id="buttonsHoverBgColor" name="Buttons hover background color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
-      <description><![CDATA[Buttons Hover Background Color]]></description>
-      <value><![CDATA[{%= Theme.PrimaryColor %}]]></value>
-    </property>
-  </category>
+        <value></value>
+      </property>
+    </category>
+    <category id="styles" name="Styles">
+      <property xsi:type="standardProperty" id="buttonsBgColor" name="Buttons background color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
+        <description><![CDATA[Buttons Background Color]]></description>
+        <value><![CDATA[{%= Theme.PrimaryLightColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="buttonsHoverBgColor" name="Buttons hover background color" type="color" mode="dynamic" require="true" visible="false" colorFormat="rgb">
+        <description><![CDATA[Buttons Hover Background Color]]></description>
+        <value><![CDATA[{%= Theme.PrimaryColor %}]]></value>
+      </property>
+    </category>
   </properties>
 </control>
