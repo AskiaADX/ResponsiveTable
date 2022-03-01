@@ -88,3 +88,4 @@ v4.1.4 - Fixed - semi-open placeholders
 v4.1.5 - Fixed responses headers
 v4.1.6 - tabindex/focus management on responses
 v4.1.7 - Improved style.css
+v4.1.8 - Fixed - wcag accessibility issues

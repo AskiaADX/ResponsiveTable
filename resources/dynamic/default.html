@@ -197,9 +197,12 @@
                               childQuestionHasOpen = CurrentQuestion.Iteration(ar[i].Index).Responses[arrResponsesOnIteration[j]].isOpen
                                %}
                                       <td class="response{%:= isExclusive %}{%:= isSelected %}">
-                                          <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}" value="{%= inputValue %}" {%:= attrChecked %} />
+                                          <input type="{%:= typeQuestion %}" id="{%= inputId %}" class="{%:= isAskiaExclusive %}" name="{%= inputName %}"
+                                          value="{%= inputValue %}" {%:= attrChecked %} aria-labelledby="response-label" />
+
                                           <label for="{%= inputId %}" class="askia-{%:= typeQuestion %}"><span hidden>Label</span></label>
-                                          <label for="{%= inputId %}" class="responsesitems">
+
+                                          <p id="response-label" for="{%= inputId %}" class="responsesitems">
                                               {% If ((CurrentADC.PropValue("imagesPositionResponsive") <> "bottom") and (respImagePath <> "")) Then %}
                                                 <img src="{%= respImagePath %}" data-id="{%= inputId %}" alt="{%:= caption %}"/>
                                               {% EndIf %}
@@ -207,7 +210,9 @@
                                               {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "bottom") and (respImagePath <> "")) Then %}
                                                 <img src="{%= respImagePath %}" alt="{%:= caption %}"/>
                                               {% EndIf %}
-                                          </label>
+                                          </p>
+
+
                                           {% IF childQuestionHasOpen = True Then %}
                                           <div style="overflow:hidden">
                                             <input type="text" aria-label="Other" class="otherText {%:= isAskiaExclusive %}"
