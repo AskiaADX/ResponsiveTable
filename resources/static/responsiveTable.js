@@ -100,7 +100,7 @@
       $(that).next().toggle();
     }
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
-      if (el.lastElementChild.tagName == 'LABEL') {
+      if (el.lastElementChild.tagName == 'LABEL' || el.lastElementChild.tagName == 'P') {
         document.getElementById(el.lastElementChild.attributes.for.value).click();
       } else {
         // el.lastElementChild.children[0].style.display = "";
