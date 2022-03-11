@@ -466,6 +466,7 @@ function displayNext2 (instanceId) {
         headerRows[i].onclick = function(){
           var index = $(this).attr("data-id");
           var headerChildren = document.querySelectorAll(".headerchild"+index);
+          console.log(headerChildren);
           for (var j = 0; j < headerChildren.length; j++) {
             $(headerChildren[j]).toggle();
           }

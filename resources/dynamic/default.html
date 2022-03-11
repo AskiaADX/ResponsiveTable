@@ -40,7 +40,7 @@
                 Dim typeQuestion = ""
 				Dim imagePath = ""
 				Dim respImagePath = ""
-				Dim imageId
+				Dim dataId
                 Dim j = 0
                 Dim i = 0
 
@@ -104,16 +104,21 @@
         </thead>
         <tbody>
         {%
-        For i = 1 To ar.Count
-  			imagePath = ar.ResourceURL[i]
-  			imageId = CurrentQuestion.Iteration(ar[i].Index).InputName()
-  			isCaptionsHiddens = On((imageId <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
+          For i = 1 To ar.Count
+    			imagePath = ar.ResourceURL[i]
+    			dataId = CurrentQuestion.Iteration(ar[i].Index).InputName()
+    			isCaptionsHiddens = On((dataId <> "") and (CurrentADC.PropValue("showLoopCaptions") = "0") , " hiddens", "")
 
-        isHeader  = ar[i].isHeader
+          isHeader  = ar[i].isHeader
+        %}
+
+        {%:= ar[i].Parent.Index %} - {%:= ar[i].Parent.isHeader %}
+
+        {%
         If isHeader = False or showHeader = True Then
            If isHeader = true Then
-           %}
-              <tr data-id="{%= CurrentADC.InstanceId %}_{%= ar[i].index %}" class="askiarow headerRow">
+        %}
+              <tr data-id="{%= CurrentADC.InstanceId %}_{%=i %}" class="askiarow headerRow">
                 <td colspan="{%= arrResponsesOnIteration.Count + 1 %}">
                   {%
                   If expandableHeaders = True Then
@@ -127,11 +132,10 @@
               </tr>
 
           {% Else %}
-
-              {% If ar[i].Parent.isHeader = true Then %}
-                <tr data-id="{%= imageId %}" class="askiarow headerchild{%= CurrentADC.InstanceId %}_{%= ar[i].Parent.index %}">
+              {% If ar[i].Parent.IsHeader = true Then %}
+                <tr data-id="{%= dataId %}" class="askiarow headerchild{%= CurrentADC.InstanceId %}_{%= i %}">
               {% Else %}
-                <tr data-id="{%= imageId %}" class="askiarow">
+                <tr data-id="{%= dataId %}" class="askiarow">
               {% EndIf %}
                   <td class="respLabel">
                       <a class="askiadisplay">
@@ -162,7 +166,7 @@
                           {% EndIf %}
                       </a> <!-- New position of end tag </a> -->
                           {% If ((CurrentADC.PropValue("showLoopImagesZoom") = "1") and (imagePath <> "")) Then %}
-                          <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= imageId %}"><div class="imgZoom"><span hidden>Zoom link</span></div></a>
+                          <a href="{%= imagePath %}" target="_blank" data-simplbox="{%= dataId %}"><div class="imgZoom"><span hidden>Zoom link</span></div></a>
                           {% EndIf %}
                      <!-- </a> -->
                   </td>
