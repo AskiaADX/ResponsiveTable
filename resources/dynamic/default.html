@@ -7,7 +7,7 @@
 				Dim counterHeader = 1
 				Dim searchNonHeader = 0
 				Dim maxResponsesOnIteration = 0
-				Dim ar = CurrentQuestion.ParentLoop.AvailableAnswers
+				Dim ar = CurrentQuestion.ParentLoop.AvailableResponses
 				For searchNonHeader = 1 To ar.Count
 					If (ar[searchNonHeader].IsHeader = False) Then
         				maxResponsesOnIteration =  ar[searchNonHeader].Index
@@ -118,7 +118,7 @@
         If isHeader = False or showHeader = True Then
            If isHeader = true Then
         %}
-              <tr data-id="{%= CurrentADC.InstanceId %}_{%=i %}" class="askiarow headerRow">
+              <tr data-id="{%= CurrentADC.InstanceId %}_{%= ar[i].Index %}" class="askiarow headerRow">
                 <td colspan="{%= arrResponsesOnIteration.Count + 1 %}">
                   {%
                   If expandableHeaders = True Then
@@ -133,7 +133,7 @@
 
           {% Else %}
               {% If ar[i].Parent.IsHeader = true Then %}
-                <tr data-id="{%= dataId %}" class="askiarow headerchild{%= CurrentADC.InstanceId %}_{%= i %}">
+                <tr data-id="{%= dataId %}" class="askiarow headerchild{%= CurrentADC.InstanceId %}_{%= ar[i].Parent.Index %}">
               {% Else %}
                 <tr data-id="{%= dataId %}" class="askiarow">
               {% EndIf %}
