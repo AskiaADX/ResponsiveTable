@@ -89,3 +89,5 @@ v4.1.5 - Fixed responses headers
 v4.1.6 - tabindex/focus management on responses
 v4.1.7 - Improved style.css
 v4.1.8 - Fixed - wcag accessibility issues
+v4.1.9 -
+v4.1.10 - Fixed - space key issue when merged with an open(textarea) question
