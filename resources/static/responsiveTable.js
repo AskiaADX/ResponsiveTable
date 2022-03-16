@@ -6,7 +6,7 @@
 
   // prevent scrolling down the page when spacebar hits
   window.addEventListener('keydown', function(e) {
-    if(e.keyCode == 32 && e.target.tagName.toUpperCase() != 'INPUT') {
+    if(e.keyCode == 32 && e.target.tagName.toUpperCase() != 'INPUT' && e.target.tagName.toUpperCase() != 'TEXTAREA') {
       e.preventDefault();
     }
   });
