@@ -256,12 +256,12 @@ EndIF
 }
 {% EndIf %}
 {% If (CurrentADC.PropValue("showHeader") = "yes") Then %}
-#adc_{%= CurrentADC.InstanceId %} p.responsesitems {
+#adc_{%= CurrentADC.InstanceId %} span.responsesitems {
     display: none;
 }
 {% EndIf %}
 {% If (CurrentADC.PropValue("showHeader") = "no") Then %}
-#adc_{%= CurrentADC.InstanceId %} p.responsesitems {
+#adc_{%= CurrentADC.InstanceId %} span.responsesitems {
     display: inline-block;
 }
 {% EndIf %}
@@ -447,7 +447,7 @@ EndIF
         {% EndIf %}
         padding-right: 0;
     }
-    #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} p.responsesitems {
+    #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} span.responsesitems {
         display: block;
     }
     {% If ((CurrentADC.PropValue("imagesPositionResponsive") = "left") or (CurrentADC.PropValue("imagesPositionResponsive") = "right")) Then %}
