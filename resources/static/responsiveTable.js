@@ -6,11 +6,7 @@
 
   // prevent scrolling down the page when spacebar hits
   window.addEventListener('keydown', function(e) {
-<<<<<<< HEAD
-    if(e.keyCode == 32 && e.target.nodeName.toUpperCase() != 'INPUT') {
-=======
     if(e.keyCode == 32 && e.target.tagName.toUpperCase() != 'INPUT' && e.target.tagName.toUpperCase() != 'TEXTAREA') {
->>>>>>> develop
       e.preventDefault();
     }
   });
@@ -104,11 +100,7 @@
       $(that).next().toggle();
     }
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
-<<<<<<< HEAD
       if (el.lastElementChild.nodeName == 'LABEL') {
-=======
-      if (el.lastElementChild.tagName == 'P') {
->>>>>>> develop
         document.getElementById(el.lastElementChild.attributes.for.value).click();
       } else if (el.lastElementChild.nodeName == 'SPAN') {
         document.getElementById(el.lastElementChild.dataset.for).click();
