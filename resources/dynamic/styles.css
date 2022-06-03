@@ -51,7 +51,20 @@ IF headerTextAlign = "right" Then
 		symbolPosition = "left"
 EndIF
 
+Dim langAbbr = Interview.Language.Abbr
+Dim rtlLangArr = {"ARA";"ARG";"ARH";"ARE";"ARI";"ARJ";"ARK";"ARB";"ARL";"ARM";"ARO";"ARQ";"ARS";"ART";"ARU";"ARY";"HEB";"URD";"URI"}
 %}
+body {
+  {% IF rtlLangArr.IndexOf(langAbbr) <> DK Then %}
+    direction: rtl !important;
+  {% EndIF %}
+}
+
+#adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} th {
+    border-left: 1px solid rgb(170,170,170,170) !important;
+    border-right: 0 !important;
+}
+
 .plus::after {
 	content: '\002B';
   color: rgb({%= headerFontColour %});
