@@ -182,6 +182,7 @@
     var offsetHeightThead = document.getElementById('adc_' + opt.instanceId + '_thead').offsetHeight || document.getElementById('adc_' + opt.instanceId + '_thead').height;
     var offsetTop = calcOffsetTop(document.getElementById('adc_' + opt.instanceId));
     var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+
     var top = 0;
     if ((scrollTop >= offsetTop) && (scrollTop <= (offsetTop + offsetHeight - (offsetHeightThead + 10))) ) {
       top = scrollTop - (offsetTop + 2);

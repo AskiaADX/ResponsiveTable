@@ -91,3 +91,4 @@ v4.0.0 - Header rows
         v4.1.10 -
     v4.2.0 - adc refactoring(css fixes, show headers while maxResponsesOnIteration working - fix, response-label is a span now)
         v4.2.1 - check for rtl languages
+        v4.2.2 - 

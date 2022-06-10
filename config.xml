@@ -7,8 +7,8 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.2.0</version>
-    <date>2022-06-03</date>
+    <version>4.2.2</version>
+    <date>2022-06-10</date>
     <description><![CDATA[Responsive Grid Table]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -214,6 +214,32 @@
           <option value="0" text="No" />
         </options>
       </property>
+      <property xsi:type="standardProperty" id="fullWidthTableContainer" name="Full width table container" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Is the table container has full width?]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="tableContainerWidth" name="Table container width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The width value of the table container div]]></description>
+        <value><![CDATA[1250px]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerTextUprightPosition" name="Upright header text position" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Header text upright position]]></description>
+        <value><![CDATA[none]]></value>
+        <options>
+          <option value="none" text="None" />
+          <option value="sideways-rl" text="Upright - Right to Left" />
+          <option value="sideways-lr" text="Upright -  Left to Right" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="headerTextUprightScreenWidth" name="Upright header text screen width" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[The width value for the askia-questions div to be shown the header texts to upright position]]></description>
+        <value><![CDATA[925px]]></value>
+      </property>
+
     </category>
     <category id="Border" name="Border">
       <property xsi:type="standardProperty" id="borderRadius" name="Border Radius" type="string" mode="dynamic" require="true" visible="false">

@@ -325,10 +325,26 @@ body {
     cursor: auto;
 }
 
+@media screen and (min-width: {%= CurrentADC.PropValue("responsiveWidth") %}) and (max-width: {%= CurrentADC.PropValue("tableContainerWidth") %}) {
+  {% If (CurrentADC.PropValue("fullWidthTableContainer") = "1") Then %}
+    .askiaquestions {
+      width: 95%;
+    }
+  {% ENDIF %}
+}
+
+@media screen and (min-width: {%= CurrentADC.PropValue("responsiveWidth") %}) and (max-width: {%= CurrentADC.PropValue("headerTextUprightScreenWidth") %}) {
+  {% If (CurrentADC.PropValue("headerTextUprightPosition") <> "none") Then %}
+    #adc_{%= CurrentADC.InstanceId %} th .head {
+      writing-mode : {%= CurrentADC.PropValue("headerTextUprightPosition") %};
+    }
+  {% ENDIF %}
+}
+
 @media screen and (max-width: {%= CurrentADC.PropValue("responsiveWidth") %}) {
     #adc_{%= CurrentADC.InstanceId %} .emptyCell {
     	display: none;
-	}
+	  }
 
     #adc_{%= CurrentADC.InstanceId %} tr:nth-child(even), #adc_{%= CurrentADC.InstanceId %} tr, #adc_{%= CurrentADC.InstanceId %} tr:hover {
         background-color: rgba({%= oddBgPrimaryColor %},1.0);
@@ -376,7 +392,7 @@ body {
 		padding: 0;
         border-top: none;
     }
-	#adc_{%= CurrentADC.InstanceId %} .respLabel .items {
+	 #adc_{%= CurrentADC.InstanceId %} .respLabel .items {
 		display: block;
 		margin: 0 5px 5px 5px;
         {% If (CurrentADC.PropValue("accordion") = "1") Then %}
@@ -384,7 +400,7 @@ body {
     	{% Else %}
 		padding: 5px 0 0 0;
     	{% EndIf %}
-	}
+	 }
     {% If (CurrentADC.PropValue("accordion") = "1") Then %}
     #adc_{%= CurrentADC.InstanceId %} .respLabel .respaccordion {
         display: block;
@@ -486,18 +502,18 @@ body {
     #adc_{%= CurrentADC.InstanceId %} .response .imgZoom {
     	bottom: 5px;
         right: 25px;
-	}
+	  }
 
   /* Headers */
-  #adc_{%= CurrentADC.InstanceId%} .headerRow
-  {
-  	background-color: rgb({%= headerColourPrimary %}) !important;
-    font-weight: bold;
-    color: rgb({%= headerFontColour %}) !important;
-  	z-index: 0;
-    box-sizing: border-box;
-    line-height: 1.02em;
-  }
+    #adc_{%= CurrentADC.InstanceId%} .headerRow
+    {
+    	background-color: rgb({%= headerColourPrimary %}) !important;
+      font-weight: bold;
+      color: rgb({%= headerFontColour %}) !important;
+    	z-index: 0;
+      box-sizing: border-box;
+      line-height: 1.02em;
+    }
 
     {% EndIf %}
 
@@ -534,8 +550,8 @@ body {
     #adc_{%= CurrentADC.InstanceId %} tr .respLabel .items {
         background-color: transparent;
     	color: rgba({%= CurrentADC.PropValue("headFontColor") %},1.0);
-}
     }
+}
     #adc_{%= CurrentADC.InstanceId %} .checkmark {
         background-color: rgba({%= checkmarkColor.ToRGB() %},.2);
     }
