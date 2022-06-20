@@ -70,13 +70,13 @@
       if (obj.parentNode.className.indexOf('exclusive') >= 0 && tr.children[i].children[0] !== obj && tr.children[i].className.indexOf('selected') >= 0) {
         document.getElementById(tr.children[i].children[0].attributes.id.value).checked = false;
         removeClass(tr.children[i], 'selected');
-        if(tr.children[i].lastElementChild.tagName == "DIV"){
+        if(tr.children[i].lastElementChild.nodeName == "DIV"){
           tr.children[i].lastElementChild.children[0].style.display = "none";
         }
       } else if (!(obj.parentNode.className.indexOf('exclusive') >= 0) && (tr.children[i].children[0] !== obj) && (tr.children[i].className.indexOf('selected') >= 0) && (tr.children[i].className.indexOf('exclusive') >= 0)) {
         document.getElementById(tr.children[i].children[0].attributes.id.value).checked = false;
         removeClass(tr.children[i], 'selected');
-        if(tr.children[i].lastElementChild.tagName == "DIV"){
+        if(tr.children[i].lastElementChild.nodeName == "DIV"){
           tr.children[i].lastElementChild.children[0].style.display = "none";
         }
       }
@@ -100,12 +100,15 @@
       $(that).next().toggle();
     }
     if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
-      if (el.lastElementChild.tagName == 'P') {
+      if (el.lastElementChild.nodeName == 'LABEL') {
         document.getElementById(el.lastElementChild.attributes.for.value).click();
+      } else if (el.lastElementChild.nodeName == 'SPAN') {
+        document.getElementById(el.lastElementChild.dataset.for).click();
       } else {
-        // el.lastElementChild.children[0].style.display = "";
-        document.getElementById(el.children[2].attributes.for.value).click();
+        document.getElementById(el.children[2].dataset.for).click();
       }
+    } else if (el.nodeName === 'SPAN') {
+      document.getElementById(el.dataset.for).click();
     } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
   		event.preventDefault();
   		event.stopPropagation();
@@ -179,6 +182,7 @@
     var offsetHeightThead = document.getElementById('adc_' + opt.instanceId + '_thead').offsetHeight || document.getElementById('adc_' + opt.instanceId + '_thead').height;
     var offsetTop = calcOffsetTop(document.getElementById('adc_' + opt.instanceId));
     var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+
     var top = 0;
     if ((scrollTop >= offsetTop) && (scrollTop <= (offsetTop + offsetHeight - (offsetHeightThead + 10))) ) {
       top = scrollTop - (offsetTop + 2);
