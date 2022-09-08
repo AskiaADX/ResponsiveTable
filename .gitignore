@@ -35,3 +35,5 @@ gruntfile.js
 # TMP #
 ################
 *.tmp/
+
+adx_bundler.ps1
