@@ -61,7 +61,7 @@ body {
 }
 
 #adc_{%= CurrentADC.InstanceId %} td, #adc_{%= CurrentADC.InstanceId %} th {
-    border-left: 1px solid rgb(170,170,170,170) !important;
+    border-left: 1px solid rgb(170,170,170) !important;
     border-right: 0 !important;
 }
 
