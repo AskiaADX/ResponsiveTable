@@ -58,38 +58,70 @@ v2.0.15
 - Adc compatible with Ignore responses
 v2.0.16
 - Fixed font color of items on mobile view when not using header style for the first column
-v3.0.0 - AvailableAnswers
-v3.0.1 - Fixed event
+v3.0.0
+- AvailableAnswers
+v3.0.1 
+- Fixed event
 v3.0.2
 v3.0.3
-v3.0.4 - Added new firstColumnLabel property
-v3.0.5 - First column label - remove nbsp
-v4.0.0 - Header rows
-v4.0.1 - Header text align
-v4.0.2 - AvailableResponses & manageHeader = true
-v4.0.3 - Header row text align issue fix
-v4.0.4 - Response groups with expandable headers
-v4.0.5 - Semi-opens
-v4.0.6 - jquery.min.js as a resource file
-v4.0.7 - Use CurrentADC - bug fix
-v4.0.8 - Semi-open on multi-coded questions - bug fixed
-v4.0.9 - fix - otherText input type
-v4.0.10 - a bug fix
-v4.0.11 - Fixed Max iterations
-v4.1.0 - Semi-open ParentLoop
-v4.1.1 - Issues fixed - semiopens in responsive-accordion
-v4.1.2 - JD - Fixed Max iterations
-v4.1.3 - JD - Fixed IgnoreResponses
-v4.1.4 - Fixed - semi-open placeholders
-v4.1.5 - Fixed responses headers
-v4.1.6 - tabindex/focus management on responsesHTML Before Questions
-v4.1.7 - Improved style.css
-v4.1.8 - Fixed - wcag accessibility issues
+v3.0.4 
+- Added new firstColumnLabel property
+v3.0.5 
+- First column label - remove nbsp
+v4.0.0 
+- Header rows
+v4.0.1 
+- Header text align
+v4.0.2 
+- AvailableResponses & manageHeader = true
+v4.0.3 
+- Header row text align issue fix
+v4.0.4 
+- Response groups with expandable headers
+v4.0.5 
+- Semi-opens
+v4.0.6 
+- jquery.min.js as a resource file
+v4.0.7 
+- Use CurrentADC - bug fix
+v4.0.8 
+- Semi-open on multi-coded questions - bug fixed
+v4.0.9 
+- fix - otherText input type
+v4.0.10 
+- a bug fix
+v4.0.11 
+- Fixed Max iterations
+v4.1.0 
+- Semi-open ParentLoop
+v4.1.1 
+- Issues fixed - semiopens in responsive-accordion
+v4.1.2 
+- JD - Fixed Max iterations
+v4.1.3 
+- JD - Fixed IgnoreResponses
+v4.1.4 
+- Fixed - semi-open placeholders
+v4.1.5 
+- Fixed responses headers
+v4.1.6 
+- tabindex/focus management on responsesHTML Before Questions
+v4.1.7 
+- Improved style.css
+v4.1.8 
+- Fixed - wcag accessibility issues
 v4.1.9 -
 v4.1.10 -
-v4.2.0 - adc refactoring(css fixes, show headers while maxResponsesOnIteration working - fix, response-label is a span now)
-v4.2.1 - check for rtl languages
-v4.2.2 - Fixed UI - border issue on IE preview
+v4.2.0 
+- adc refactoring(css fixes, show headers while maxResponsesOnIteration working - fix, response-label is a span now)
+v4.2.1 
+- check for rtl languages
+v4.2.2 
+- Fixed UI - border issue on IE preview
 v4.2.3 -
-v4.2.4 - JQuery update
-v4.2.5 - Fixed, DOF runtime errors
+v4.2.4 
+- JQuery update
+v4.2.5 
+- Fixed, DOF runtime errors
+v4.2.6 
+- style.css changed for response:hover
