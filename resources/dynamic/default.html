@@ -147,8 +147,18 @@
 
                           IF parentLoopHasOpen = True Then
                                 isCaptionsHiddens = " hiddens"
-                                Dim placeholder = CurrentADC.PropValue("loopSemiPlaceholder")
+
+                                Dim useOpenText = CurrentADC.PropValue("useOpenText")
+                                Dim placeholder = ""
+                                
+                                If useOpenText = "1" Then
+                                  placeholder = aa[i].Caption
+                                Else
+                                  placeholder = CurrentADC.PropValue("loopSemiPlaceholder")
+                                EndIF
+                               
                         				Dim attrPlaceholder = On(placeholder <> "", " placeholder=\"" + placeholder + "\"", "") %}
+
                                 <div style="overflow:hidden">
                                   <input type="text" aria-label="Other" class="otherLoopText"
                                   id="askia-input{%= aa[i].OpenQuestion.InputCode %}" name="{%= aa[i].OpenQuestion.InputName() %}"

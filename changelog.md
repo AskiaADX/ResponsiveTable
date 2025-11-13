@@ -127,3 +127,5 @@ Version
 - Fixed, DOF runtime errors
 #### v4.2.6 
 - style.css changed for response:hover
+#### v4.2.7
+- included option for using open response text for loop placeholders
