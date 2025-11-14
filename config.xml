@@ -7,7 +7,7 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.2.6</version>
+    <version>4.2.7</version>
     <date>2023-06-09</date>
     <description><![CDATA[Responsive Grid Table]]></description>
     <company>Askia</company>
@@ -239,7 +239,6 @@
         <description><![CDATA[The width value for the askia-questions div to be shown the header texts to upright position]]></description>
         <value><![CDATA[925px]]></value>
       </property>
-
     </category>
     <category id="Border" name="Border">
       <property xsi:type="standardProperty" id="borderRadius" name="Border Radius" type="string" mode="dynamic" require="true" visible="false">
@@ -501,6 +500,14 @@
 
       ]]></description>
         <value></value>
+      </property>
+      <property xsi:type="standardProperty" id="useOpenText" name="Use Open response text for Placeholder" type="number" require="false" visible="true" min="0" max="1">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[1]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
       </property>
     </category>
     <category id="styles" name="Styles">
