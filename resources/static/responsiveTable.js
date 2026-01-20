@@ -97,22 +97,23 @@
 function clickTable (event, that) {
   var el = event.target || event.srcElement;
 
-  // If the click is already on an INPUT, let your existing INPUT logic run
-  // (this is what applies the .selected class and drives your styling)
+
   if (el && el.nodeName === 'INPUT') {
-    // ---- EXISTING INPUT LOGIC (unchanged) ----
+    
     if (el.checked) {
       addClass(el.parentNode, 'selected');
       manageExclusive(el);
-      if (el.parentElement.lastElementChild.children[0]) {
-        el.parentElement.lastElementChild.children[0].style.display = "block";
-      }
+
+      var other = el.parentElement.querySelector('.otherText, .otherLoopText');
+      if (other) other.style.display = "block";
+
     } else if ((!el.checked) && (el.attributes.type.value === 'checkbox')) {
       removeClass(el.parentNode, 'selected');
       manageExclusive(el);
-      if (el.parentElement.lastElementChild.children[0]) {
-        el.parentElement.lastElementChild.children[0].style.display = "none";
-      }
+
+      var other2 = el.parentElement.querySelector('.otherText, .otherLoopText');
+      if (other2) other2.style.display = "none";
+      
     }
 
     if (that.accordion && window.innerWidth < that.responsiveWidth ) {
@@ -142,10 +143,7 @@ function clickTable (event, that) {
     return;
   }
 
-  /* ============================================================
-     FIX: clicks anywhere inside td.response (e.g., <u>text</u>)
-     should click the associated input
-     ============================================================ */
+
   if (el && el.closest) {
     var td = el.closest('td.response');
     if (td) {
@@ -153,7 +151,7 @@ function clickTable (event, that) {
       event.preventDefault();
       event.stopPropagation();
 
-      // Prefer span[data-for] (matches your HTML)
+      // Prefer span[data-for] 
       var df = td.querySelector('span[data-for]');
       if (df && df.dataset && df.dataset.for) {
         var input = document.getElementById(df.dataset.for);
@@ -175,9 +173,7 @@ function clickTable (event, that) {
       return;
     }
   }
-  /* ======================== END FIX ========================== */
 
-  // ---- REST OF YOUR EXISTING NON-INPUT LOGIC ----
 
   if (el.className && el.className.indexOf('headerRow') >= 0) {
     $(that).next().toggle();
