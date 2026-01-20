@@ -94,74 +94,113 @@
    *
    * @param {Object} event Event of the click on the TD or INPUT
    */
-  function clickTable (event, that) {
-    var el = event.target || event.srcElement;
+function clickTable (event, that) {
+  var el = event.target || event.srcElement;
 
-    if (el && el.closest) {
-      var td = el.closest('TD');
-      if (td && td.className && td.className.indexOf('response') >= 0) {
-        el = td;
+  // If the click is already on an INPUT, let your existing INPUT logic run
+  // (this is what applies the .selected class and drives your styling)
+  if (el && el.nodeName === 'INPUT') {
+    // ---- EXISTING INPUT LOGIC (unchanged) ----
+    if (el.checked) {
+      addClass(el.parentNode, 'selected');
+      manageExclusive(el);
+      if (el.parentElement.lastElementChild.children[0]) {
+        el.parentElement.lastElementChild.children[0].style.display = "block";
+      }
+    } else if ((!el.checked) && (el.attributes.type.value === 'checkbox')) {
+      removeClass(el.parentNode, 'selected');
+      manageExclusive(el);
+      if (el.parentElement.lastElementChild.children[0]) {
+        el.parentElement.lastElementChild.children[0].style.display = "none";
       }
     }
 
-    if (el.className.indexOf('headerRow') >= 0) {
-      $(that).next().toggle();
-    }
-    if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
-      if (el.lastElementChild.nodeName == 'LABEL') {
-        document.getElementById(el.lastElementChild.attributes.for.value).click();
-      } else if (el.lastElementChild.nodeName == 'SPAN') {
-        document.getElementById(el.lastElementChild.dataset.for).click();
+    if (that.accordion && window.innerWidth < that.responsiveWidth ) {
+      if (el.classList.contains('otherText')) {
+        addClass(el.parentNode.parentNode, 'selected');
+        el.addEventListener("keydown", function() {
+          displayCheckmark(that.instanceId);
+        });
       } else {
-        document.getElementById(el.children[2].dataset.for).click();
-      }
-    } else if (el.nodeName === 'SPAN') {
-      document.getElementById(el.dataset.for).click();
-    } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
-  		event.preventDefault();
-  		event.stopPropagation();
-  		document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
-    } else if (el.nodeName === 'INPUT') {
-      if (el.checked) {
-        addClass(el.parentNode, 'selected');
-        manageExclusive(el);
-        if (el.parentElement.lastElementChild.children[0]) {
-          el.parentElement.lastElementChild.children[0].style.display = "block";
-        }
-      } else if ((!el.checked) && (el.attributes.type.value === 'checkbox')) {
-        removeClass(el.parentNode, 'selected');
-        manageExclusive(el);
-        if (el.parentElement.lastElementChild.children[0]) {
-          el.parentElement.lastElementChild.children[0].style.display = "none";
-        }
-      }
-      if (that.accordion && window.innerWidth < that.responsiveWidth ) {
-          if(el.classList.contains('otherText')) {
-              addClass(el.parentNode.parentNode, 'selected');
-              el.addEventListener("keydown", function() {
-                displayCheckmark(that.instanceId);
-              });
-          } else {
-            if (el.parentNode.lastElementChild.nodeName != 'DIV') {
-              setTimeout(function (){
-                if (el.classList.contains('askia-exclusive')) {
-                  displayNext(that.instanceId);
-                }
-                displayCheckmark(that.instanceId);
-              }, 150);
+        if (el.parentNode.lastElementChild.nodeName != 'DIV') {
+          setTimeout(function (){
+            if (el.classList.contains('askia-exclusive')) {
+              displayNext(that.instanceId);
             }
-          }
+            displayCheckmark(that.instanceId);
+          }, 150);
+        }
       }
-      if (window.askia &&
-                window.arrLiveRoutingShortcut &&
-                window.arrLiveRoutingShortcut.length > 0 &&
-                window.arrLiveRoutingShortcut.indexOf(that.currentQuestion) >= 0) {
-        askia.triggerAnswer();
+    }
+
+    if (window.askia &&
+        window.arrLiveRoutingShortcut &&
+        window.arrLiveRoutingShortcut.length > 0 &&
+        window.arrLiveRoutingShortcut.indexOf(that.currentQuestion) >= 0) {
+      askia.triggerAnswer();
+    }
+    return;
+  }
+
+  /* ============================================================
+     FIX: clicks anywhere inside td.response (e.g., <u>text</u>)
+     should click the associated input
+     ============================================================ */
+  if (el && el.closest) {
+    var td = el.closest('td.response');
+    if (td) {
+      // Prevent accordion/header click handlers from also firing for this click
+      event.preventDefault();
+      event.stopPropagation();
+
+      // Prefer span[data-for] (matches your HTML)
+      var df = td.querySelector('span[data-for]');
+      if (df && df.dataset && df.dataset.for) {
+        var input = document.getElementById(df.dataset.for);
+        if (input) { input.click(); }
+        return;
       }
-    } else if (el.tagName == "P") {
-      document.getElementById(el.attributes.for.value).click();
+
+      // Fallback: label[for]
+      var lbl = td.querySelector('label[for]');
+      if (lbl) {
+        var input2 = document.getElementById(lbl.getAttribute('for'));
+        if (input2) { input2.click(); }
+        return;
+      }
+
+      // Last fallback: first input inside TD
+      var input3 = td.querySelector('input');
+      if (input3) { input3.click(); }
+      return;
     }
   }
+  /* ======================== END FIX ========================== */
+
+  // ---- REST OF YOUR EXISTING NON-INPUT LOGIC ----
+
+  if (el.className && el.className.indexOf('headerRow') >= 0) {
+    $(that).next().toggle();
+  }
+
+  if (el.nodeName === 'TD' && el.className.indexOf('response') >= 0) {
+    if (el.lastElementChild.nodeName == 'LABEL') {
+      document.getElementById(el.lastElementChild.attributes.for.value).click();
+    } else if (el.lastElementChild.nodeName == 'SPAN') {
+      document.getElementById(el.lastElementChild.dataset.for).click();
+    } else {
+      document.getElementById(el.children[2].dataset.for).click();
+    }
+  } else if (el.nodeName === 'SPAN') {
+    document.getElementById(el.dataset.for).click();
+  } else if (el.nodeName === 'IMG' && el.parentNode.parentNode.className.indexOf('response') >= 0) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.getElementById(el.parentNode.parentNode.lastElementChild.attributes.for.value).click();
+  } else if (el.tagName == "P") {
+    document.getElementById(el.attributes.for.value).click();
+  }
+}
 
   /**
    * Calculate the offsetTop
