@@ -96,6 +96,14 @@
    */
   function clickTable (event, that) {
     var el = event.target || event.srcElement;
+
+    if (el && el.closest) {
+      var td = el.closest('TD');
+      if (td && td.className && td.className.indexOf('response') >= 0) {
+        el = td;
+      }
+    }
+
     if (el.className.indexOf('headerRow') >= 0) {
       $(that).next().toggle();
     }

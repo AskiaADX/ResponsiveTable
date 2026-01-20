@@ -129,3 +129,5 @@ Version
 - style.css changed for response:hover
 #### v4.2.7
 - included option for using open response text for loop placeholders
+#### v4.2.8
+- fixed event.target syntax that prevented td.response from being selected if text contained HTML styling
