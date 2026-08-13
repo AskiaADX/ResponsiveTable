@@ -131,3 +131,8 @@ Version
 - included option for using open response text for loop placeholders
 #### v4.2.8
 - fixed event.target syntax that prevented td.response from being selected if text contained HTML styling
+#### v4.2.9
+- Added Max items per screen property with client-side row paging
+- Header rows do not count toward the item limit
+- Paging preserves expandable-header and responsive-accordion behaviour
+

@@ -80,6 +80,15 @@ body {
     margin: {%= controlAlign %};
 }
 
+#adc_{%= CurrentADC.InstanceId %} .responsiveTablePager button {
+    background-color: rgb({%= CurrentADC.PropValue("buttonsBgColor") %});
+}
+
+#adc_{%= CurrentADC.InstanceId %} .responsiveTablePager button:not([disabled]):hover,
+#adc_{%= CurrentADC.InstanceId %} .responsiveTablePager button:not([disabled]):focus {
+    background-color: rgb({%= CurrentADC.PropValue("buttonsHoverBgColor") %});
+}
+
 #adc_{%= CurrentADC.InstanceId %} .firstColumn, #adc_{%= CurrentADC.InstanceId %} .respLabel {
     width: {%= firstColumnWidth + "%" %};
     text-align: {%= firstColumnAlign %};

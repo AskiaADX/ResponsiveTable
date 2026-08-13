@@ -363,6 +363,9 @@ function clickTable (event, that) {
       var tds
       var containSelected = false;
       for (var i = 0, j = trs.length; i < j; i++) {
+          if (trs[i].classList.contains('headerRow') || trs[i].style.display === 'none') {
+              continue;
+          }
           tds = trs[i].children;
           containSelected = false;
           for (var k = 0, l = tds.length; k < l; k++) {
@@ -376,6 +379,164 @@ function clickTable (event, that) {
           }
       }
       return null;
+  }
+
+  /**
+   * Return the header id associated with an item row, if any.
+   */
+  function getRowHeaderId (row) {
+    var classes = row.className.split(/\s+/);
+    for (var i = 0; i < classes.length; i++) {
+      if (classes[i].indexOf('headerchild') === 0) {
+        return classes[i].substring('headerchild'.length);
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Re-open the first visible item in responsive accordion mode after
+   * changing pages.
+   */
+  function resetAccordionForCurrentPage (that) {
+    if (!that.accordion || window.innerWidth >= that.responsiveWidth) return;
+
+    hideResponses(that.instanceId);
+    displayCheckmark(that.instanceId);
+
+    var active = document.querySelector('#adc_' + that.instanceId + ' .active');
+    if (active) active.classList.remove('active');
+
+    var first = findFirstEmptyRow(that.instanceId);
+    if (first !== null) {
+      displayRow(first);
+      var display = first.querySelector('.askiadisplay');
+      if (display !== null) display.classList.add('active');
+    }
+  }
+
+  /**
+   * Apply the current client-side item page.
+   */
+  function applyItemPage (that, resetAccordion) {
+    if (!that.maxItemsPerScreen || that.totalItemPages <= 1) return;
+
+    var container = document.getElementById('adc_' + that.instanceId);
+    var allRows = container.querySelectorAll('tbody .askiarow');
+    var headerRows = [];
+    var itemRows = [];
+    var collapsedHeaders = {};
+    var i;
+
+    for (i = 0; i < allRows.length; i++) {
+      if (allRows[i].classList.contains('headerRow')) {
+        headerRows.push(allRows[i]);
+        collapsedHeaders[allRows[i].getAttribute('data-id')] = allRows[i].getAttribute('data-rt-collapsed') === '1';
+      } else {
+        itemRows.push(allRows[i]);
+      }
+    }
+
+    for (i = 0; i < itemRows.length; i++) {
+      var itemPage = parseInt(itemRows[i].getAttribute('data-rt-page'), 10);
+      var headerId = itemRows[i].getAttribute('data-rt-header-id') || '';
+      var visible = itemPage === that.currentItemPage;
+      if (headerId && collapsedHeaders[headerId]) visible = false;
+      itemRows[i].style.display = visible ? '' : 'none';
+    }
+
+    for (i = 0; i < headerRows.length; i++) {
+      var headerIdValue = headerRows[i].getAttribute('data-id');
+      var hasChildOnPage = false;
+      for (var j = 0; j < itemRows.length; j++) {
+        if ((itemRows[j].getAttribute('data-rt-header-id') || '') === headerIdValue &&
+            parseInt(itemRows[j].getAttribute('data-rt-page'), 10) === that.currentItemPage) {
+          hasChildOnPage = true;
+          break;
+        }
+      }
+      headerRows[i].style.display = hasChildOnPage ? '' : 'none';
+    }
+
+    if (that.pagerPrevious) that.pagerPrevious.disabled = that.currentItemPage <= 0;
+    if (that.pagerNext) that.pagerNext.disabled = that.currentItemPage >= that.totalItemPages - 1;
+    if (that.pagerStatus) that.pagerStatus.innerHTML = (that.currentItemPage + 1) + ' / ' + that.totalItemPages;
+
+    if (resetAccordion) resetAccordionForCurrentPage(that);
+  }
+
+  /**
+   * Configure client-side paging. Header rows do not count toward the limit.
+   */
+  function setupItemPaging (that) {
+    if (!that.maxItemsPerScreen || that.maxItemsPerScreen < 1) return;
+
+    var container = document.getElementById('adc_' + that.instanceId);
+    var allRows = container.querySelectorAll('tbody .askiarow');
+    var itemRows = [];
+    var i;
+
+    for (i = 0; i < allRows.length; i++) {
+      if (!allRows[i].classList.contains('headerRow')) itemRows.push(allRows[i]);
+    }
+
+    if (itemRows.length <= that.maxItemsPerScreen) return;
+
+    for (i = 0; i < itemRows.length; i++) {
+      itemRows[i].setAttribute('data-rt-page', Math.floor(i / that.maxItemsPerScreen));
+      itemRows[i].setAttribute('data-rt-header-id', getRowHeaderId(itemRows[i]));
+    }
+
+    that.currentItemPage = 0;
+    that.totalItemPages = Math.ceil(itemRows.length / that.maxItemsPerScreen);
+
+    var pager = document.createElement('div');
+    pager.className = 'responsiveTablePager';
+    pager.setAttribute('role', 'navigation');
+    pager.setAttribute('aria-label', 'Table pages');
+
+    var previous = document.createElement('button');
+    previous.type = 'button';
+    previous.className = 'responsiveTablePagerPrevious';
+    previous.innerHTML = 'Previous';
+
+    var status = document.createElement('span');
+    status.className = 'responsiveTablePagerStatus';
+    status.setAttribute('aria-live', 'polite');
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'responsiveTablePagerNext';
+    next.innerHTML = 'Next';
+
+    pager.appendChild(previous);
+    pager.appendChild(status);
+    pager.appendChild(next);
+    container.appendChild(pager);
+
+    that.pagerPrevious = previous;
+    that.pagerNext = next;
+    that.pagerStatus = status;
+
+    addEvent(previous, 'click', function (event) {
+      if (event.preventDefault) event.preventDefault();
+      if (event.stopPropagation) event.stopPropagation();
+      if (that.currentItemPage > 0) {
+        that.currentItemPage--;
+        applyItemPage(that, true);
+      }
+    });
+
+    addEvent(next, 'click', function (event) {
+      if (event.preventDefault) event.preventDefault();
+      if (event.stopPropagation) event.stopPropagation();
+      if (that.currentItemPage < that.totalItemPages - 1) {
+        that.currentItemPage++;
+        applyItemPage(that, true);
+      }
+    });
+
+    applyItemPage(that, false);
   }
 
     /**
@@ -406,7 +567,7 @@ function clickTable (event, that) {
     var nextElems = current.parentElement.parentElement.parentElement.children;
     var index = -1
     for (var i = 0, j = nextElems.length; i < j; i++) {
-      if (typeof(nextElems[i].children[0].children[0]) !== "undefined") {
+      if (nextElems[i].style.display !== 'none' && !nextElems[i].classList.contains('headerRow') && typeof(nextElems[i].children[0].children[0]) !== "undefined") {
         if (!nextElems[i].children[0].children[0].classList.contains('checkmark') && !nextElems[i].children[0].children[0].classList.contains('active')) {
             index = i;
             break;
@@ -432,7 +593,7 @@ function displayNext2 (instanceId) {
   var nextElems = current.parentElement.parentElement.parentElement.children;
   var index = -1
   for (var i = 0, j = nextElems.length; i < j; i++) {
-    if (typeof(nextElems[i].children[0].children[0]) !== "undefined") {
+    if (nextElems[i].style.display !== 'none' && !nextElems[i].classList.contains('headerRow') && typeof(nextElems[i].children[0].children[0]) !== "undefined") {
       if (!nextElems[i].children[0].children[0].classList.contains('checkmark') && !nextElems[i].children[0].children[0].classList.contains('active')) {
           index = i;
           break;
@@ -492,6 +653,9 @@ function displayNext2 (instanceId) {
     this.instanceId = options.instanceId || 1;
     this.headerFixed = options.headerFixed || 0;
     this.currentQuestion = options.currentQuestion || '';
+    this.maxItemsPerScreen = parseInt(options.maxItemsPerScreen, 10) || 0;
+    this.currentItemPage = 0;
+    this.totalItemPages = 1;
     this.accordion = options.accordion;
     this.responsiveWidth = parseInt(options.responsiveWidth);
     this.type = options.type || 'single';
@@ -504,21 +668,34 @@ function displayNext2 (instanceId) {
     var accordionInitialState = options.accordionInitialState
     if(expandableHeaders){
       var headerRows = document.querySelectorAll('#adc_' + this.instanceId + ' .headerRow');
+      var tableInstance = this;
       for (var i = 0; i < headerRows.length; i++) {
-        if (accordionInitialState == 'collapsed') {
-          var index = $(headerRows[i]).attr("data-id");
-          var headerChildren = document.querySelectorAll(".headerchild"+index);
-          for (var j = 0; j < headerChildren.length; j++) {
-            $(headerChildren[j]).toggle();
+        var initiallyCollapsed = accordionInitialState == 'collapsed';
+        headerRows[i].setAttribute('data-rt-collapsed', initiallyCollapsed ? '1' : '0');
+
+        if (initiallyCollapsed) {
+          var initialIndex = $(headerRows[i]).attr("data-id");
+          var initialHeaderChildren = document.querySelectorAll(".headerchild"+initialIndex);
+          for (var j = 0; j < initialHeaderChildren.length; j++) {
+            initialHeaderChildren[j].style.display = 'none';
           }
         }
+
         headerRows[i].onclick = function(){
           var index = $(this).attr("data-id");
           var headerChildren = document.querySelectorAll(".headerchild"+index);
-          for (var j = 0; j < headerChildren.length; j++) {
-            $(headerChildren[j]).toggle();
+          var collapse = this.getAttribute('data-rt-collapsed') !== '1';
+          this.setAttribute('data-rt-collapsed', collapse ? '1' : '0');
+
+          $("i", this).removeClass(collapse ? "minus" : "plus").addClass(collapse ? "plus" : "minus");
+
+          if (tableInstance.maxItemsPerScreen && tableInstance.totalItemPages > 1) {
+            applyItemPage(tableInstance, false);
+          } else {
+            for (var j = 0; j < headerChildren.length; j++) {
+              headerChildren[j].style.display = collapse ? 'none' : '';
+            }
           }
-          $("i", this).toggleClass("plus minus");
         }
       }
     }
@@ -585,6 +762,9 @@ function displayNext2 (instanceId) {
     for (var l2 = 0, k2 = responseszooms.length; l2 < k2; l2++) {
       simplboxConstructorCall(responseszooms[l2].getAttribute('data-id'));
     }
+
+    setupItemPaging(this);
+
     if (this.accordion && window.innerWidth < this.responsiveWidth){
 
       var otherloopElems = document.querySelectorAll('#adc_' + this.instanceId + ' .otherLoopText');
