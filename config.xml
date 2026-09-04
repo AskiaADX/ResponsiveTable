@@ -7,8 +7,8 @@
   <info>
     <name>ResponsiveTable</name>
     <guid>28609424-856b-40c8-ba88-5b29a439720a</guid>
-    <version>4.2.8</version>
-    <date>2023-06-09</date>
+    <version>4.2.9</version>
+    <date>2026-08-13</date>
     <description><![CDATA[Responsive Grid Table]]></description>
     <company>Askia</company>
     <author><![CDATA[Jérôme Duparc <jeromed@askia.com>]]></author>
@@ -148,6 +148,10 @@
       <property xsi:type="standardProperty" id="firstColumnLabel" name="First Column Label" type="string" mode="dynamic" require="false" visible="true">
         <description><![CDATA[Add custom text to the top-left cell of the table]]></description>
         <value></value>
+      </property>
+      <property xsi:type="standardProperty" id="maxItemsPerScreen" name="Max items per screen" type="number" mode="dynamic" require="true" visible="true" min="0">
+        <description><![CDATA[Maximum number of item rows displayed at one time. Set to 0 to display all rows.]]></description>
+        <value><![CDATA[0]]></value>
       </property>
     </category>
     <category id="Responsive" name="Responsive">

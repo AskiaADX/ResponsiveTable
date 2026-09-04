@@ -123,3 +123,31 @@ body {
   background-color: rgba(228,214,0,.1);
   color: rgba(34,34,34,1.0);
 }
+
+/* Client-side row paging */
+.adc-responsiveTable .responsiveTablePager {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.adc-responsiveTable .responsiveTablePager button {
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    margin: 0 5px;
+    padding: 7px 14px;
+}
+
+.adc-responsiveTable .responsiveTablePager button[disabled] {
+    cursor: default;
+    opacity: 0.45;
+}
+
+.adc-responsiveTable .responsiveTablePagerStatus {
+    display: inline-block;
+    min-width: 4em;
+    text-align: center;
+}
+
